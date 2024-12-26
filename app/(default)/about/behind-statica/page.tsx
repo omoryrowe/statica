@@ -72,7 +72,7 @@ export default function BehindStatica() {
                             </p>
                             <div className="flex justify-center mt-6">
                                 <div
-                                    className="p-2 rounded-sm animate-[gradient_5s_linear_infinite] bg-[length:200%_auto] bg-[linear-gradient(to_right,black,black,black,black,#564fdb,black,black,black,black)]"
+                                    className="p-2 rounded-sm animate-[gradient_5s_linear_infinite] bg-[length:200%_auto] bg-[linear-gradient(to_right,#040712,#040712,#040712,#040712,#564fdb,#040712,#040712,#040712,#040712)]"
                                 >
                                     <Image
                                         className="max-w-none w-60 sm:w-80 md:w-96"

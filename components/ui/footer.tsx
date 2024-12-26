@@ -81,15 +81,23 @@ export default function Footer() {
                   className="text-indigo-200/65 transition hover:text-indigo-500"
                   href="../portfolios/web-software#websites"
                 >
-                  Web Development
+                  Websites
                 </a>
               </li>
               <li>
                 <a
                   className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="..portfolios/web-software#coding-projects"
+                  href="..portfolios/web-software#software"
                 >
-                  Software
+                  Software Development
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-indigo-200/65 transition hover:text-indigo-500"
+                  href="..portfolios/web-software#automation"
+                >
+                  Automation
                 </a>
               </li>
             </ul>

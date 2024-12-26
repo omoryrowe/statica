@@ -54,7 +54,10 @@ export default function Header() {
                         <Link href="/portfolios/web-software#websites" className="block px-5 py-2 hover:bg-gray-700 text-base">Websites</Link>
                       </li>
                       <li>
-                        <Link href="/portfolios/web-software#coding-projects" className="block px-5 py-2 hover:bg-gray-700 text-base">Coding Projects</Link>
+                        <Link href="/portfolios/web-software#software" className="block px-5 py-2 hover:bg-gray-700 text-base">Software Development</Link>
+                      </li>
+                      <li>
+                        <Link href="/portfolios/web-software#automation" className="block px-5 py-2 hover:bg-gray-700 text-base">Automation</Link>
                       </li>
                     </ul>
                   </li>

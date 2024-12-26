@@ -36,7 +36,7 @@ export default function Features() {
           {/* Section header */}
           <div className="flex justify-center pb-4 md:pb-12 relative -mt-10" data-aos="fade-up">
             <div
-              className="p-2 rounded-lg animate-[gradient_5s_linear_infinite] bg-[length:200%_auto] bg-[linear-gradient(to_right,black,black,black,black,#564fdb,black,black,black,black)]"
+              className="p-2 rounded-lg animate-[gradient_5s_linear_infinite] bg-[length:200%_auto] bg-[linear-gradient(to_right,#060914,#060914,#060914,#060914,#564fdb,#060914,#060914,#060914,#060914)]"
             >
               <Image
                 className="max-w-none"
