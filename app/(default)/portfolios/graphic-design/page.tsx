@@ -92,6 +92,15 @@ export default function PortfolioHome() {
 
     return (
         <div className="portfolio-home mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/4" aria-hidden="true">
+                <Image
+                    className="max-w-none"
+                    src="/images/page-illustration.svg"
+                    width={846}
+                    height={594}
+                    alt="Page illustration"
+                />
+            </div>
             <div className="pb-8 text-center md:pb-16 mt-20">
                 <h1
                     className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-5 font-nacelle text-4xl font-semibold text-transparent md:text-5xl"
