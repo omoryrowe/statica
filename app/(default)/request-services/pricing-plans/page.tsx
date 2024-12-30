@@ -26,6 +26,7 @@ const PricingPlans = () => {
                     price: "$79",
                     features: [
                         "One initial concept",
+                        "Flat 2D Text Design",
                         "One round of revisions",
                         "Delivery of essential files (JPEG, PNG, PDF)",
                     ],
@@ -36,6 +37,7 @@ const PricingPlans = () => {
                     features: [
                         "Two to three initial concepts",
                         "Two rounds of revisions",
+                        "3D Text Design or Simple Custom Graphic Design",
                         "Delivery of essential files (JPEG, PNG, PDF)",
                         "Vector file delivery (SVG)",
                         "Logo variations (color scheme, backgrounds, transparency)",
@@ -46,6 +48,7 @@ const PricingPlans = () => {
                     price: "$299",
                     features: [
                         "Four to five custom concepts",
+                        "3D Text Design + Advanced Custom Graphic Design",
                         "Unlimited revisions",
                         "Delivery of essential files (JPEG, PNG, PDF)",
                         "Vector file delivery (SVG)",
@@ -142,6 +145,7 @@ const PricingPlans = () => {
                         "Simple one-page website (landing page or portfolio)",
                         "Responsive design",
                         "One round of revisions",
+                        '"Created by Statica" watermark in footer"',
                     ],
                 },
                 {
@@ -150,6 +154,9 @@ const PricingPlans = () => {
                     features: [
                         "Multi-page website (3–5 pages)",
                         "Custom design with basic interactivity",
+                        "Two rounds of revisions",
+                        "Maintenance and support for one week",
+                        "No Watermark",
                     ],
                 },
                 {
@@ -158,10 +165,12 @@ const PricingPlans = () => {
                     features: [
                         "Multi-page website (up to 7 pages)",
                         "Custom Design and Website Animations",
+                        "Unlimited Revisions",
                         "Full Brand Integration",
                         "E-commerce functionality or advanced interactions",
                         "Maintenance and support for one month",
                         "Website SEO and analytics setup",
+                        "No Watermark",
                     ],
                 },
                 {
@@ -170,10 +179,12 @@ const PricingPlans = () => {
                     features: [
                         "Full Stack Web Application with User Database Integration",
                         "Custom Design and Website Animations",
+                        "Unlimited Revisions",
                         "Full Brand Integration",
                         "E-commerce functionality or advanced interactions",
-                        "Maintenance and support for one month",
+                        "Maintenance and support for two months",
                         "Website SEO and analytics setup",
+                        "No Watermark",
                         "Free Promotional Flyer",
                     ],
                 },
@@ -186,8 +197,9 @@ const PricingPlans = () => {
                     name: "Startup Tier",
                     price: "$499+",
                     features: [
-                        "Automation of one simple process (e.g., email workflow, data entry)",
-                        "User-Friendly Documentation",
+                        "Automation of one simple process (e.g., email workflow, data entry, report generation)",
+                        "Basic optimization of repetitive tasks to reduce manual effort",
+                        "Comprehensive Setup/Usage Guide",
                         "Ongoing support for one month",
                     ],
                 },
@@ -195,10 +207,11 @@ const PricingPlans = () => {
                     name: "Enterprise Tier",
                     price: "$999+",
                     features: [
-                        "Multi-step workflow automation (advanced processes)",
+                        "Multi-step/Multi-platform workflow automation (advanced processes)",
                         "User-Friendly Documentation",
-                        "Training materials",
-                        "Ongoing tech support for three months",
+                        "Comprehensive Setup/Usage Guide",
+                        "Video Tutorials/Training Videos",
+                        "Ongoing tech support for two months",
                     ],
                 },
             ],
@@ -277,6 +290,13 @@ const PricingPlans = () => {
                     data-aos-delay={200}
                 >
                     Unlock the potential of your brand with our flexible and tailored design packages. Crafted for businesses of every size, Statica delivers creativity and value.
+                </p>
+                <p
+                    className="-mt-4 animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text mb-8 text-2xl font-nacelle text-transparent"
+                    data-aos="fade-up"
+                    data-aos-delay={200}
+                >
+                    *Prices may vary*
                 </p>
             </header>
             
@@ -385,7 +405,7 @@ const PricingPlans = () => {
                         <div data-aos="fade-up" data-aos-delay={400}>
                             <a
                                 className="btn group mb-4 w-full bg-gradient-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_theme(colors.white/.16)] hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto"
-                                href="../request-services/pricing-plans"
+                                href="../request-services/request-quote"
                             >
                                 <span className="relative inline-flex items-center">
                                     Get a Quote

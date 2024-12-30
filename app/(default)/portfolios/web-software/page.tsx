@@ -86,6 +86,7 @@ export default function PortfolioHome() {
                         services: "UI/UX Design & Frontend Implementation",
                     },
                     tools: ["Bootstrap", "jQuery", "HTML", "CSS", "JavaScript"],
+                    images: ["/images/projects/filemorph1.png"],
                 },
             ],
         },
@@ -132,6 +133,7 @@ export default function PortfolioHome() {
                         services: "Backend API Design & Workflow Automation",
                     },
                     tools: ["Python", "Flask", "Control-M", "Windows Defender API", "Workflow Automation"],
+                    images: ["/images/projects/filemorph1.png"],
                 },
             ],
         },
@@ -156,6 +158,7 @@ export default function PortfolioHome() {
                         services: "Workflow Automation & Scheduling Integration",
                     },
                     tools: ["Control-M", "Workflow Automation", "Python", "Windows Defender API", "Enterprise Scheduling"],
+                    images: ["/images/projects/filemorph1.png"],
                 },
                 {
                     title: "Script Optimization: Legacy Perl to Python",

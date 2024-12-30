@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { StaticImageData } from "next/image";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import Image from "next/image";
@@ -28,6 +28,18 @@ export default function ModalVideo({
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  const handleOpenModal = async () => {
+    setModalOpen(true);
+    // Wait for the modal to open and play the video
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.play().catch((error) => {
+          console.error("Video playback failed:", error);
+        });
+      }
+    }, 0);
+  };
+
   return (
     <div className="relative">
       {/* Secondary illustration */}
@@ -47,9 +59,7 @@ export default function ModalVideo({
       {/* Video thumbnail */}
       <button
         className="group relative flex items-center justify-center rounded-2xl focus:outline-none focus-visible:ring focus-visible:ring-indigo-200"
-        onClick={() => {
-          setModalOpen(true);
-        }}
+        onClick={handleOpenModal}
         aria-label="Watch the video"
         data-aos="fade-up"
         data-aos-delay={200}
@@ -94,9 +104,9 @@ export default function ModalVideo({
               </defs>
             </svg>
             <span className="text-sm font-medium leading-tight text-gray-300">
-              Watch Demo
+              Watch Intro
               <span className="text-gray-600"> - </span>
-              3:47
+              0:21
             </span>
           </span>
         </span>
@@ -115,15 +125,13 @@ export default function ModalVideo({
         <div className="fixed inset-0 z-[99999] flex px-4 py-6 sm:px-6">
           <div className="mx-auto flex h-full max-w-6xl items-center">
             <DialogPanel
-              transition
-              className="aspect-video max-h-full w-full overflow-hidden rounded-2xl bg-black shadow-2xl duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+              className="flex justify-center items-center max-w-full max-h-full overflow-hidden rounded-2xl bg-black shadow-2xl"
             >
               <video
                 ref={videoRef}
-                width={videoWidth}
-                height={videoHeight}
-                loop
+                className="w-full h-auto"
                 controls
+                loop
               >
                 <source src={video} type="video/mp4" />
                 Your browser does not support the video tag.

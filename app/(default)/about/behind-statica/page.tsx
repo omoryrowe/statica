@@ -90,7 +90,7 @@ export default function BehindStatica() {
 
             <section className="relative py-12 md:py-20">
                 <div className="mx-auto max-w-6xl px-4 sm:px-6">
-                    <div className="text-center">
+                    <div className="text-center -mt-15">
                         <h2
                             className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-5 font-nacelle text-3xl font-semibold text-transparent md:text-4xl"
                             data-aos="fade-up"
@@ -102,8 +102,8 @@ export default function BehindStatica() {
                         </p>
                     </div>
                     <div className="grid gap-12 md:grid-cols-2">
-                        <div data-aos="fade-right">
-                            <h3 className="font-semibold animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text mb-8 text-xl font-nacelle text-transparent"
+                        <div data-aos="fade-right ">
+                            <h3 className="mt-10 font-semibold animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text mb-8 text-xl font-nacelle text-transparent"
                             >Leadership and Professional Development</h3>
                             <p className="-mt-4 text-indigo-200/65">
                                 As a Career Preparation Fellow with Management Leadership for Tomorrow, Omory is part of
@@ -113,7 +113,7 @@ export default function BehindStatica() {
                             </p>
                         </div>
                         <div data-aos="fade-left">
-                            <h3 className="font-semibold animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text mb-8 text-xl font-nacelle text-transparent"
+                            <h3 className="mt-10 font-semibold animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text mb-8 text-xl font-nacelle text-transparent"
                             >Service and Community Impact</h3>
                             <p className="-mt-4 text-indigo-200/65">
                                 Omory’s leadership extended to his role as Chapter President of Iota Phi Theta Fraternity,

@@ -1,4 +1,4 @@
-import VideoThumb from "@/public/images/hero-image-01.jpg";
+import VideoThumb from "@/public/images/statica/Statica Logo Black Background.png";
 import ModalVideo from "@/components/modal-video";
 import Image from "next/image";
 import FeaturesImage from "@/public/images/statica/Statica Logo White Cropped.png";
@@ -7,7 +7,7 @@ export default function HeroHome() {
   return (
     <section>
       {/* <div className="mx-auto max-w-6xl px-4 sm:px-6 -mt-20"> */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="-mt-4 mx-auto max-w-6xl px-4 sm:px-6">
         {/* Hero content */}
         <div className="py-8 md:py-16">
           {/* Section header */}
@@ -18,7 +18,18 @@ export default function HeroHome() {
             >
               Welcome to Statica: Spark Your Vision
             </h1>
-            <div className="mx-auto max-w-4xl">
+            <div className="mt-4 flex justify-center items-center">
+              <ModalVideo
+                thumb={VideoThumb}
+                thumbWidth={500}
+                thumbHeight={500}
+                thumbAlt="Modal video thumbnail"
+                video="videos//Statica Launch Promo Video.mp4"
+                videoWidth={500}
+                videoHeight={800}
+              />
+            </div>
+            <div className="mx-auto max-w-4xl mt-10">
               <p
                 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text mb-8 text-2xl font-nacelle text-transparent"
                 data-aos="fade-up"
@@ -54,18 +65,8 @@ export default function HeroHome() {
               </div>
             </div>
           </div>
-          {/* <ModalVideo
-        thumb={VideoThumb}
-        thumbWidth={1104}
-        thumbHeight={576}
-        thumbAlt="Modal video thumbnail"
-        video="videos//video.mp4"
-        videoWidth={1920}
-        videoHeight={1080}
-      /> */}
         </div>
       </div>
     </section>
-
   );
 }
