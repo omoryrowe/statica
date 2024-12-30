@@ -2,6 +2,7 @@
     "functions": {
         "api/**/*.js": {
             "runtime": "@vercel/node",
+            "framework": "nextjs",
             "memory": 128,
             "maxDuration": 10
         }
