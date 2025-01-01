@@ -40,14 +40,6 @@ const testimonials = [
       "Pays close attention to detail, very responsive and works hard to bring your exact idea to life",
     categories: [1, 3, 5],
   },
-  {
-    img: TestimonialImg03,
-    name: "Lucy D.",
-    company: "Rio",
-    content:
-      "Content creation used to be a bottleneck in our workflow, but not anymore. This AI tool is intuitive and produces top-notch content every time. It's like having an extra team member who never sleeps! Definitely recommend.",
-    categories: [1, 3, 5],
-  },
 ];
 
 export default function Testimonials() {

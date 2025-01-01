@@ -5,29 +5,24 @@ import { useState } from "react";
 export default function GetAQuote() {
     const [selectedItems, setSelectedItems] = useState<{ [key: string]: number }>({});
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [formErrors, setFormErrors] = useState<string | null>(null);
 
     const pricingPlans = [
-        // Logos
         "Logos - Starter Tier ($79)",
         "Logos - Pro Tier ($149)",
         "Logos - Elite Tier ($299)",
-        // Promotional Flyers
         "Promotional Flyers - Starter Tier ($39)",
         "Promotional Flyers - Pro Tier ($69)",
         "Promotional Flyers - Elite Tier ($99)",
-        // Custom Graphics
         "Custom Graphics - Starter Tier ($59)",
         "Custom Graphics - Pro Tier ($99)",
         "Custom Graphics - Elite Tier ($149)",
-        // Websites
         "Websites - Starter Tier ($299)",
         "Websites - Pro Tier ($599)",
         "Websites - Elite Tier ($999)",
         "Websites - Corporate Tier ($1499+)",
-        // Business Automation
         "Business Automation - Startup Tier ($499+)",
         "Business Automation - Enterprise Tier ($999+)",
-        // Bundles
         "Bundles - Branding Essentials Kit ($349)",
         "Bundles - Marketing Essentials Kit ($699)",
         "Bundles - Executive Launch Kit ($1,199)",
@@ -46,13 +41,69 @@ export default function GetAQuote() {
             const newCount = (prevSelectedItems[item] || 0) - 1;
             if (newCount <= 0) {
                 const { [item]: _, ...rest } = prevSelectedItems;
-                return rest; // Remove the item if the count goes to 0
+                return rest;
             }
             return {
                 ...prevSelectedItems,
                 [item]: newCount,
             };
         });
+    };
+
+    const isValidEmail = (email: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const form = event.target as any;
+
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const projectDetails = form["project-details"].value.trim();
+
+        // Validate email and required fields
+        if (!name || !email || !projectDetails || Object.keys(selectedItems).length === 0) {
+            setFormErrors("All fields are required, and at least one package must be selected.");
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            setFormErrors("Please enter a valid email address.");
+            return;
+        }
+
+        // Clear errors and prepare form data
+        setFormErrors(null);
+        const formData = {
+            name,
+            email,
+            selectedItems,
+            projectDetails,
+        };
+
+        try {
+            const response = await fetch("/api/sendQuoteEmail", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                alert("Quote request sent successfully!");
+                form.reset();
+                setSelectedItems({});
+            } else {
+                const data = await response.json();
+                alert(`Error: ${data.message}`);
+            }
+        } catch (error) {
+            console.error("Error sending quote request:", error);
+            alert("Failed to send quote request. Please try again.");
+        }
     };
 
     return (
@@ -67,7 +118,12 @@ export default function GetAQuote() {
                             Fill out the form below, and we’ll get back to you with a tailored proposal for your needs.
                         </p>
                     </div>
-                    <form className="mx-auto max-w-[500px]">
+                    <form className="mx-auto max-w-[500px]" onSubmit={handleSubmit}>
+                        {formErrors && (
+                            <div className="mb-4 rounded-lg bg-red-100 p-4 text-red-600">
+                                {formErrors}
+                            </div>
+                        )}
                         <div className="space-y-5">
                             <div>
                                 <label

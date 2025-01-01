@@ -27,7 +27,7 @@ export default function Footer() {
               <li>
                 <a
                   className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="#0"
+                  href="../about/our-story"
                 >
                   Our Story
                 </a>
@@ -35,7 +35,7 @@ export default function Footer() {
               <li>
                 <a
                   className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="../about/our-story"
+                  href="../about/behind-statica"
                 >
                   Behind Statica
                 </a>
@@ -65,9 +65,9 @@ export default function Footer() {
               <li>
                 <a
                   className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="../portfolios/graphic-design#custom-designs"
+                  href="../portfolios/graphic-design#custom-graphics"
                 >
-                  Custom Designs
+                  Custom Graphics
                 </a>
               </li>
             </ul>
@@ -87,7 +87,7 @@ export default function Footer() {
               <li>
                 <a
                   className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="..portfolios/web-software#software"
+                  href="../portfolios/web-software#software"
                 >
                   Software Development
                 </a>
@@ -95,7 +95,7 @@ export default function Footer() {
               <li>
                 <a
                   className="text-indigo-200/65 transition hover:text-indigo-500"
-                  href="..portfolios/web-software#automation"
+                  href="../portfolios/web-software#automation"
                 >
                   Automation
                 </a>
