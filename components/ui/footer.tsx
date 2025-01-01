@@ -12,14 +12,15 @@ export default function Footer() {
           aria-hidden="true"
         >
           <Image
-            className="max-w-none"
+            className="max-w-full h-auto"
             src={FooterIllustration}
             width={1076}
             height={378}
             alt="Footer illustration"
+            priority
           />
         </div>
-        <div className="grid grid-cols-2 justify-between gap-12 py-8 sm:grid-rows-[auto_auto] md:grid-cols-4 md:grid-rows-[auto_auto] md:py-12 lg:grid-cols-[repeat(4,minmax(0,140px))_1fr] lg:grid-rows-1 xl:gap-20">
+        <div className="grid gap-8 py-8 sm:grid-cols-2 sm:gap-10 md:grid-cols-4 md:py-12 lg:grid-cols-[repeat(4,minmax(0,140px))_1fr]">
           {/* 1st block */}
           <div className="space-y-2">
             <h3 className="text-sm font-medium text-gray-200">About Statica</h3>
@@ -127,12 +128,12 @@ export default function Footer() {
             </ul>
           </div>
           {/* 5th block */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-1 lg:text-right -mt-10">
+          <div className="col-span-2 md:col-span-4 lg:col-span-1 lg:text-right -mt-16">
             <div className="mb-3">
               <Logo />
             </div>
-            <div className="text-sm">
-              <p className="mb-3 text-indigo-200/65 -mt-20">
+            <div className="text-sm -mt-16">
+              <p className="mb-3 text-indigo-200/65">
                 &nbsp;&nbsp;&nbsp;statica.com
                 <span className="text-gray-700"> · </span>
                 {/* <a
@@ -142,6 +143,7 @@ export default function Footer() {
                   Terms
                 </a> */}
               </p>
+              {/* Social Media Links */}
               {/* <ul className="inline-flex gap-1">
                 <li>
                   <a

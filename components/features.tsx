@@ -6,6 +6,7 @@ import FeaturesImage from "@/public/images/statica/Statica Logo White Cropped.pn
 export default function Features() {
   return (
     <section className="relative">
+      {/* Background Shapes */}
       <div
         className="pointer-events-none absolute left-1/2 top-0 -z-10 -mt-20 -translate-x-1/2"
         aria-hidden="true"
@@ -30,24 +31,31 @@ export default function Features() {
           alt="Blurred shape"
         />
       </div>
-      
+
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="border-t py-12 [border-image:linear-gradient(to_right,transparent,theme(colors.slate.400/.25),transparent)1] md:py-20">
-          {/* Section header */}
-          <div className="flex justify-center pb-4 md:pb-12 relative -mt-10" data-aos="fade-up">
+          {/* Section Header */}
+          <div
+            className="flex justify-center pb-4 md:pb-12 relative"
+            data-aos="fade-up"
+          >
             <div
               className="p-2 rounded-lg animate-[gradient_5s_linear_infinite] bg-[length:200%_auto] bg-[linear-gradient(to_right,#060914,#060914,#060914,#060914,#564fdb,#060914,#060914,#060914,#060914)]"
             >
               <Image
-                className="max-w-none"
+                className="max-w-full h-auto object-contain"
                 src={FeaturesImage}
+                alt="Features"
                 width={600}
                 height={200}
-                alt="Features"
+                sizes="(max-width: 768px) 90vw, 50vw"
+                priority
               />
             </div>
           </div>
-          <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12 -mt-0">
+
+          {/* Section Title */}
+          <div className="mx-auto max-w-3xl pb-4 text-center md:pb-12">
             <div className="inline-flex items-center gap-3 pb-3 before:h-px before:w-8 before:bg-gradient-to-r before:from-transparent before:to-indigo-200/50 after:h-px after:w-8 after:bg-gradient-to-l after:from-transparent after:to-indigo-200/50">
               <span className="inline-flex bg-gradient-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
                 Automate and Innovate
@@ -57,9 +65,10 @@ export default function Features() {
               Our Tech Services
             </h2>
             <p className="text-lg text-indigo-200/65">
-              
+              Unlock potential with our cutting-edge solutions.
             </p>
           </div>
+
           {/* Items */}
           <div className="mx-auto grid max-w-sm gap-12 sm:max-w-none sm:grid-cols-2 md:gap-x-14 md:gap-y-16 lg:grid-cols-3">
             <article>
@@ -79,8 +88,9 @@ export default function Features() {
                 Custom Website Development
               </h3>
               <p className="text-indigo-200/65">
-                Designing and building fully customized, responsive, and scalable
-                websites tailored to clients' branding and business needs.
+                Designing and building fully customized, responsive, and
+                scalable websites tailored to clients' branding and business
+                needs.
               </p>
             </article>
             <article>
@@ -146,48 +156,6 @@ export default function Features() {
               <p className="text-indigo-200/65">
                 Elevating your business with modern, responsive websites built using frameworks
                 like React, Flask, Next.js, Bootstrap, TailwindCSS, and more.
-              </p>
-            </article>
-            <article>
-              <svg
-                className="mb-3 fill-indigo-500"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-              >
-                <path
-                  fillOpacity=".48"
-                  d="M12 8.8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"
-                />
-                <path d="m7.454 2.891.891-.454L7.437.655l-.891.454a12 12 0 0 0 0 21.382l.89.454.91-1.781-.892-.455a10 10 0 0 1 0-17.818ZM17.456 1.11l-.891-.454-.909 1.782.891.454a10 10 0 0 1 0 17.819l-.89.454.908 1.781.89-.454a12 12 0 0 0 0-21.382Z" />
-              </svg>
-              <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                E-commerce Solutions
-              </h3>
-              <p className="text-indigo-200/65">
-                Developing online stores with features like product catalogs,
-                payment gateways, and inventory management in Shopify
-              </p>
-            </article>
-            <article>
-              <svg
-                className="mb-3 fill-indigo-500"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-              >
-                <path
-                  fillOpacity=".48"
-                  d="M19 8h5v2h-5V8Zm-4 5h9v2h-9v-2Zm9 5H11v2h13v-2Z"
-                />
-                <path d="M19.406 3.844 6.083 20.497.586 15 2 13.586l3.917 3.917L17.844 2.595l1.562 1.25Z" />
-              </svg>
-              <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
-                User Friendly Solutions
-              </h3>
-              <p className="text-indigo-200/65">
-                Implementing and content management systems like WordPress for
-                easy content updates and management.
               </p>
             </article>
           </div>

@@ -43,16 +43,16 @@ const ProjectDetailsCard: React.FC<ProjectDetailsCardProps> = ({
             }}
         >
             <div className="flex justify-between items-center">
-                <h3 className="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
+                <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-500 to-indigo-200 bg-clip-text text-transparent">
                     {title}
                 </h3>
-                <p className="text-sm">{category}</p>
+                <p className="text-xs md:text-sm">{category}</p>
             </div>
 
             <div className="mt-4">
                 {images && images.length > 0 && (
                     <div className="mb-4">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {images.map((image, index) => (
                                 <Image
                                     key={index}
@@ -60,7 +60,7 @@ const ProjectDetailsCard: React.FC<ProjectDetailsCardProps> = ({
                                     alt={`Project Image ${index + 1}`}
                                     width={500}
                                     height={300}
-                                    className="rounded-lg cursor-pointer hover:scale-105 transition-transform"
+                                    className="rounded-lg cursor-pointer hover:scale-105 transition-transform max-w-full h-auto"
                                     onClick={(e) => {
                                         e.stopPropagation(); // Prevent card from collapsing
                                         openImage(image);
@@ -72,18 +72,18 @@ const ProjectDetailsCard: React.FC<ProjectDetailsCardProps> = ({
                 )}
 
                 <h4 className="text-lg font-semibold mb-2">Client</h4>
-                <p>
+                <p className="text-sm">
                     <strong>Company/Name:</strong> {client.name}
                 </p>
-                <p>
+                <p className="text-sm">
                     <strong>Services:</strong> {client.services}
                 </p>
 
                 <h4 className="text-lg font-semibold mt-4 mb-2">Description</h4>
-                <p>{description}</p>
+                <p className="text-sm">{description}</p>
 
                 <h4 className="text-lg font-semibold mt-4 mb-2">Tools & Technologies</h4>
-                <ul className="list-disc list-inside">
+                <ul className="list-disc list-inside text-sm">
                     {tools.map((tool, index) => (
                         <li key={index}>{tool}</li>
                     ))}
@@ -94,7 +94,7 @@ const ProjectDetailsCard: React.FC<ProjectDetailsCardProps> = ({
                         <h4 className="text-lg font-semibold">Share This</h4>
                         <a
                             href={shareLink}
-                            className="text-indigo-500 hover:underline"
+                            className="text-indigo-500 hover:underline text-sm"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -106,17 +106,17 @@ const ProjectDetailsCard: React.FC<ProjectDetailsCardProps> = ({
 
             {/* Modal for expanded image */}
             {expandedImage && (
-                <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
-                    <div className="relative">
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 px-4">
+                    <div className="relative max-w-full">
                         <Image
                             src={expandedImage}
                             alt="Expanded Image"
                             width={1000}
                             height={700}
-                            className="rounded-lg"
+                            className="rounded-lg max-w-full h-auto"
                         />
                         <button
-                            className="absolute top-4 right-4 bg-white text-black rounded-full px-4 py-2 shadow-lg"
+                            className="absolute top-4 right-4 bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             onClick={closeImage}
                         >
                             ×

@@ -4,9 +4,6 @@ import { useState } from "react";
 import useMasonry from "@/utils/useMasonry";
 import Image, { StaticImageData } from "next/image";
 import TestimonialImgMale from "@/public/images/testimonial-male.png";
-import TestimonialImgFemale from "@/public/images/testimonial-female.png";
-import TestimonialImg02 from "@/public/images/testimonial-02.jpg";
-import TestimonialImg03 from "@/public/images/testimonial-03.jpg";
 
 const testimonials = [
   {
@@ -53,14 +50,17 @@ export default function Testimonials() {
           <h2 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-3xl font-semibold text-transparent md:text-4xl">
             Don't just take our word for it
           </h2>
-          <p className="text-lg text-indigo-200/65">
+          <p className="text-base text-indigo-200/65 sm:text-lg">
             Discover the stories of our clients and their transformative journeys
             with Statica. See firsthand how our designs have brought their visions
             to life and exceeded their expectations.
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-sm items-start gap-6 sm:max-w-none sm:grid-cols-2 lg:grid-cols-3" ref={masonryContainer}>
+        <div
+          className="mx-auto grid max-w-full gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          ref={masonryContainer}
+        >
           {testimonials.map((testimonial, index) => (
             <div key={index} className="group">
               <Testimonial testimonial={testimonial} category={category}>
@@ -91,10 +91,11 @@ export function Testimonial({
 }) {
   return (
     <article
-      className={`relative rounded-2xl bg-gradient-to-br from-gray-900/50 via-gray-800/25 to-gray-900/50 p-5 backdrop-blur-sm transition-opacity before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,theme(colors.gray.800),theme(colors.gray.700),theme(colors.gray.800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] ${!testimonial.categories.includes(category) ? "opacity-30" : ""}`}
+      className={`relative rounded-2xl bg-gradient-to-br from-gray-900/50 via-gray-800/25 to-gray-900/50 p-5 backdrop-blur-sm transition-opacity before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,theme(colors.gray.800),theme(colors.gray.700),theme(colors.gray.800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] ${!testimonial.categories.includes(category) ? "opacity-30" : ""
+        }`}
     >
       <div className="flex flex-col gap-4">
-        <p className="text-indigo-200/65 before:content-['“'] after:content-['”']">
+        <p className="text-sm text-indigo-200/65 sm:text-base before:content-['“'] after:content-['”']">
           {children}
         </p>
         <div className="flex items-center gap-3">
