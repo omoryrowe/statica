@@ -119,6 +119,8 @@ export default function Header() {
         </div>
       </div>
 
+      <div className="h-16"></div>
+      
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <div className="md:hidden">

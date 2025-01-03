@@ -7,7 +7,7 @@ export default function HeroHome() {
   return (
     <section>
       {/* <div className="mx-auto max-w-6xl px-4 sm:px-6 -mt-20"> */}
-      <div className="mt-10 mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="-mt-4 mx-auto max-w-6xl px-4 sm:px-6">
         {/* Hero content */}
         <div className="py-8 md:py-16">
           {/* Section header */}
