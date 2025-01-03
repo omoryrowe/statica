@@ -37,6 +37,17 @@ const testimonials = [
       "Pays close attention to detail, very responsive and works hard to bring your exact idea to life",
     categories: [1, 3, 5],
   },
+  {
+    img: TestimonialImgMale,
+    name: "Jerry J.",
+    company: "Iota Phi Theta",
+    content:
+      "I had the pleasure of working with Statica on creating a flyer for an upcoming event, and I couldn’t be more impressed with the results. " + 
+      "The design was clean, eye- catching, and perfectly captured the tone and branding I was aiming for. Every element was thoughtfully chosen to " + 
+      "ensure the flyer was not only visually appealing but also easy to read and informative. " + 
+      "The turnaround time was quick and I highly recommend Statica for anyone looking for professional, high-quality design work!",
+    categories: [1, 3, 5],
+  },
 ];
 
 export default function Testimonials() {
