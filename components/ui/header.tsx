@@ -44,19 +44,31 @@ export default function Header() {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="flex flex-1 items-center justify-end gap-6">
+          <nav className="hidden md:flex flex-1 items-center justify-end gap-6">
             <ul className="flex items-center gap-6 text-lg text-gray-300">
               <li className="relative group">
-                <Link href="/" className="hover:text-white">Home</Link>
+                <Link href="/" className="hover:text-white">
+                  Home
+                </Link>
               </li>
               <li className="relative group">
                 <button className="hover:text-white">About</button>
                 <ul className="absolute hidden group-hover:block top-full w-52 rounded-lg bg-gray-800 shadow-lg">
                   <li>
-                    <Link href="/about/our-story" className="block px-5 py-3 hover:bg-gray-700 text-base">Our Story</Link>
+                    <Link
+                      href="/about/our-story"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Our Story
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/about/behind-statica" className="block px-5 py-3 hover:bg-gray-700 text-base">Behind Statica</Link>
+                    <Link
+                      href="/about/behind-statica"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Behind Statica
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -64,30 +76,70 @@ export default function Header() {
                 <button className="hover:text-white">Portfolios</button>
                 <ul className="absolute hidden group-hover:block top-full w-72 rounded-lg bg-gray-800 shadow-lg">
                   <li>
-                    <Link href="/portfolios/graphic-design" className="block px-5 py-3 hover:bg-gray-700 text-base">Graphic Design</Link>
+                    <Link
+                      href="/portfolios/graphic-design"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Graphic Design
+                    </Link>
                     <ul className="ml-4">
                       <li>
-                        <Link href="/portfolios/graphic-design#logos" className="block px-5 py-2 hover:bg-gray-700 text-base">Logos</Link>
+                        <Link
+                          href="/portfolios/graphic-design#logos"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Logos
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/portfolios/graphic-design#flyers" className="block px-5 py-2 hover:bg-gray-700 text-base">Flyers</Link>
+                        <Link
+                          href="/portfolios/graphic-design#flyers"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Flyers
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/portfolios/graphic-design#custom-graphics" className="block px-5 py-2 hover:bg-gray-700 text-base">Custom Graphics</Link>
+                        <Link
+                          href="/portfolios/graphic-design#custom-graphics"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Custom Graphics
+                        </Link>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <Link href="/portfolios/web-software" className="block px-5 py-3 hover:bg-gray-700 text-base">Web & Software</Link>
+                    <Link
+                      href="/portfolios/web-software"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Web & Software
+                    </Link>
                     <ul className="ml-4">
                       <li>
-                        <Link href="/portfolios/web-software#websites" className="block px-5 py-2 hover:bg-gray-700 text-base">Websites</Link>
+                        <Link
+                          href="/portfolios/web-software#websites"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Websites
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/portfolios/web-software#software" className="block px-5 py-2 hover:bg-gray-700 text-base">Software Development</Link>
+                        <Link
+                          href="/portfolios/web-software#software"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Software Development
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/portfolios/web-software#automation" className="block px-5 py-2 hover:bg-gray-700 text-base">Automation</Link>
+                        <Link
+                          href="/portfolios/web-software#automation"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Automation
+                        </Link>
                       </li>
                     </ul>
                   </li>
@@ -97,10 +149,20 @@ export default function Header() {
                 <button className="hover:text-white">Request Services</button>
                 <ul className="absolute hidden group-hover:block top-full w-56 rounded-lg bg-gray-800 shadow-lg">
                   <li>
-                    <Link href="/request-services/pricing-plans" className="block px-5 py-3 hover:bg-gray-700 text-base">Pricing & Plans</Link>
+                    <Link
+                      href="/request-services/pricing-plans"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Pricing & Plans
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/request-services/request-quote" className="block px-5 py-3 hover:bg-gray-700 text-base">Request a Quote</Link>
+                    <Link
+                      href="/request-services/request-quote"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Request a Quote
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -129,12 +191,18 @@ export default function Header() {
               {openSubMenu === "about" && (
                 <ul className="ml-6 mt-2 space-y-3">
                   <li>
-                    <Link href="/about/our-story" className="block hover:text-white">
+                    <Link
+                      href="/about/our-story"
+                      className="block hover:text-white"
+                    >
                       Our Story
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about/behind-statica" className="block hover:text-white">
+                    <Link
+                      href="/about/behind-statica"
+                      className="block hover:text-white"
+                    >
                       Behind Statica
                     </Link>
                   </li>
@@ -154,12 +222,18 @@ export default function Header() {
               {openSubMenu === "portfolios" && (
                 <ul className="ml-6 mt-2 space-y-3">
                   <li>
-                    <Link href="/portfolios/graphic-design" className="block hover:text-white">
+                    <Link
+                      href="/portfolios/graphic-design"
+                      className="block hover:text-white"
+                    >
                       Graphic Design
                     </Link>
                   </li>
                   <li>
-                    <Link href="/portfolios/web-software" className="block hover:text-white">
+                    <Link
+                      href="/portfolios/web-software"
+                      className="block hover:text-white"
+                    >
                       Web & Software
                     </Link>
                   </li>
@@ -179,12 +253,18 @@ export default function Header() {
               {openSubMenu === "services" && (
                 <ul className="ml-6 mt-2 space-y-3">
                   <li>
-                    <Link href="/request-services/pricing-plans" className="block hover:text-white">
+                    <Link
+                      href="/request-services/pricing-plans"
+                      className="block hover:text-white"
+                    >
                       Pricing & Plans
                     </Link>
                   </li>
                   <li>
-                    <Link href="/request-services/request-quote" className="block hover:text-white">
+                    <Link
+                      href="/request-services/request-quote"
+                      className="block hover:text-white"
+                    >
                       Request a Quote
                     </Link>
                   </li>
