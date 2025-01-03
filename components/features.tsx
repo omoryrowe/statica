@@ -158,6 +158,48 @@ export default function Features() {
                 like React, Flask, Next.js, Bootstrap, TailwindCSS, and more.
               </p>
             </article>
+            <article>
+              <svg
+                className="mb-3 fill-indigo-500"
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+              >
+                <path
+                  fillOpacity=".48"
+                  d="M12 8.8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"
+                />
+                <path d="m7.454 2.891.891-.454L7.437.655l-.891.454a12 12 0 0 0 0 21.382l.89.454.91-1.781-.892-.455a10 10 0 0 1 0-17.818ZM17.456 1.11l-.891-.454-.909 1.782.891.454a10 10 0 0 1 0 17.819l-.89.454.908 1.781.89-.454a12 12 0 0 0 0-21.382Z" />
+              </svg>
+              <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
+                E-commerce Solutions
+              </h3>
+              <p className="text-indigo-200/65">
+                Developing online stores with features like product catalogs,
+                payment gateways, and inventory management in Shopify
+              </p>
+            </article>
+            <article>
+              <svg
+                className="mb-3 fill-indigo-500"
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+              >
+                <path
+                  fillOpacity=".48"
+                  d="M19 8h5v2h-5V8Zm-4 5h9v2h-9v-2Zm9 5H11v2h13v-2Z"
+                />
+                <path d="M19.406 3.844 6.083 20.497.586 15 2 13.586l3.917 3.917L17.844 2.595l1.562 1.25Z" />
+              </svg>
+              <h3 className="mb-1 font-nacelle text-[1rem] font-semibold text-gray-200">
+                User Friendly Solutions
+              </h3>
+              <p className="text-indigo-200/65">
+                Implementing and content management systems like WordPress for
+                easy content updates and management.
+              </p>
+            </article>
           </div>
         </div>
       </div>
