@@ -267,6 +267,7 @@ const PricingPlans = () => {
 
     return (
         <div className="pricing-page mx-auto max-w-6xl px-4 sm:px-6">
+            <title>Pricing & Plans</title>
             <div className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/4" aria-hidden="true">
                 <Image
                     className="max-w-none"
