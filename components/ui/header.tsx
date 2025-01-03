@@ -13,8 +13,7 @@ export default function Header() {
   };
 
   return (
-    <div>
-    <header className="fixed top-0 left-0 w-full bg-gray-900 shadow-md z-50">
+    <header className="relative w-full bg-gray-900 shadow-md z-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -48,16 +47,28 @@ export default function Header() {
           <nav className="hidden md:flex flex-1 items-center justify-end gap-8">
             <ul className="flex items-center gap-6 text-lg text-gray-300">
               <li className="relative group">
-                <Link href="/" className="hover:text-white">Home</Link>
+                <Link href="/" className="hover:text-white">
+                  Home
+                </Link>
               </li>
               <li className="relative group">
                 <button className="hover:text-white">About</button>
                 <ul className="absolute hidden group-hover:block top-full left-0 w-52 rounded-lg bg-gray-800 shadow-lg z-50">
                   <li>
-                    <Link href="/about/our-story" className="block px-5 py-3 hover:bg-gray-700 text-base">Our Story</Link>
+                    <Link
+                      href="/about/our-story"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Our Story
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/about/behind-statica" className="block px-5 py-3 hover:bg-gray-700 text-base">Behind Statica</Link>
+                    <Link
+                      href="/about/behind-statica"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Behind Statica
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -65,30 +76,70 @@ export default function Header() {
                 <button className="hover:text-white">Portfolios</button>
                 <ul className="absolute hidden group-hover:block top-full left-0 w-72 rounded-lg bg-gray-800 shadow-lg z-50">
                   <li>
-                    <Link href="/portfolios/graphic-design" className="block px-5 py-3 hover:bg-gray-700 text-base">Graphic Design</Link>
+                    <Link
+                      href="/portfolios/graphic-design"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Graphic Design
+                    </Link>
                     <ul className="ml-4">
                       <li>
-                        <Link href="/portfolios/graphic-design#logos" className="block px-5 py-2 hover:bg-gray-700 text-base">Logos</Link>
+                        <Link
+                          href="/portfolios/graphic-design#logos"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Logos
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/portfolios/graphic-design#flyers" className="block px-5 py-2 hover:bg-gray-700 text-base">Flyers</Link>
+                        <Link
+                          href="/portfolios/graphic-design#flyers"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Flyers
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/portfolios/graphic-design#custom-graphics" className="block px-5 py-2 hover:bg-gray-700 text-base">Custom Graphics</Link>
+                        <Link
+                          href="/portfolios/graphic-design#custom-graphics"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Custom Graphics
+                        </Link>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <Link href="/portfolios/web-software" className="block px-5 py-3 hover:bg-gray-700 text-base">Web & Software</Link>
+                    <Link
+                      href="/portfolios/web-software"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Web & Software
+                    </Link>
                     <ul className="ml-4">
                       <li>
-                        <Link href="/portfolios/web-software#websites" className="block px-5 py-2 hover:bg-gray-700 text-base">Websites</Link>
+                        <Link
+                          href="/portfolios/web-software#websites"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Websites
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/portfolios/web-software#software" className="block px-5 py-2 hover:bg-gray-700 text-base">Software Development</Link>
+                        <Link
+                          href="/portfolios/web-software#software"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Software Development
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/portfolios/web-software#automation" className="block px-5 py-2 hover:bg-gray-700 text-base">Automation</Link>
+                        <Link
+                          href="/portfolios/web-software#automation"
+                          className="block px-5 py-2 hover:bg-gray-700 text-base"
+                        >
+                          Automation
+                        </Link>
                       </li>
                     </ul>
                   </li>
@@ -98,10 +149,20 @@ export default function Header() {
                 <button className="hover:text-white">Request Services</button>
                 <ul className="absolute hidden group-hover:block top-full left-0 w-56 rounded-lg bg-gray-800 shadow-lg z-50">
                   <li>
-                    <Link href="/request-services/pricing-plans" className="block px-5 py-3 hover:bg-gray-700 text-base">Pricing & Plans</Link>
+                    <Link
+                      href="/request-services/pricing-plans"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Pricing & Plans
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/request-services/request-quote" className="block px-5 py-3 hover:bg-gray-700 text-base">Request a Quote</Link>
+                    <Link
+                      href="/request-services/request-quote"
+                      className="block px-5 py-3 hover:bg-gray-700 text-base"
+                    >
+                      Request a Quote
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -232,7 +293,5 @@ export default function Header() {
         </div>
       )}
     </header>
-    <div className="h-16"></div>
-    </div>
   );
 }
