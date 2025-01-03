@@ -6,6 +6,7 @@ import FeaturesImage from "@/public/images/statica/Statica Logo White Cropped.pn
 export default function BehindStatica() {
     return (
         <div>
+            <title>Behind Statica</title>
             <div className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/4" aria-hidden="true">
                 <Image
                     className="max-w-none"
