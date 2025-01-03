@@ -13,6 +13,7 @@ export default function Header() {
   };
 
   return (
+    <div>
     <header className="fixed top-0 left-0 w-full bg-gray-900 shadow-md z-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -231,5 +232,7 @@ export default function Header() {
         </div>
       )}
     </header>
+    <div className="h-16"></div>
+    </div>
   );
 }
