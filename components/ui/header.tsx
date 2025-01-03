@@ -119,13 +119,17 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="h-16"></div>
-      
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden">
+        <div className="mobile-menu md:hidden">
           <nav className="space-y-6 px-4 py-6 bg-gray-800 text-gray-300">
-            <Link href="/" className="block hover:text-white">Home</Link>
+            <Link
+              href="/"
+              className="block hover:text-white"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
             <div className="space-y-2">
               <button
                 onClick={() => toggleSubMenu("about")}
@@ -137,10 +141,22 @@ export default function Header() {
               {openSubMenu === "about" && (
                 <ul className="ml-6 mt-2 space-y-3">
                   <li>
-                    <Link href="/about/our-story" className="block hover:text-white">Our Story</Link>
+                    <Link
+                      href="/about/our-story"
+                      className="block hover:text-white"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Our Story
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/about/behind-statica" className="block hover:text-white">Behind Statica</Link>
+                    <Link
+                      href="/about/behind-statica"
+                      className="block hover:text-white"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Behind Statica
+                    </Link>
                   </li>
                 </ul>
               )}
@@ -151,15 +167,29 @@ export default function Header() {
                 className="flex w-full justify-between items-center hover:text-white"
               >
                 Portfolios
-                <span className="ml-2">{openSubMenu === "portfolios" ? "-" : "+"}</span>
+                <span className="ml-2">
+                  {openSubMenu === "portfolios" ? "-" : "+"}
+                </span>
               </button>
               {openSubMenu === "portfolios" && (
                 <ul className="ml-6 mt-2 space-y-3">
                   <li>
-                    <Link href="/portfolios/graphic-design" className="block hover:text-white">Graphic Design</Link>
+                    <Link
+                      href="/portfolios/graphic-design"
+                      className="block hover:text-white"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Graphic Design
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/portfolios/web-software" className="block hover:text-white">Web & Software</Link>
+                    <Link
+                      href="/portfolios/web-software"
+                      className="block hover:text-white"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Web & Software
+                    </Link>
                   </li>
                 </ul>
               )}
@@ -170,15 +200,29 @@ export default function Header() {
                 className="flex w-full justify-between items-center hover:text-white"
               >
                 Request Services
-                <span className="ml-2">{openSubMenu === "services" ? "-" : "+"}</span>
+                <span className="ml-2">
+                  {openSubMenu === "services" ? "-" : "+"}
+                </span>
               </button>
               {openSubMenu === "services" && (
                 <ul className="ml-6 mt-2 space-y-3">
                   <li>
-                    <Link href="/request-services/pricing-plans" className="block hover:text-white">Pricing & Plans</Link>
+                    <Link
+                      href="/request-services/pricing-plans"
+                      className="block hover:text-white"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Pricing & Plans
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/request-services/request-quote" className="block hover:text-white">Request a Quote</Link>
+                    <Link
+                      href="/request-services/request-quote"
+                      className="block hover:text-white"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Request a Quote
+                    </Link>
                   </li>
                 </ul>
               )}
