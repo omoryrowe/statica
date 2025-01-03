@@ -13,7 +13,7 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-gray-900 shadow-md">
+    <header className="fixed top-0 left-0 w-full bg-gray-900 shadow-md z-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -44,14 +44,14 @@ export default function Header() {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex flex-1 items-center justify-end gap-6">
+          <nav className="hidden md:flex flex-1 items-center justify-end gap-8">
             <ul className="flex items-center gap-6 text-lg text-gray-300">
               <li className="relative group">
                 <Link href="/" className="hover:text-white">Home</Link>
               </li>
               <li className="relative group">
                 <button className="hover:text-white">About</button>
-                <ul className="absolute hidden group-hover:block top-full w-52 rounded-lg bg-gray-800 shadow-lg">
+                <ul className="absolute group-hover:block top-full left-0 w-52 rounded-lg bg-gray-800 shadow-lg z-50">
                   <li>
                     <Link href="/about/our-story" className="block px-5 py-3 hover:bg-gray-700 text-base">Our Story</Link>
                   </li>
@@ -62,7 +62,7 @@ export default function Header() {
               </li>
               <li className="relative group">
                 <button className="hover:text-white">Portfolios</button>
-                <ul className="absolute hidden group-hover:block top-full w-72 rounded-lg bg-gray-800 shadow-lg">
+                <ul className="absolute group-hover:block top-full left-0 w-72 rounded-lg bg-gray-800 shadow-lg z-50">
                   <li>
                     <Link href="/portfolios/graphic-design" className="block px-5 py-3 hover:bg-gray-700 text-base">Graphic Design</Link>
                     <ul className="ml-4">
@@ -95,7 +95,7 @@ export default function Header() {
               </li>
               <li className="relative group">
                 <button className="hover:text-white">Request Services</button>
-                <ul className="absolute hidden group-hover:block top-full w-56 rounded-lg bg-gray-800 shadow-lg">
+                <ul className="absolute group-hover:block top-full left-0 w-56 rounded-lg bg-gray-800 shadow-lg z-50">
                   <li>
                     <Link href="/request-services/pricing-plans" className="block px-5 py-3 hover:bg-gray-700 text-base">Pricing & Plans</Link>
                   </li>
@@ -108,7 +108,7 @@ export default function Header() {
           </nav>
 
           {/* Get a Quote button */}
-          <div className="flex items-center">
+          <div className="flex items-center ml-8">
             <Link
               href="/request-services/request-quote"
               className="btn-sm bg-gradient-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] py-2 px-4 text-base text-white shadow-[inset_0px_1px_0px_0px_theme(colors.white/.16)] hover:bg-[length:100%_150%]"
@@ -130,9 +130,7 @@ export default function Header() {
                 className="flex w-full justify-between items-center hover:text-white"
               >
                 About
-                <span className="ml-2">
-                  {openSubMenu === "about" ? "-" : "+"}
-                </span>
+                <span className="ml-2">{openSubMenu === "about" ? "-" : "+"}</span>
               </button>
               {openSubMenu === "about" && (
                 <ul className="ml-6 mt-2 space-y-3">
@@ -151,9 +149,7 @@ export default function Header() {
                 className="flex w-full justify-between items-center hover:text-white"
               >
                 Portfolios
-                <span className="ml-2">
-                  {openSubMenu === "portfolios" ? "-" : "+"}
-                </span>
+                <span className="ml-2">{openSubMenu === "portfolios" ? "-" : "+"}</span>
               </button>
               {openSubMenu === "portfolios" && (
                 <ul className="ml-6 mt-2 space-y-3">
@@ -172,9 +168,7 @@ export default function Header() {
                 className="flex w-full justify-between items-center hover:text-white"
               >
                 Request Services
-                <span className="ml-2">
-                  {openSubMenu === "services" ? "-" : "+"}
-                </span>
+                <span className="ml-2">{openSubMenu === "services" ? "-" : "+"}</span>
               </button>
               {openSubMenu === "services" && (
                 <ul className="ml-6 mt-2 space-y-3">
