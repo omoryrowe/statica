@@ -33,7 +33,7 @@ export default function PortfolioHome() {
             title: "Websites",
             folder: "websites",
             images: [],
-            cover: "/images/statica/web cover 1.PNG",
+            cover: "/images/statica/web cover 1.png",
             hash: "websites",
             projects: [
                 {
@@ -52,7 +52,7 @@ export default function PortfolioHome() {
                         services: "UI Design & Frontend Development",
                     },
                     tools: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-                    images: ["/images/projects/fleri1.PNG","/images/projects/fleri2.PNG"],
+                    images: ["/images/projects/fleri1.png","/images/projects/fleri2.png"],
                 },
                 {
                     title: "Statica Design Agency Website",
@@ -71,7 +71,7 @@ export default function PortfolioHome() {
                         services: "UI Design & Frontend Development",
                     },
                     tools: ["HTML", "CSS", "JavaScript", "TypeScript", "TailwindCSS", "React", "Next.js"],
-                    images: ["/images/projects/statica1.PNG", "/images/projects/statica2.PNG"],
+                    images: ["/images/projects/statica1.png", "/images/projects/statica2.png"],
                 },
                 {
                     title: "FileMorph UI: Intuitive File Conversion Interface",
@@ -86,7 +86,7 @@ export default function PortfolioHome() {
                         services: "UI/UX Design & Frontend Implementation",
                     },
                     tools: ["Bootstrap", "jQuery", "HTML", "CSS", "JavaScript"],
-                    images: ["/images/projects/filemorph1.PNG"],
+                    images: ["/images/projects/filemorph1.png"],
                 },
             ],
         },
@@ -94,7 +94,7 @@ export default function PortfolioHome() {
             title: "Software Development",
             folder: "software-development",
             images: [],
-            cover: "/images/statica/web cover 2.PNG",
+            cover: "/images/statica/web cover 2.png",
             hash: "software",
             projects: [
                 {
@@ -133,7 +133,7 @@ export default function PortfolioHome() {
                         services: "Backend API Design & Workflow Automation",
                     },
                     tools: ["Python", "Flask", "Control-M", "Windows Defender API", "Workflow Automation"],
-                    images: ["/images/projects/filemorph1.PNG"],
+                    images: ["/images/projects/filemorph1.png"],
                 },
             ],
         },
@@ -141,7 +141,7 @@ export default function PortfolioHome() {
             title: "Automation",
             folder: "automation",
             images: [],
-            cover: "/images/statica/web cover 3.PNG",
+            cover: "/images/statica/web cover 3.png",
             hash: "automation",
             projects: [
                 {
@@ -158,7 +158,7 @@ export default function PortfolioHome() {
                         services: "Workflow Automation & Scheduling Integration",
                     },
                     tools: ["Control-M", "Workflow Automation", "Python", "Windows Defender API", "Enterprise Scheduling"],
-                    images: ["/images/projects/filemorph1.PNG"],
+                    images: ["/images/projects/filemorph1.png"],
                 },
                 {
                     title: "Script Optimization: Legacy Perl to Python",

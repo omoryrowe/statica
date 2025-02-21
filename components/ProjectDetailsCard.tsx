@@ -37,7 +37,7 @@ const ProjectDetailsCard: React.FC<ProjectDetailsCardProps> = ({
 
     return (
         <div
-            className="project-card border border-gray-300 rounded-lg shadow-lg p-4 mb-4 bg-gray-800 text-white cursor-pointer transition-transform hover:scale-105"
+            className="project-card border border-gray-300 rounded-lg shadow-lg p-4 mb-4 bg-gray-800 text-white cursor-pointer transition-transform"
             onClick={(e) => {
                 e.stopPropagation(); // Prevent unwanted propagation
             }}
