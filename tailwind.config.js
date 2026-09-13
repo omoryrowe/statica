@@ -7,6 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        ink: {
+          DEFAULT: "#0B0D12",
+          raised: "#141821",
+          line: "#2A3140",
+        },
+        paper: "#F5F5F2",
+        mist: "#B8BDC9",
+        bolt: "#F0C014",
+      },
       fontFamily: {
         inter: ["var(--font-inter)", "sans-serif"],
         nacelle: ["var(--font-nacelle)", "sans-serif"],

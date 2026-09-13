@@ -1,15 +1,23 @@
 /* Buttons */
 .btn,
 .btn-sm {
-  @apply inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-all;
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-semibold transition-colors;
 }
 
 .btn {
-  @apply px-4 py-[11px];
+  @apply min-h-11 px-5 py-3;
 }
 
 .btn-sm {
-  @apply px-3 py-[7px];
+  @apply min-h-11 px-4 py-2;
+}
+
+.btn-primary {
+  @apply bg-bolt text-ink hover:bg-[#f6cc3a];
+}
+
+.btn-secondary {
+  @apply border border-ink-line bg-transparent text-paper hover:border-bolt hover:text-bolt;
 }
 
 /* Forms */
@@ -26,19 +34,19 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-select,
 .form-checkbox,
 .form-radio {
-  @apply border border-gray-700 bg-gray-900/50 focus:border-gray-600 focus:ring-0 focus:ring-offset-0;
+  @apply border border-ink-line bg-ink-raised text-paper focus:border-bolt focus:ring-0 focus:ring-offset-0;
 }
 
 .form-input,
 .form-textarea,
 .form-multiselect,
 .form-select {
-  @apply rounded-lg px-4 py-2.5 text-sm text-gray-200;
+  @apply rounded-lg px-4 py-2.5 text-sm;
 }
 
 .form-input,
 .form-textarea {
-  @apply placeholder-gray-600;
+  @apply placeholder-mist/60;
 }
 
 .form-select {
@@ -47,7 +55,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .form-checkbox,
 .form-radio {
-  @apply text-indigo-500;
+  @apply text-bolt;
 }
 
 .form-checkbox {
