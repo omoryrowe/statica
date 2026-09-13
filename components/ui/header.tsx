@@ -26,8 +26,11 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition ${
-                pathname === link.href ? "text-bolt" : "text-mist hover:text-paper"
+              aria-current={pathname === link.href ? "page" : undefined}
+              className={`relative py-1 text-sm font-medium transition after:absolute after:-bottom-0.5 after:left-0 after:h-px after:bg-bolt after:transition-all hover:after:w-full ${
+                pathname === link.href
+                  ? "text-bolt after:w-full"
+                  : "text-mist after:w-0 hover:text-paper"
               }`}
             >
               {link.label}

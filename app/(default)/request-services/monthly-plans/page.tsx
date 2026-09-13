@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Ambient from "@/components/ambient";
 import { pageMetadata } from "@/lib/metadata";
-import { CARE_PLAN, QUOTE_PATH, RELAY_NOTES, RELAY_PLAN } from "@/lib/site";
+import { CARE_PLAN, PRICING_PATH, QUOTE_PATH, RELAY_NOTES, RELAY_PLAN } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Website Maintenance and Monthly Support",
@@ -11,66 +12,133 @@ export const metadata = pageMetadata({
 
 export default function MonthlyPlansPage() {
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <h1 className="font-nacelle text-4xl font-semibold text-paper">
-        Keep your website in good hands.
-      </h1>
-      <p className="mt-5 text-lg text-mist">
-        Need to change your hours, replace a photo, or fix something on your site? Statica Care gives you one place to turn for website support. Relay adds follow-up for missed calls and inquiries.
-      </p>
-
-      <section className="mt-12 rounded-2xl border border-ink-line bg-ink-raised p-8">
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-bolt">{CARE_PLAN.name}</p>
-        <h2 className="mt-3 font-nacelle text-2xl font-semibold text-paper">{CARE_PLAN.tagline}</h2>
-        <p className="mt-4 font-nacelle text-3xl text-bolt">{CARE_PLAN.priceLabel}</p>
-        <ul className="mt-6 list-disc space-y-2 pl-5 text-mist">
-          {CARE_PLAN.features.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-        <p className="mt-6 text-sm text-mist">
-          Unused update time does not roll over. Domain registration and renewal are separate. Additional content work is quoted before it begins.
-        </p>
-        <Link
-          href={`${QUOTE_PATH}?monthly=${CARE_PLAN.id}`}
-          className="btn btn-primary mt-6 inline-flex"
-          data-event="quote-cta"
-        >
-          Get My Quote
-        </Link>
+    <>
+      <section className="grain relative overflow-hidden">
+        <Ambient />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Monthly management</p>
+            <h1 className="display mt-6 text-[2.5rem] leading-[1.05] sm:text-5xl">
+              Your website shouldn&rsquo;t become another job.
+            </h1>
+            <p className="lede mt-7">
+              New hours, a new photo, a service you no longer offer. Send it to me and it
+              gets handled. Hosting, monitoring, and the technical side stay with Statica
+              so you can get back to running the business.
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section className="mt-8 rounded-2xl border border-ink-line bg-ink-raised p-8">
-        <p className="text-sm font-medium uppercase tracking-[0.18em] text-bolt">{RELAY_PLAN.name}</p>
-        <h2 className="mt-3 font-nacelle text-2xl font-semibold text-paper">{RELAY_PLAN.tagline}</h2>
-        <p className="mt-4 font-nacelle text-3xl text-bolt">{RELAY_PLAN.priceLabel}</p>
-        <ul className="mt-6 list-disc space-y-2 pl-5 text-mist">
-          {RELAY_PLAN.features.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-        <p className="mt-6 text-sm text-mist">{RELAY_NOTES[0]}</p>
-        <p className="mt-3 text-sm text-mist">{RELAY_NOTES[1]}</p>
-        <p className="mt-3 text-sm text-mist">{RELAY_NOTES[2]}</p>
-        <Link
-          href={`${QUOTE_PATH}?monthly=${RELAY_PLAN.id}`}
-          className="btn btn-primary mt-6 inline-flex"
-          data-event="quote-cta"
-        >
-          Get My Quote
-        </Link>
+      <section className="border-y border-ink-line bg-ink-raised">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="grid gap-6 lg:grid-cols-2">
+            <article className="flex flex-col rounded-3xl border border-ink-line bg-ink p-8">
+              <p className="eyebrow">{CARE_PLAN.name}</p>
+              <h2 className="display mt-5 text-2xl">{CARE_PLAN.tagline}</h2>
+              <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
+                {CARE_PLAN.priceLabel}
+              </p>
+              <ul className="mt-7 flex-1 space-y-3 text-mist">
+                {CARE_PLAN.features.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span aria-hidden className="text-bolt">
+                      +
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={`${QUOTE_PATH}?monthly=${CARE_PLAN.id}`}
+                className="btn btn-primary mt-8"
+                data-event="quote-cta"
+              >
+                Get My Quote
+              </Link>
+            </article>
+
+            <article className="flex flex-col rounded-3xl border border-bolt/40 bg-ink p-8">
+              <p className="eyebrow">{RELAY_PLAN.name}</p>
+              <h2 className="display mt-5 text-2xl">{RELAY_PLAN.tagline}</h2>
+              <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
+                {RELAY_PLAN.priceLabel}
+              </p>
+              <ul className="mt-7 space-y-3 text-mist">
+                {RELAY_PLAN.features.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span aria-hidden className="text-bolt">
+                      +
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7 flex-1 space-y-2 border-t border-ink-line pt-5 text-sm text-mist">
+                {RELAY_NOTES.map((note) => (
+                  <p key={note}>{note}</p>
+                ))}
+              </div>
+              <Link
+                href={`${QUOTE_PATH}?monthly=${RELAY_PLAN.id}`}
+                className="btn btn-primary mt-8"
+                data-event="quote-cta"
+              >
+                Get My Quote
+              </Link>
+            </article>
+          </div>
+        </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="font-nacelle text-2xl font-semibold text-paper">What counts as a minor update</h2>
-        <p className="mt-3 text-mist">
-          Hours, phone numbers, text edits, image replacements, and existing service descriptions. The monthly minutes are a total for the month, not per request.
-        </p>
-        <h3 className="mt-8 font-semibold text-paper">Quoted separately</h3>
-        <p className="mt-3 text-mist">
-          New pages, redesigns, and new functionality. I’ll estimate that work before it starts.
-        </p>
+      <section className="grain relative overflow-hidden">
+        <Ambient variant="soft" />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="grid gap-14 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)]">
+            <h2 className="display text-3xl sm:text-4xl">Where the line sits</h2>
+            <div className="max-w-2xl space-y-10">
+              <div className="hairline-top pt-6">
+                <h3 className="font-nacelle text-xl font-semibold text-paper">
+                  Counts as a minor update
+                </h3>
+                <p className="mt-3 text-mist">
+                  Hours, phone numbers, text edits, swapping an image, and changes to
+                  service descriptions you already have. The monthly minutes are a total
+                  for the month rather than a limit per request, and unused time does not
+                  roll over.
+                </p>
+              </div>
+              <div className="hairline-top pt-6">
+                <h3 className="font-nacelle text-xl font-semibold text-paper">
+                  Quoted separately
+                </h3>
+                <p className="mt-3 text-mist">
+                  New pages, a redesign, or new functionality. I give you an estimate
+                  before that work starts. Domain registration and renewal are also
+                  separate from the monthly price.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 flex flex-col items-start gap-5 rounded-3xl border border-ink-line bg-ink-raised p-8 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-nacelle text-xl font-semibold text-paper">
+                Not sure which plan fits?
+              </p>
+              <p className="mt-2 text-sm text-mist">
+                Tell me about the site and I&rsquo;ll recommend one.{" "}
+                <Link href={PRICING_PATH} className="font-semibold text-bolt">
+                  Compare with setup pricing
+                </Link>
+              </p>
+            </div>
+            <Link href={QUOTE_PATH} className="btn btn-primary" data-event="quote-cta">
+              Get My Quote
+            </Link>
+          </div>
+        </div>
       </section>
-    </article>
+    </>
   );
 }

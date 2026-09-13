@@ -3,18 +3,28 @@ import Image from "next/image";
 export default function BrowserFrame({
   src,
   alt,
+  caption,
   priority = false,
+  className = "",
 }: {
   src: string;
   alt: string;
+  caption?: string;
   priority?: boolean;
+  className?: string;
 }) {
   return (
-    <figure className="overflow-hidden rounded-xl border border-ink-line bg-ink-raised shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
-      <div className="flex items-center gap-1.5 border-b border-ink-line px-3 py-2" aria-hidden>
-        <span className="h-2 w-2 rounded-full bg-[#3a4150]" />
-        <span className="h-2 w-2 rounded-full bg-[#3a4150]" />
-        <span className="h-2 w-2 rounded-full bg-[#3a4150]" />
+    <figure
+      className={`shot overflow-hidden rounded-2xl border border-ink-line bg-ink-raised shadow-lift ${className}`}
+    >
+      <div
+        className="flex items-center gap-1.5 border-b border-ink-line bg-ink/60 px-4 py-2.5"
+        aria-hidden
+      >
+        <span className="h-2.5 w-2.5 rounded-full bg-[#39404f]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#39404f]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#39404f]" />
+        <span className="ml-3 h-2.5 flex-1 rounded-full bg-[#232a36]" />
       </div>
       <Image
         src={src}
@@ -22,8 +32,14 @@ export default function BrowserFrame({
         width={1280}
         height={800}
         priority={priority}
+        loading={priority ? undefined : "lazy"}
         className="h-auto w-full"
       />
+      {caption ? (
+        <figcaption className="border-t border-ink-line px-4 py-3 text-xs text-mist">
+          {caption}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }

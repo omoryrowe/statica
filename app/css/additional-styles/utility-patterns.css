@@ -13,11 +13,90 @@
 }
 
 .btn-primary {
-  @apply bg-bolt text-ink hover:bg-[#f6cc3a];
+  @apply bg-bolt text-ink shadow-glow transition duration-200 hover:-translate-y-0.5 hover:bg-[#ffd42e];
 }
 
 .btn-secondary {
-  @apply border border-ink-line bg-transparent text-paper hover:border-bolt hover:text-bolt;
+  @apply border border-ink-line bg-ink-raised/60 text-paper transition duration-200 hover:-translate-y-0.5 hover:border-bolt/70 hover:text-bolt;
+}
+
+/* Brand surfaces and typography */
+.eyebrow {
+  @apply inline-flex items-center gap-3 font-nacelle text-xs font-semibold uppercase tracking-[0.24em] text-bolt;
+}
+
+.eyebrow::before {
+  content: "";
+  @apply block h-px w-8 bg-bolt/60;
+}
+
+.display {
+  @apply font-nacelle font-semibold text-paper;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.lede {
+  @apply text-lg leading-relaxed text-mist sm:text-xl;
+}
+
+.rule-bolt {
+  @apply border-l-2 border-bolt pl-5;
+}
+
+/* Layered ambient light. Purely decorative, sits behind content. */
+.aurora {
+  position: absolute;
+  inset: -25%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(36% 40% at 20% 25%, rgba(240, 192, 20, 0.22), transparent 70%),
+    radial-gradient(30% 34% at 80% 15%, rgba(240, 192, 20, 0.1), transparent 72%),
+    radial-gradient(44% 46% at 62% 88%, rgba(120, 140, 190, 0.16), transparent 74%);
+  filter: blur(40px);
+}
+
+.aurora-soft {
+  background:
+    radial-gradient(40% 44% at 78% 20%, rgba(240, 192, 20, 0.12), transparent 72%),
+    radial-gradient(40% 40% at 12% 78%, rgba(120, 140, 190, 0.12), transparent 74%);
+}
+
+/* Fine film grain keeps large dark areas from looking flat. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+}
+
+.hairline-top {
+  @apply border-t border-ink-line/70;
+}
+
+/* Portfolio imagery */
+.shot {
+  @apply transition duration-500 ease-out;
+}
+
+.shot:hover {
+  @apply -translate-y-1;
+  box-shadow: 0 34px 90px -34px rgba(0, 0, 0, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora,
+  .shot,
+  .btn,
+  .btn-sm {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 /* Forms */

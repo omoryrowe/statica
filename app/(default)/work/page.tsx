@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Ambient from "@/components/ambient";
 import BrowserFrame from "@/components/browser-frame";
 import { pageMetadata } from "@/lib/metadata";
 import { FLERILAB, MARCUS_WEBSITE_EXCERPT, QUOTE_PATH } from "@/lib/site";
@@ -12,33 +13,73 @@ export const metadata = pageMetadata({
 
 export default function WorkPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <h1 className="font-nacelle text-4xl font-semibold text-paper">Selected website work</h1>
-      <p className="mt-4 max-w-2xl text-lg text-mist">
-        A closer look at the websites I’ve designed and built.
-      </p>
-
-      <article className="mt-14 space-y-8">
-        <div className="grid gap-8 lg:grid-cols-2">
-          <BrowserFrame src={FLERILAB.heroImage} alt={`${FLERILAB.name} homepage at delivery`} />
-          <BrowserFrame src={FLERILAB.detailImage} alt={`${FLERILAB.name} founder page at delivery`} />
-        </div>
-        <div className="max-w-3xl">
-          <p className="text-sm font-medium text-bolt">{FLERILAB.label}</p>
-          <h2 className="mt-2 font-nacelle text-3xl font-semibold text-paper">{FLERILAB.name}</h2>
-          <p className="mt-1 text-sm text-mist">
-            {FLERILAB.type} · {FLERILAB.scope} · {FLERILAB.deliveryLabel}
+    <>
+      <section className="grain relative overflow-hidden">
+        <Ambient variant="soft" />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+          <p className="eyebrow">Work</p>
+          <h1 className="display mt-6 max-w-2xl text-[2.5rem] leading-[1.05] sm:text-5xl">
+            Websites I&rsquo;ve designed and built.
+          </h1>
+          <p className="lede mt-6 max-w-xl">
+            A close look at a real project, rather than a wall of thumbnails.
           </p>
-          <p className="mt-4 text-mist">{FLERILAB.details}</p>
-          <blockquote className="mt-8 border-l-2 border-bolt pl-4 text-paper">
-            “{MARCUS_WEBSITE_EXCERPT}”
-          </blockquote>
-          <p className="mt-3 text-sm text-mist">Marcus W., Vatt Media Marketing</p>
-          <Link href={QUOTE_PATH} className="btn btn-primary mt-8 inline-flex" data-event="quote-cta">
-            Get My Quote
-          </Link>
+        </div>
+      </section>
+
+      <article className="border-t border-ink-line bg-ink-raised">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
+            <div className="lg:sticky lg:top-28">
+              <p className="eyebrow">{FLERILAB.label}</p>
+              <h2 className="display mt-5 text-4xl">{FLERILAB.name}</h2>
+              <dl className="mt-8 space-y-4 text-sm">
+                <div className="hairline-top flex justify-between gap-6 pt-4">
+                  <dt className="text-mist">Type</dt>
+                  <dd className="text-right text-paper">{FLERILAB.type}</dd>
+                </div>
+                <div className="hairline-top flex justify-between gap-6 pt-4">
+                  <dt className="text-mist">Scope</dt>
+                  <dd className="text-right text-paper">{FLERILAB.scope}</dd>
+                </div>
+                <div className="hairline-top flex justify-between gap-6 pt-4">
+                  <dt className="text-mist">Screenshots</dt>
+                  <dd className="text-right text-paper">{FLERILAB.deliveryLabel}</dd>
+                </div>
+              </dl>
+              <p className="mt-8 text-lg leading-relaxed text-mist">{FLERILAB.details}</p>
+              <p className="mt-5 text-mist">
+                The homepage opens on the mission, the founder page gives the work a face,
+                and donating stays one tap away throughout.
+              </p>
+              <Link
+                href={QUOTE_PATH}
+                className="btn btn-primary mt-9 inline-flex"
+                data-event="quote-cta"
+              >
+                Get My Quote
+              </Link>
+            </div>
+
+            <div className="space-y-8">
+              <BrowserFrame src={FLERILAB.heroImage} alt={`${FLERILAB.name} homepage`} priority />
+              <BrowserFrame
+                src={FLERILAB.detailImage}
+                alt={`${FLERILAB.name} founder page`}
+              />
+            </div>
+          </div>
         </div>
       </article>
-    </div>
+
+      <section className="grain relative overflow-hidden border-t border-ink-line">
+        <div className="relative z-10 mx-auto max-w-3xl px-4 py-20 text-center sm:px-6">
+          <blockquote className="font-nacelle text-2xl leading-snug text-paper sm:text-3xl">
+            &ldquo;{MARCUS_WEBSITE_EXCERPT}&rdquo;
+          </blockquote>
+          <p className="mt-6 text-sm text-mist">Marcus W., Vatt Media Marketing</p>
+        </div>
+      </section>
+    </>
   );
 }

@@ -16,6 +16,11 @@ module.exports = {
         paper: "#F5F5F2",
         mist: "#B8BDC9",
         bolt: "#F0C014",
+        boltdeep: "#C99A05",
+      },
+      boxShadow: {
+        lift: "0 24px 70px -30px rgba(0,0,0,0.85)",
+        glow: "0 18px 44px -22px rgba(240,192,20,0.65)",
       },
       fontFamily: {
         inter: ["var(--font-inter)", "sans-serif"],
@@ -42,8 +47,18 @@ module.exports = {
       },
       animation: {
         shine: "shine 5s ease-in-out 500ms infinite",
+        drift: "drift 28s ease-in-out infinite alternate",
+        "drift-slow": "drift-slow 36s ease-in-out infinite alternate",
       },
       keyframes: {
+        drift: {
+          "0%": { transform: "translate3d(-3%, -2%, 0) scale(1)" },
+          "100%": { transform: "translate3d(4%, 3%, 0) scale(1.12)" },
+        },
+        "drift-slow": {
+          "0%": { transform: "translate3d(3%, 2%, 0) scale(1.08)" },
+          "100%": { transform: "translate3d(-4%, -3%, 0) scale(1)" },
+        },
         shine: {
           "0%": { top: "0", transform: "scaleY(5)", opacity: "0" },
           "10%": { opacity: ".8" },

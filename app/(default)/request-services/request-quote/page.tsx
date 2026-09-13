@@ -1,6 +1,8 @@
 import { Suspense } from "react";
+import Ambient from "@/components/ambient";
 import { pageMetadata } from "@/lib/metadata";
 import QuoteForm from "@/components/quote-form";
+import { PRICING_CUE } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Request a Website Quote",
@@ -11,16 +13,41 @@ export const metadata = pageMetadata({
 
 export default function QuotePage() {
   return (
-    <div className="mx-auto max-w-xl px-4 py-16 sm:px-6">
-      <h1 className="font-nacelle text-4xl font-semibold text-paper">Tell me about your website.</h1>
-      <p className="mt-4 text-mist">
-        Share a few details about your business and what you have in mind. I’ll follow up to discuss the project and put together your quote.
-      </p>
-      <div className="mt-10">
-        <Suspense fallback={<p className="text-mist">Loading form…</p>}>
-          <QuoteForm />
-        </Suspense>
+    <section className="grain relative overflow-hidden">
+      <Ambient variant="soft" />
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-14 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:py-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <p className="eyebrow">Get a quote</p>
+          <h1 className="display mt-6 text-[2.5rem] leading-[1.05] sm:text-5xl">
+            Tell me about your business.
+          </h1>
+          <p className="lede mt-6">
+            A few details are enough to start. I read every request myself and follow up
+            to talk through the project before quoting anything.
+          </p>
+          <ul className="mt-9 space-y-4 text-sm text-mist">
+            {[
+              "No pressure and no obligation.",
+              "You hear back from me, not an automated sequence.",
+              "We agree on scope and price before any work begins.",
+            ].map((item) => (
+              <li key={item} className="flex gap-3">
+                <span aria-hidden className="text-bolt">
+                  +
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-9 text-sm text-mist">{PRICING_CUE}</p>
+        </div>
+
+        <div className="rounded-3xl border border-ink-line bg-ink-raised p-6 shadow-lift sm:p-8">
+          <Suspense fallback={<p className="text-mist">Loading form…</p>}>
+            <QuoteForm />
+          </Suspense>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
