@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/portfolios/graphic-design", "/signin", "/signup", "/reset-password"],
+      disallow: ["/portfolios/graphic-design"],
     },
     sitemap: `${SITE.url}/sitemap.xml`,
     host: SITE.url,
