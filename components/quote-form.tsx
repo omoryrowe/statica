@@ -205,7 +205,8 @@ export default function QuoteForm() {
       </div>
       <div>
         <label htmlFor="setup" className="block text-sm font-medium text-paper">
-          Website setup <span className="font-normal text-mist">(optional)</span>
+          Website Design &amp; Build{" "}
+          <span className="font-normal text-mist">(optional)</span>
         </label>
         <select
           id="setup"

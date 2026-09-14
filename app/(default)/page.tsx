@@ -3,13 +3,14 @@ import Image from "next/image";
 import Ambient from "@/components/ambient";
 import BrowserFrame from "@/components/browser-frame";
 import { pageMetadata } from "@/lib/metadata";
-import { FLERILAB, PRICING_CUE, QUOTE_PATH, SITE } from "@/lib/site";
+import ClientReview from "@/components/client-review";
+import { FLERILAB, PRICING_CUE, QUOTE_PATH, SITE, WEBSITE_REVIEWS } from "@/lib/site";
 
 export const metadata = {
   ...pageMetadata({
     title: "Orlando Small Business Web Design | Statica Design Agency",
     description:
-      "Professional websites for small businesses in Orlando, with ongoing maintenance and support. Website setup from $750 + management from $99/month.",
+      "Professional websites for small businesses in Orlando, with ongoing maintenance and support. Custom websites from $750 + ongoing management from $99/month.",
     path: "/",
   }),
   title: {
@@ -55,28 +56,28 @@ export default function Home() {
         <Ambient />
         <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:py-24">
           <div>
-            <p className="eyebrow">Statica, Orlando Florida</p>
+            <p className="eyebrow">Custom web design • Orlando, FL</p>
             <h1 className="display mt-6 text-[2.6rem] leading-[1.03] sm:text-6xl">
-              A website that does your{" "}
+              Your business deserves to{" "}
               <span className="relative whitespace-nowrap text-bolt">
-                business
+                stand out.
                 <span
                   aria-hidden
                   className="absolute inset-x-0 -bottom-1 h-2 rounded-full bg-bolt/25"
                 />
-              </span>{" "}
-              justice.
+              </span>
             </h1>
             <p className="lede mt-7 max-w-lg">
-              I design websites that look like your business, make your services easy to
-              understand, and give customers a clear way to reach you.
+              Your website should reflect the quality of your business. Statica creates
+              custom websites that showcase your expertise, build trust, and make it easy
+              for customers to take the next step.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link href={QUOTE_PATH} className="btn btn-primary" data-event="quote-cta">
                 Get My Quote
               </Link>
               <Link href="/work" className="btn btn-secondary">
-                View My Work
+                See My Work
               </Link>
             </div>
             <p className="mt-7 text-sm text-mist">{PRICING_CUE}</p>
@@ -134,7 +135,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* C. Service introduction */}
+      {/* C. Client reviews */}
+      <section className="grain relative overflow-hidden border-t border-ink-line">
+        <Ambient variant="soft" />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-24">
+          <h2 className="display text-3xl sm:text-4xl">What clients say</h2>
+          <div className="mt-10 grid items-start gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {WEBSITE_REVIEWS.map((review) => (
+              <ClientReview key={`${review.name}-${review.company}`} review={review} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* D. Service introduction */}
       <section className="grain relative overflow-hidden">
         <Ambient variant="soft" />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
@@ -169,8 +183,8 @@ export default function Home() {
                   "Customers can see what you offer, look at your work, and call or request a quote without hunting for it.",
                 ],
                 [
-                  "Ongoing help after launch",
-                  "New hours, a new photo, a service description that changed. You send it to me and it gets done.",
+                  "Ongoing support after launch",
+                  "Eligible content updates, such as new hours, photos, or service descriptions, are handled through your monthly plan.",
                 ],
               ].map(([title, body], i) => (
                 <div
@@ -191,7 +205,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* D. Meet the founder */}
+      {/* E. Meet the founder */}
       <section className="relative overflow-hidden border-y border-ink-line bg-ink-raised">
         <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:py-24">
           <div className="relative mx-auto w-full max-w-[320px] lg:mx-0">
@@ -201,7 +215,7 @@ export default function Home() {
             />
             <Image
               src="/images/statica/statica founder.jpg"
-              alt="Omory Rowe, founder of Statica"
+              alt="Omory Rowe, founder of Statica Design Agency"
               width={640}
               height={800}
               className="relative h-[380px] w-full rounded-3xl border border-ink-line object-cover object-[center_18%] shadow-lift"
@@ -213,13 +227,13 @@ export default function Home() {
               Hi, I&rsquo;m Omory.
             </h2>
             <p className="mt-6 text-lg text-mist">
-              I got into this from two directions at once: writing code and making things
+              I came to this from two directions at once: writing code and making things
               look good. Statica is where those meet. I design the site, I build it, and I
-              stay on for the upkeep.
+              stay on for maintenance.
             </p>
             <p className="mt-4 text-mist">
-              You deal with me directly the whole way through, from the first conversation
-              to the small change you need six months after launch.
+              You work with me directly from the first conversation through the updates
+              you need after launch.
             </p>
             <Link
               href="/about"
@@ -232,24 +246,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* E. Closing CTA */}
-      <section className="relative overflow-hidden bg-bolt text-ink">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_80%_at_80%_10%,rgba(255,255,255,0.45),transparent_70%)]"
-        />
+      {/* F. Closing CTA */}
+      <section className="grain relative overflow-hidden border-t border-ink-line">
+        <Ambient variant="soft" />
         <div className="relative z-10 mx-auto max-w-3xl px-4 py-20 text-center sm:px-6">
-          <h2 className="display text-3xl text-ink sm:text-5xl">
+          <h2 className="display text-3xl text-paper sm:text-5xl">
             Tell me about your business.
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-ink/75">
+          <p className="mx-auto mt-5 max-w-xl text-lg text-mist">
             Send over a few details and I&rsquo;ll come back with a quote and a plan for
             your website.
           </p>
           <Link
             href={QUOTE_PATH}
             data-event="quote-cta"
-            className="btn mt-9 bg-ink text-paper shadow-lift transition duration-200 hover:-translate-y-0.5 hover:bg-[#1b2030]"
+            className="btn btn-primary mt-9"
           >
             Get My Quote
           </Link>

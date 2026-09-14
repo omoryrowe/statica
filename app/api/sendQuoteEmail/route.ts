@@ -73,7 +73,7 @@ export async function POST(req: Request) {
       ["Phone", phone || "-"],
       ["Existing website", existingWebsite || "-"],
       ["Need", need],
-      ["Website setup", setup],
+      ["Website Design & Build", setup],
       ["Monthly plan noted", monthly],
       ["Relay interest", interest || "No"],
     ];
@@ -101,7 +101,7 @@ Email: ${email}
 Phone: ${phone || "-"}
 Existing website: ${existingWebsite || "-"}
 Need: ${need}
-Website setup: ${setup}
+Website Design & Build: ${setup}
 Monthly plan noted: ${monthly}
 Relay interest: ${interest || "No"}
 

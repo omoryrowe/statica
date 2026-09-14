@@ -2,6 +2,7 @@ export const SITE = {
   name: "Statica Design Agency",
   short: "Statica",
   url: "https://staticadesigns.com",
+  email: "info@staticadesigns.com",
   founder: "Omory Rowe",
   location: "Orlando, Florida",
   region: "Central Florida",
@@ -12,7 +13,27 @@ export const PRICING_PATH = "/request-services/pricing-plans";
 export const MONTHLY_PATH = "/request-services/monthly-plans";
 
 export const PRICING_CUE =
-  "Website setup from $750 + management from $99/month.";
+  "Custom websites from $750 + ongoing management from $99/month.";
+
+export const PRICING_HERO_LINE =
+  "Website builds from $750. Monthly management from $99.";
+
+export const DOMAIN_LAUNCH_POLICY =
+  "Website setup, domain connection, and launch are included in your build price. Domain registration and renewal fees are additional and confirmed before purchase. Your monthly plan begins on the agreed service start date.";
+
+export const BUILD_DOMAIN_INCLUSION = "Domain setup and connection assistance";
+
+export const ADDITIONAL_WORK_POLICY =
+  "Updates beyond your monthly allowance are billed at $75/hour in 30-minute increments. Statica provides an estimate for your approval before work begins. Changes beyond the approved scope require a revised estimate and approval.";
+
+export const MONTHLY_ALLOWANCE_NOTE =
+  "Your monthly allowance covers eligible updates to the existing website. New pages, features, integrations, and substantial redesigns are quoted separately. Correcting an error introduced by Statica is not billed as extra work.";
+
+export const ADDITIONAL_PAGES_FAQ = {
+  question: "Can I add more pages later?",
+  answer:
+    "Yes. Additional pages start at $150 per page and include a layout consistent with your website, client-provided text and images, mobile formatting, basic page title and meta description setup, and one round of revisions. Custom landing pages, substantial copywriting, and pages requiring additional functionality are quoted separately. New pages are not included in the monthly content-update allowance.",
+} as const;
 
 export const SETUP_PLANS = [
   {
@@ -47,7 +68,8 @@ export const CARE_PLAN = {
   updateAllowance: "30 minutes of minor content updates per month",
   features: [
     "Managed hosting",
-    "SSL and domain-configuration management",
+    "SSL management",
+    "Ongoing domain connection support",
     "Uptime and contact-form monitoring",
     "Maintenance and fixes for existing website functionality",
     "Website-related technical support",
@@ -88,6 +110,25 @@ export const NEED_OPTIONS = [
 
 export const MARCUS_WEBSITE_EXCERPT =
   "The website is not only visually stunning but also user-friendly, making it easy for my customers to navigate and find what they need.";
+
+export const WEBSITE_REVIEWS = [
+  {
+    name: "Marcus W.",
+    company: "Vatt Media Marketing",
+    paragraphs: [
+      "I recently had the pleasure of working with Statica on a new website for my business, and I couldn’t be happier with the results. Statica's graphic design skills are top-notch, bringing a fresh and modern look to my online presence that truly resonates with my audience. His attention to detail and commitment to delivering a quality product are unmatched.",
+      "The website is not only visually stunning but also user-friendly, making it easy for my customers to navigate and find what they need. Since launching the new site, I've noticed a significant increase in client inquiries and conversions. The professional and attractive digital presence that Statica created has been instrumental in helping me attract and retain more clients.",
+      "If you're looking for a talented and reliable graphic designer, I highly recommend Statica. He’s not just a designer; he’s a creative partner who genuinely cares about your vision and business success.",
+    ],
+  },
+  {
+    name: "Dwight D.",
+    company: "Tuftalot",
+    paragraphs: [
+      "Statica’s work is amazing! Have been working with them over 2 years, and the production only gets better. Pays close attention to detail, very responsive and works hard to bring your exact idea to life",
+    ],
+  },
+] as const;
 
 export const FLERILAB = {
   slug: "flerilab",

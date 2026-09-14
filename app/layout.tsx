@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s | Statica Design Agency",
   },
   description:
-    "Professional websites for small businesses in Orlando, with ongoing maintenance and support. Website setup from $750 + management from $99/month. Request your quote.",
+    "Professional websites for small businesses in Orlando, with ongoing maintenance and support. Custom websites from $750 + ongoing management from $99/month. Request your quote.",
   icons: { icon: "/images/statica/Statica Favicon Bolt.png" },
 };
 

@@ -13,7 +13,8 @@ export default function Footer() {
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-sm text-mist">
-            Websites designed, built, and looked after by one person in {SITE.location}.
+            Custom website design and ongoing management, with personal service from
+            start to finish.
           </p>
         </div>
         <div>
@@ -26,7 +27,7 @@ export default function Footer() {
             </li>
             <li>
               <Link className="text-mist hover:text-bolt" href="/work">
-                Website Work
+                Portfolio
               </Link>
             </li>
             <li>
@@ -36,7 +37,7 @@ export default function Footer() {
             </li>
             <li>
               <Link className="text-mist hover:text-bolt" href={MONTHLY_PATH}>
-                Monthly management
+                Website Management
               </Link>
             </li>
           </ul>
@@ -58,13 +59,15 @@ export default function Footer() {
         </div>
         <div>
           <h2 className="text-sm font-semibold text-paper">Contact</h2>
-          <p className="mt-3 text-sm text-mist">{SITE.url.replace("https://", "")}</p>
-          <p className="mt-1 text-sm text-mist">Based in {SITE.location}</p>
+          <a className="mt-3 block text-sm text-mist hover:text-bolt" href={`mailto:${SITE.email}`}>
+            {SITE.email}
+          </a>
+          <p className="mt-1 text-sm text-mist">Based in Orlando, Florida.</p>
         </div>
       </div>
       <div className="border-t border-ink-line/70">
         <p className="mx-auto max-w-6xl px-4 py-6 text-xs text-mist sm:px-6">
-          &copy; {new Date().getFullYear()} {SITE.name}. Built by {SITE.founder}.
+          &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
         </p>
       </div>
     </footer>

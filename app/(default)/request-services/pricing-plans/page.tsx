@@ -2,9 +2,14 @@ import Link from "next/link";
 import Ambient from "@/components/ambient";
 import { pageMetadata } from "@/lib/metadata";
 import {
+  ADDITIONAL_PAGES_FAQ,
+  ADDITIONAL_WORK_POLICY,
+  BUILD_DOMAIN_INCLUSION,
   CARE_PLAN,
+  DOMAIN_LAUNCH_POLICY,
+  MONTHLY_ALLOWANCE_NOTE,
   MONTHLY_PATH,
-  PRICING_CUE,
+  PRICING_HERO_LINE,
   QUOTE_PATH,
   RELAY_NOTES,
   RELAY_PLAN,
@@ -12,9 +17,9 @@ import {
 } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Website Setup Pricing and Monthly Plans",
+  title: "Website Design Pricing and Monthly Plans",
   description:
-    "Statica website setup from $750. Monthly management: Statica Care $99 or Statica Relay $249. Advanced work is quoted separately.",
+    "Statica custom websites from $750. Monthly management: Statica Care $99 or Statica Relay $249. Advanced work is quoted separately.",
   path: "/request-services/pricing-plans",
 });
 
@@ -26,20 +31,23 @@ export default function PricingPage() {
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
           <p className="eyebrow">Pricing</p>
           <h1 className="display mt-6 max-w-2xl text-[2.5rem] leading-[1.05] sm:text-5xl">
-            Two numbers, and no surprises.
+            Clear pricing. Lasting support.
           </h1>
           <p className="lede mt-6 max-w-xl">
-            You pay once to have the website built, then monthly to keep it hosted,
-            watched, and up to date. {PRICING_CUE}
+            Start with a custom website built for your business, then keep it hosted,
+            maintained, and up to date with ongoing monthly management.
           </p>
+          <p className="mt-4 text-sm text-mist">{PRICING_HERO_LINE}</p>
         </div>
       </section>
 
       <section className="border-y border-ink-line bg-ink-raised">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <h2 className="display text-3xl sm:text-4xl">Website setup</h2>
-            <p className="text-sm text-mist">One-time cost. Scope sets the price.</p>
+            <h2 className="display text-3xl sm:text-4xl">Website Design &amp; Build</h2>
+            <p className="text-sm text-mist">
+              One-time project pricing based on your website&rsquo;s scope.
+            </p>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {SETUP_PLANS.map((plan, i) => (
@@ -71,9 +79,9 @@ export default function PricingPage() {
             ))}
           </div>
           <p className="mt-6 text-sm text-mist">
-            All three get the same care in the design and the same mobile-friendly build.
-            The price reflects how many pages you need. Advanced functionality is quoted
-            separately.
+            All three receive the same care in the design and the same mobile-friendly
+            build. The price reflects how many pages you need. {BUILD_DOMAIN_INCLUSION} is
+            included. Advanced functionality is quoted separately.
           </p>
         </div>
       </section>
@@ -85,7 +93,7 @@ export default function PricingPage() {
             Full monthly details
           </Link>
         </div>
-        <p className="mt-3 text-mist">Pair any website setup with Care or Relay.</p>
+        <p className="mt-3 text-mist">Pair any website build with Care or Relay.</p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <article className="flex flex-col rounded-3xl border border-ink-line bg-ink-raised p-8">
@@ -147,11 +155,27 @@ export default function PricingPage() {
             </Link>
           </article>
         </div>
+      </section>
 
-        <p className="mt-6 text-sm text-mist">
-          Unused update time does not roll over. Domain registration and renewal are
-          billed separately. Work beyond the monthly allowance is quoted before it starts.
-        </p>
+      <section className="border-t border-ink-line bg-ink-raised">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <h2 className="display text-3xl sm:text-4xl">Pricing details</h2>
+          <div className="mt-10 max-w-3xl space-y-8 text-mist">
+            <p>{DOMAIN_LAUNCH_POLICY}</p>
+            <p>{MONTHLY_ALLOWANCE_NOTE}</p>
+            <p>{ADDITIONAL_WORK_POLICY}</p>
+            <div className="hairline-top pt-8">
+              <h3 className="font-nacelle text-xl font-semibold text-paper">
+                {ADDITIONAL_PAGES_FAQ.question}
+              </h3>
+              <p className="mt-3">{ADDITIONAL_PAGES_FAQ.answer}</p>
+            </div>
+            <p className="text-sm">
+              Unused update time does not roll over. Additional pages are a separate
+              addition to an agreed package or an existing website.
+            </p>
+          </div>
+        </div>
       </section>
     </>
   );

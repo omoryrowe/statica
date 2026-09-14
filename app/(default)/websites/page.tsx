@@ -33,8 +33,8 @@ const INCLUDED = [
     "Page titles, descriptions, and a sensible structure so search engines can read the site properly.",
   ],
   [
-    "A managed launch",
-    "I handle going live, and the site starts on a monthly plan so updates always have somewhere to go.",
+    "Domain setup and connection assistance",
+    "Website setup, domain connection, and launch are included in your build price. Domain registration and renewal fees are additional and confirmed before purchase.",
   ],
 ];
 
@@ -42,7 +42,10 @@ const STEPS = [
   ["Tell me what you need", "Share the business, your current site if you have one, and what the new one should do."],
   ["Review your quote", "We agree on pages, scope, and price before any design work starts."],
   ["Review your website", "You look over the build and request the changes we agreed on."],
-  ["Launch and keep it current", "The site goes live and moves onto a monthly plan for ongoing support."],
+  [
+    "Launch and keep it current",
+    "The site goes live with domain connection assistance, then moves onto a monthly plan for hosting, maintenance, and eligible content updates.",
+  ],
 ];
 
 export default function WebsitesPage() {

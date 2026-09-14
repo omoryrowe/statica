@@ -1,7 +1,17 @@
 import Link from "next/link";
 import Ambient from "@/components/ambient";
 import { pageMetadata } from "@/lib/metadata";
-import { CARE_PLAN, PRICING_PATH, QUOTE_PATH, RELAY_NOTES, RELAY_PLAN } from "@/lib/site";
+import {
+  ADDITIONAL_PAGES_FAQ,
+  ADDITIONAL_WORK_POLICY,
+  CARE_PLAN,
+  DOMAIN_LAUNCH_POLICY,
+  MONTHLY_ALLOWANCE_NOTE,
+  PRICING_PATH,
+  QUOTE_PATH,
+  RELAY_NOTES,
+  RELAY_PLAN,
+} from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Website Maintenance and Monthly Support",
@@ -22,9 +32,10 @@ export default function MonthlyPlansPage() {
               Your website shouldn&rsquo;t become another job.
             </h1>
             <p className="lede mt-7">
-              New hours, a new photo, a service you no longer offer. Send it to me and it
-              gets handled. Hosting, monitoring, and the technical side stay with Statica
-              so you can get back to running the business.
+              Eligible content updates, such as new hours, photos, or a service you no
+              longer offer, are handled through your monthly plan. Hosting, monitoring,
+              and the technical side stay with Statica so you can focus on running the
+              business.
             </p>
           </div>
         </div>
@@ -112,11 +123,20 @@ export default function MonthlyPlansPage() {
                 <h3 className="font-nacelle text-xl font-semibold text-paper">
                   Quoted separately
                 </h3>
-                <p className="mt-3 text-mist">
-                  New pages, a redesign, or new functionality. I give you an estimate
-                  before that work starts. Domain registration and renewal are also
-                  separate from the monthly price.
-                </p>
+                <p className="mt-3 text-mist">{MONTHLY_ALLOWANCE_NOTE}</p>
+                <p className="mt-3 text-mist">{ADDITIONAL_WORK_POLICY}</p>
+              </div>
+              <div className="hairline-top pt-6">
+                <h3 className="font-nacelle text-xl font-semibold text-paper">
+                  Domain and launch
+                </h3>
+                <p className="mt-3 text-mist">{DOMAIN_LAUNCH_POLICY}</p>
+              </div>
+              <div className="hairline-top pt-6">
+                <h3 className="font-nacelle text-xl font-semibold text-paper">
+                  {ADDITIONAL_PAGES_FAQ.question}
+                </h3>
+                <p className="mt-3 text-mist">{ADDITIONAL_PAGES_FAQ.answer}</p>
               </div>
             </div>
           </div>
@@ -129,7 +149,7 @@ export default function MonthlyPlansPage() {
               <p className="mt-2 text-sm text-mist">
                 Tell me about the site and I&rsquo;ll recommend one.{" "}
                 <Link href={PRICING_PATH} className="font-semibold text-bolt">
-                  Compare with setup pricing
+                  Compare with website pricing
                 </Link>
               </p>
             </div>
