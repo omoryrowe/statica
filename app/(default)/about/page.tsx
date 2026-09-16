@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Ambient from "@/components/ambient";
 import { pageMetadata } from "@/lib/metadata";
-import { PRICING_CUE, QUOTE_PATH } from "@/lib/site";
+import { QUOTE_PATH } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "About Omory Rowe and Statica",
@@ -141,7 +141,6 @@ export default function AboutPage() {
             Tell me about your business and what you have in mind. I&rsquo;ll help you
             define the right scope and provide a clear quote.
           </p>
-          <p className="mt-4 text-sm text-mist">{PRICING_CUE}</p>
           <Link
             href={QUOTE_PATH}
             className="btn btn-primary mt-8 inline-flex"
