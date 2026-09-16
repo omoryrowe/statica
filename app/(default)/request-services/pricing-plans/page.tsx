@@ -8,7 +8,6 @@ import {
   DOMAIN_LAUNCH_POLICY,
   MONTHLY_ALLOWANCE_NOTE,
   MONTHLY_PATH,
-  PRICING_HERO_LINE,
   QUOTE_PATH,
   RELAY_NOTES,
   RELAY_PLAN,
@@ -28,15 +27,16 @@ export default function PricingPage() {
       <section className="grain relative overflow-hidden">
         <Ambient variant="soft" />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
-          <p className="eyebrow">Pricing</p>
+          <p className="eyebrow">Packages</p>
           <h1 className="display mt-6 max-w-2xl text-[2.5rem] leading-[1.05] sm:text-5xl">
-            Clear pricing. Lasting support.
+            Built for your business.
+            <br />
+            Backed by Statica.
           </h1>
           <p className="lede mt-6 max-w-xl">
             Start with a custom website built for your business, then keep it hosted,
             maintained, and up to date with ongoing monthly management.
           </p>
-          <p className="mt-4 text-sm text-mist">{PRICING_HERO_LINE}</p>
         </div>
       </section>
 
