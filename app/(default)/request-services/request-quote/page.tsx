@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import Ambient from "@/components/ambient";
 import { pageMetadata } from "@/lib/metadata";
 import QuoteForm from "@/components/quote-form";
-import { PRICING_CUE } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Request a Website Quote",
@@ -28,7 +27,7 @@ export default function QuotePage() {
           <ul className="mt-9 space-y-4 text-sm text-mist">
             {[
               "No pressure and no obligation.",
-              "You hear back from me, not an automated sequence.",
+              "Personal follow-up from me.",
               "We agree on scope and price before any work begins.",
             ].map((item) => (
               <li key={item} className="flex gap-3">
@@ -39,7 +38,6 @@ export default function QuotePage() {
               </li>
             ))}
           </ul>
-          <p className="mt-9 text-sm text-mist">{PRICING_CUE}</p>
         </div>
 
         <div className="rounded-3xl border border-ink-line bg-ink-raised p-6 shadow-lift sm:p-8">

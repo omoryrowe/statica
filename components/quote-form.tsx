@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { CARE_PLAN, isMonthlyPlanId, isSetupPlanId, MONTHLY_PLANS, NEED_OPTIONS, RELAY_NOTES, RELAY_PLAN, SETUP_PLANS } from "@/lib/site";
+import { isMonthlyPlanId, isSetupPlanId, MONTHLY_PLANS, NEED_OPTIONS, RELAY_PLAN, SETUP_PLANS } from "@/lib/site";
 
 const LIMITS = {
   name: 100,
@@ -242,10 +242,6 @@ export default function QuoteForm() {
         </select>
       </div>
 
-      <p className="rounded-lg border border-ink-line px-4 py-3 text-sm text-mist">
-        Requesting a quote does not start a subscription. {CARE_PLAN.name} is {CARE_PLAN.priceLabel}. {RELAY_PLAN.name} is {RELAY_PLAN.priceLabel}. {RELAY_NOTES[1]} {RELAY_NOTES[2]}
-      </p>
-
       <div>
         <label htmlFor="projectDetails" className="block text-sm font-medium text-paper">
           Brief project details
@@ -259,6 +255,10 @@ export default function QuoteForm() {
           onChange={(e) => setValues({ ...values, projectDetails: e.target.value })}
         />
       </div>
+      <p className="text-sm text-mist">
+        Requesting a quote is free, with no obligation. No payment or subscription
+        starts when you submit this form.
+      </p>
       <button type="submit" disabled={submitting} className="btn btn-primary w-full sm:w-auto">
         {submitting ? "Sending…" : "Get My Quote"}
       </button>
