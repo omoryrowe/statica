@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { isMonthlyPlanId, isSetupPlanId, MONTHLY_PLANS, NEED_OPTIONS, RELAY_PLAN, SETUP_PLANS } from "@/lib/site";
 
@@ -24,6 +24,7 @@ export default function QuoteForm() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const submittingRef = useRef(false);
   const [values, setValues] = useState({
     name: "",
     businessName: "",
@@ -51,6 +52,7 @@ export default function QuoteForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submittingRef.current) return;
     setError(null);
     setSuccess(false);
 
@@ -67,6 +69,7 @@ export default function QuoteForm() {
       return;
     }
 
+    submittingRef.current = true;
     setSubmitting(true);
     try {
       const response = await fetch("/api/sendQuoteEmail", {
@@ -80,9 +83,14 @@ export default function QuoteForm() {
           existingWebsite: values.existingWebsite.trim(),
           need: values.need,
           setup: setupLabel,
+          setupId: values.setup,
           monthly: monthlyLabel,
           interest: values.monthly === RELAY_PLAN.id ? RELAY_PLAN.name : "",
           projectDetails: values.projectDetails.trim(),
+          idempotencyKey:
+            typeof crypto !== "undefined" && "randomUUID" in crypto
+              ? crypto.randomUUID()
+              : `${Date.now()}-${Math.random().toString(36).slice(2)}`,
         }),
       });
       const data = await response.json().catch(() => null);
@@ -94,6 +102,7 @@ export default function QuoteForm() {
     } catch {
       setError("The quote request could not be sent. Please try again.");
     } finally {
+      submittingRef.current = false;
       setSubmitting(false);
     }
   }
