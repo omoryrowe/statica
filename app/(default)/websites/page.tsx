@@ -72,7 +72,6 @@ export default function WebsitesPage() {
                 See Pricing
               </Link>
             </div>
-            <p className="mt-7 text-sm text-mist">{PRICING_CUE}</p>
           </div>
           <BrowserFrame
             src={FLERILAB.heroImage}
