@@ -2,9 +2,19 @@ import Link from "next/link";
 import Image from "next/image";
 import Ambient from "@/components/ambient";
 import BrowserFrame from "@/components/browser-frame";
+import RelayThread from "@/components/relay-thread";
 import { pageMetadata } from "@/lib/metadata";
 import ClientReview from "@/components/client-review";
-import { FLERILAB, PRICING_CUE, QUOTE_PATH, SITE, WEBSITE_REVIEWS } from "@/lib/site";
+import {
+  FLERILAB,
+  PRICING_PATH,
+  QUOTE_PATH,
+  RELAY_HEADLINE,
+  RELAY_PATH,
+  RELAY_SHORT_DESCRIPTOR,
+  SITE,
+  WEBSITE_REVIEWS,
+} from "@/lib/site";
 
 export const metadata = {
   ...pageMetadata({
@@ -80,16 +90,22 @@ export default function Home() {
                 See My Work
               </Link>
             </div>
-            <p className="mt-7 text-sm text-mist">{PRICING_CUE}</p>
+            <Link
+              href={PRICING_PATH}
+              className="group mt-7 inline-flex items-center gap-2 font-semibold text-bolt"
+            >
+              Explore Website Packages
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
           </div>
 
-          <div className="relative">
+          <div className="relative pb-16 sm:pb-0">
             <BrowserFrame
               src={FLERILAB.heroImage}
               alt={`${FLERILAB.name} website homepage`}
               priority
             />
-            <div className="mt-6 w-[62%] sm:absolute sm:-bottom-14 sm:-left-10 sm:mt-0 sm:w-[46%]">
+            <div className="absolute -bottom-8 -left-6 w-[42%] sm:-bottom-14 sm:-left-10 sm:w-[46%]">
               <BrowserFrame
                 src={FLERILAB.detailImage}
                 alt={`${FLERILAB.name} website founder page`}
@@ -201,6 +217,28 @@ export default function Home() {
                 </div>
               ))}
             </dl>
+          </div>
+        </div>
+      </section>
+
+      {/* D2. Statica Relay teaser */}
+      <section className="grain relative overflow-hidden border-t border-ink-line">
+        <Ambient variant="soft" />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
+            <div>
+              <p className="eyebrow">Statica Relay</p>
+              <h2 className="display mt-5 text-3xl sm:text-4xl">{RELAY_HEADLINE}</h2>
+              <p className="mt-5 text-mist">{RELAY_SHORT_DESCRIPTOR}</p>
+              <Link
+                href={RELAY_PATH}
+                className="group mt-7 inline-flex items-center gap-2 font-semibold text-bolt"
+              >
+                Explore Relay
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </div>
+            <RelayThread />
           </div>
         </div>
       </section>

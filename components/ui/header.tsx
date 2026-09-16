@@ -4,12 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./logo";
-import { QUOTE_PATH } from "@/lib/site";
+import { QUOTE_PATH, RELAY_PATH } from "@/lib/site";
 
 const links = [
   { href: "/websites", label: "Websites" },
+  { href: RELAY_PATH, label: "Relay" },
   { href: "/work", label: "Work" },
-  { href: "/request-services/pricing-plans", label: "Pricing" },
+  { href: "/request-services/pricing-plans", label: "Packages" },
   { href: "/about", label: "About" },
 ];
 

@@ -11,6 +11,10 @@ export const SITE = {
 export const QUOTE_PATH = "/request-services/request-quote";
 export const PRICING_PATH = "/request-services/pricing-plans";
 export const MONTHLY_PATH = "/request-services/monthly-plans";
+export const RELAY_PATH = "/relay";
+
+export const CONSULT_URL =
+  "https://api.leadconnectorhq.com/widget/booking/wR9nVtuLYxofMrwtUU6v";
 
 export const PRICING_CUE =
   "Custom websites from $750 + ongoing management from $99/month.";
@@ -82,14 +86,15 @@ export const RELAY_PLAN = {
   name: "Statica Relay",
   available: true,
   priceLabel: "$249/month",
-  tagline: "Care, plus inquiry follow-up.",
+  tagline: "Managed lead response and follow-up.",
   updateAllowance: "60 minutes of minor content updates per month",
   features: [
     "Everything in Statica Care",
     "60 minutes total of minor content updates per month",
-    "Missed-call text back",
-    "Automated inquiry follow-up",
-    "Lead pipeline setup and maintenance",
+    "Missed-call text back and automatic inquiry responses",
+    "Automated follow-up when prospects go quiet",
+    "Lead pipeline: New Lead → Contacted → Interested → Appointment → Won/Lost",
+    "Centralized conversations and lead history",
   ],
 } as const;
 
@@ -99,6 +104,73 @@ export const RELAY_NOTES = [
   "Statica maintains the follow-up system. You handle customer conversations.",
   "Setup and activation are arranged during onboarding. Calling and messaging usage is billed separately.",
   "Relay setup costs, if applicable, are included in the initial quote before agreement.",
+] as const;
+
+export const RELAY_MONTHLY_PRICE = 249;
+export const RELAY_ANNUAL_PRICE = RELAY_MONTHLY_PRICE * 12;
+export const RELAY_ANNUAL_LABEL = "$2,988/year";
+
+export const RELAY_SHORT_DESCRIPTOR = "Automated lead response and follow-up.";
+export const RELAY_HEADLINE = "Stop losing leads you already worked to get.";
+export const RELAY_SUBHEAD =
+  "Relay responds to missed calls and website inquiries, follows up when prospects go quiet, and helps turn more inquiries into booked appointments.";
+
+export const RELAY_WORKFLOW_STEPS = [
+  {
+    title: "Missed call or website inquiry",
+    body: "A call goes unanswered, or someone fills out a form on your site.",
+  },
+  {
+    title: "Automatic response",
+    body: "Relay responds by text or email so the person hears from you, even while you're busy.",
+  },
+  {
+    title: "Conversation and follow-up",
+    body: "If they go quiet, Relay follows up. You can pick up the conversation whenever you're ready.",
+  },
+  {
+    title: "Opportunity to book",
+    body: "Interested prospects get a link to schedule an appointment.",
+  },
+] as const;
+
+export const RELAY_CAPABILITIES = [
+  {
+    group: "Respond",
+    items: [
+      "Missed call text back",
+      "Automatic website inquiry responses by SMS and/or email",
+      "Notifications about new leads and important activity",
+    ],
+  },
+  {
+    group: "Follow up",
+    items: [
+      "Automated follow-up when prospects don't respond",
+      "Booking links so interested prospects can schedule an appointment",
+    ],
+  },
+  {
+    group: "Organize",
+    items: [
+      "A lead pipeline: New Lead → Contacted → Interested → Appointment → Won/Lost",
+      "Centralized conversations and lead history",
+      "Basic reporting on lead activity, responses, and appointments where tracking supports it",
+    ],
+  },
+] as const;
+
+export const RELAY_MANAGED_ITEMS = [
+  "Initial system setup and workflow configuration",
+  "Connecting your phone number, forms, and calendar",
+  "Ongoing automation maintenance and troubleshooting",
+] as const;
+
+export const RELAY_NOT_INCLUDED = [
+  "an AI receptionist or advanced conversational AI",
+  "review or reputation automation",
+  "advertising management",
+  "unlimited custom automations",
 ] as const;
 
 export const NEED_OPTIONS = [
@@ -126,6 +198,13 @@ export const WEBSITE_REVIEWS = [
     company: "Tuftalot",
     paragraphs: [
       "Statica’s work is amazing! Have been working with them over 2 years, and the production only gets better. Pays close attention to detail, very responsive and works hard to bring your exact idea to life",
+    ],
+  },
+  {
+    name: "Dashiell Desravines",
+    company: "FleriLab",
+    paragraphs: [
+      "Statica helped me turn my vision into a reality through designing an intuitive and user-friendly website for my business, FleriLab. There were many intricacies that had to be overcome to make this possible, such as designing the payment link and contact form. Statica made every challenge look easy and maintained constant communication throughout the website design process. These qualities made the overall process smooth, straightforward, and understandable. I’m looking forward to using Statica’s services again to add even more features to my website!",
     ],
   },
 ] as const;

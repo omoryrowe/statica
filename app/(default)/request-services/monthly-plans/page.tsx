@@ -44,60 +44,68 @@ export default function MonthlyPlansPage() {
       <section className="border-y border-ink-line bg-ink-raised">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <div className="grid gap-6 lg:grid-cols-2">
-            <article className="flex flex-col rounded-3xl border border-ink-line bg-ink p-8">
-              <p className="eyebrow">{CARE_PLAN.name}</p>
-              <h2 className="display mt-5 text-2xl">{CARE_PLAN.tagline}</h2>
-              <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
-                {CARE_PLAN.priceLabel}
-              </p>
-              <ul className="mt-7 flex-1 space-y-3 text-mist">
-                {CARE_PLAN.features.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span aria-hidden className="text-bolt">
-                      +
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={`${QUOTE_PATH}?monthly=${CARE_PLAN.id}`}
-                className="btn btn-primary mt-8"
-                data-event="quote-cta"
-              >
-                Get My Quote
-              </Link>
-            </article>
+            <div className="tier-frame finish-silver">
+              <article className="tier-frame-inner finish-silver flex h-full flex-col bg-ink p-8">
+                <div className="relative z-10 flex h-full flex-col">
+                  <p className="eyebrow">{CARE_PLAN.name}</p>
+                  <h2 className="display mt-5 text-2xl">{CARE_PLAN.tagline}</h2>
+                  <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
+                    {CARE_PLAN.priceLabel}
+                  </p>
+                  <ul className="mt-7 flex-1 space-y-3 text-mist">
+                    {CARE_PLAN.features.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span aria-hidden className="text-bolt">
+                          +
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`${QUOTE_PATH}?monthly=${CARE_PLAN.id}`}
+                    className="btn btn-primary mt-8"
+                    data-event="quote-cta"
+                  >
+                    Get My Quote
+                  </Link>
+                </div>
+              </article>
+            </div>
 
-            <article className="flex flex-col rounded-3xl border border-bolt/40 bg-ink p-8">
-              <p className="eyebrow">{RELAY_PLAN.name}</p>
-              <h2 className="display mt-5 text-2xl">{RELAY_PLAN.tagline}</h2>
-              <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
-                {RELAY_PLAN.priceLabel}
-              </p>
-              <ul className="mt-7 space-y-3 text-mist">
-                {RELAY_PLAN.features.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span aria-hidden className="text-bolt">
-                      +
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-7 flex-1 space-y-2 border-t border-ink-line pt-5 text-sm text-mist">
-                {RELAY_NOTES.map((note) => (
-                  <p key={note}>{note}</p>
-                ))}
-              </div>
-              <Link
-                href={`${QUOTE_PATH}?monthly=${RELAY_PLAN.id}`}
-                className="btn btn-primary mt-8"
-                data-event="quote-cta"
-              >
-                Get My Quote
-              </Link>
-            </article>
+            <div className="tier-frame finish-gold">
+              <article className="tier-frame-inner finish-gold flex h-full flex-col bg-ink p-8">
+                <div className="relative z-10 flex h-full flex-col">
+                  <p className="eyebrow">{RELAY_PLAN.name}</p>
+                  <h2 className="display mt-5 text-2xl">{RELAY_PLAN.tagline}</h2>
+                  <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
+                    {RELAY_PLAN.priceLabel}
+                  </p>
+                  <ul className="mt-7 space-y-3 text-mist">
+                    {RELAY_PLAN.features.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span aria-hidden className="text-bolt">
+                          +
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-7 flex-1 space-y-2 border-t border-ink-line pt-5 text-sm text-mist">
+                    {RELAY_NOTES.map((note) => (
+                      <p key={note}>{note}</p>
+                    ))}
+                  </div>
+                  <Link
+                    href={`${QUOTE_PATH}?monthly=${RELAY_PLAN.id}`}
+                    className="btn btn-primary mt-8"
+                    data-event="quote-cta"
+                  >
+                    Get My Quote
+                  </Link>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>

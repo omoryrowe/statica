@@ -50,33 +50,35 @@ export default function PricingPage() {
             </p>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {SETUP_PLANS.map((plan, i) => (
-              <article
-                key={plan.id}
-                className={`flex flex-col rounded-3xl border p-8 transition duration-200 hover:-translate-y-1 ${
-                  i === 1
-                    ? "border-bolt/50 bg-ink shadow-glow"
-                    : "border-ink-line bg-ink"
-                }`}
-              >
-                <h3 className="font-nacelle text-lg font-semibold text-paper">
-                  {plan.name}
-                </h3>
-                <p className="mt-3 font-nacelle text-4xl font-semibold text-bolt">
-                  {plan.priceLabel}
-                </p>
-                <p className="mt-5 flex-1 text-sm leading-relaxed text-mist">
-                  {plan.summary}
-                </p>
-                <Link
-                  href={`${QUOTE_PATH}?setup=${plan.id}`}
-                  data-event="pricing-select"
-                  className="btn btn-primary mt-8"
-                >
-                  Get My Quote
-                </Link>
-              </article>
-            ))}
+            {SETUP_PLANS.map((plan, i) => {
+              const finish =
+                i === 0 ? "finish-silver" : i === 1 ? "finish-gold" : "finish-ruby";
+              const priceColor = i === 0 ? "text-paper" : "text-bolt";
+              return (
+                <div key={plan.id} className={`tier-frame ${finish}`}>
+                  <article className={`tier-frame-inner flex h-full flex-col bg-ink p-8 ${finish}`}>
+                    <div className="relative z-10 flex h-full flex-col">
+                      <h3 className={`finish-text ${finish} font-nacelle text-lg font-semibold`}>
+                        {plan.name}
+                      </h3>
+                      <p className={`mt-3 font-nacelle text-4xl font-semibold ${priceColor}`}>
+                        {plan.priceLabel}
+                      </p>
+                      <p className="mt-5 flex-1 text-sm leading-relaxed text-mist">
+                        {plan.summary}
+                      </p>
+                      <Link
+                        href={`${QUOTE_PATH}?setup=${plan.id}`}
+                        data-event="pricing-select"
+                        className="btn btn-primary mt-8"
+                      >
+                        Get My Quote
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              );
+            })}
           </div>
           <p className="mt-6 text-sm text-mist">
             All three receive the same care in the design and the same mobile-friendly
@@ -96,64 +98,72 @@ export default function PricingPage() {
         <p className="mt-3 text-mist">Pair any website build with Care or Relay.</p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <article className="flex flex-col rounded-3xl border border-ink-line bg-ink-raised p-8">
-            <h3 className="font-nacelle text-lg font-semibold text-paper">
-              {CARE_PLAN.name}
-            </h3>
-            <p className="mt-1 text-sm text-mist">{CARE_PLAN.tagline}</p>
-            <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
-              {CARE_PLAN.priceLabel}
-            </p>
-            <ul className="mt-7 flex-1 space-y-3 text-sm text-mist">
-              {CARE_PLAN.features.map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span aria-hidden className="text-bolt">
-                    +
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <Link
-              href={`${QUOTE_PATH}?monthly=${CARE_PLAN.id}`}
-              className="btn btn-primary mt-8"
-              data-event="quote-cta"
-            >
-              Get My Quote
-            </Link>
-          </article>
+          <div className="tier-frame finish-silver">
+            <article className="tier-frame-inner finish-silver flex h-full flex-col bg-ink-raised p-8">
+              <div className="relative z-10 flex h-full flex-col">
+                <h3 className="font-nacelle text-lg font-semibold text-paper">
+                  {CARE_PLAN.name}
+                </h3>
+                <p className="mt-1 text-sm text-mist">{CARE_PLAN.tagline}</p>
+                <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
+                  {CARE_PLAN.priceLabel}
+                </p>
+                <ul className="mt-7 flex-1 space-y-3 text-sm text-mist">
+                  {CARE_PLAN.features.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span aria-hidden className="text-bolt">
+                        +
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={`${QUOTE_PATH}?monthly=${CARE_PLAN.id}`}
+                  className="btn btn-primary mt-8"
+                  data-event="quote-cta"
+                >
+                  Get My Quote
+                </Link>
+              </div>
+            </article>
+          </div>
 
-          <article className="flex flex-col rounded-3xl border border-bolt/40 bg-ink-raised p-8">
-            <h3 className="font-nacelle text-lg font-semibold text-paper">
-              {RELAY_PLAN.name}
-            </h3>
-            <p className="mt-1 text-sm text-mist">{RELAY_PLAN.tagline}</p>
-            <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
-              {RELAY_PLAN.priceLabel}
-            </p>
-            <ul className="mt-7 space-y-3 text-sm text-mist">
-              {RELAY_PLAN.features.map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span aria-hidden className="text-bolt">
-                    +
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-7 flex-1 space-y-2 border-t border-ink-line pt-5 text-sm text-mist">
-              {RELAY_NOTES.map((note) => (
-                <p key={note}>{note}</p>
-              ))}
-            </div>
-            <Link
-              href={`${QUOTE_PATH}?monthly=${RELAY_PLAN.id}`}
-              className="btn btn-primary mt-8"
-              data-event="quote-cta"
-            >
-              Get My Quote
-            </Link>
-          </article>
+          <div className="tier-frame finish-gold">
+            <article className="tier-frame-inner finish-gold flex h-full flex-col bg-ink-raised p-8">
+              <div className="relative z-10 flex h-full flex-col">
+                <h3 className="font-nacelle text-lg font-semibold text-paper">
+                  {RELAY_PLAN.name}
+                </h3>
+                <p className="mt-1 text-sm text-mist">{RELAY_PLAN.tagline}</p>
+                <p className="mt-4 font-nacelle text-4xl font-semibold text-bolt">
+                  {RELAY_PLAN.priceLabel}
+                </p>
+                <ul className="mt-7 space-y-3 text-sm text-mist">
+                  {RELAY_PLAN.features.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span aria-hidden className="text-bolt">
+                        +
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-7 flex-1 space-y-2 border-t border-ink-line pt-5 text-sm text-mist">
+                  {RELAY_NOTES.map((note) => (
+                    <p key={note}>{note}</p>
+                  ))}
+                </div>
+                <Link
+                  href={`${QUOTE_PATH}?monthly=${RELAY_PLAN.id}`}
+                  className="btn btn-primary mt-8"
+                  data-event="quote-cta"
+                >
+                  Get My Quote
+                </Link>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 

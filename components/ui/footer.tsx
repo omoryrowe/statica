@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "./logo";
-import { MONTHLY_PATH, PRICING_PATH, QUOTE_PATH, SITE } from "@/lib/site";
+import { MONTHLY_PATH, PRICING_PATH, QUOTE_PATH, RELAY_PATH, SITE } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -31,8 +31,13 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link className="text-mist hover:text-bolt" href={RELAY_PATH}>
+                Statica Relay
+              </Link>
+            </li>
+            <li>
               <Link className="text-mist hover:text-bolt" href={PRICING_PATH}>
-                Pricing
+                Packages
               </Link>
             </li>
             <li>

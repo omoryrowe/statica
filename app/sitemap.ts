@@ -1,9 +1,10 @@
-import { MONTHLY_PATH, PRICING_PATH, QUOTE_PATH, SITE } from "@/lib/site";
+import { MONTHLY_PATH, PRICING_PATH, QUOTE_PATH, RELAY_PATH, SITE } from "@/lib/site";
 
 export default function sitemap() {
   const paths = [
     "/",
     "/websites",
+    RELAY_PATH,
     "/work",
     PRICING_PATH,
     MONTHLY_PATH,

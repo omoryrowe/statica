@@ -78,6 +78,151 @@
   @apply border-t border-ink-line/70;
 }
 
+/* Metallic-finish pricing tiers. A ~3px gradient border via padding, with
+   alternating dark/medium/bright stops for an actual brushed-metal look
+   (not a flat colored outline), a tinted interior wash near the top edges,
+   a coordinated glow on every card by default, and a one-shot reflective
+   shine that sweeps across on hover/focus. */
+.tier-frame {
+  position: relative;
+  border-radius: 1.5rem;
+  padding: 6px;
+  background: linear-gradient(
+    135deg,
+    var(--b1) 0%,
+    var(--b2) 18%,
+    var(--b1) 32%,
+    var(--b3) 46%,
+    var(--b1) 60%,
+    var(--b4) 76%,
+    var(--b5) 100%
+  );
+  box-shadow: var(--card-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.5),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset -1px 0 0 rgba(0, 0, 0, 0.4);
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+
+.tier-frame:hover,
+.tier-frame:focus-within {
+  transform: translateY(-4px);
+  box-shadow: var(--card-glow-hover),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.5),
+    inset 1px 0 0 rgba(255, 255, 255, 0.4),
+    inset -1px 0 0 rgba(0, 0, 0, 0.4);
+}
+
+.tier-frame-inner {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: calc(1.5rem - 6px);
+}
+
+.tier-frame-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: var(--tint-bg);
+}
+
+.tier-frame-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 60%
+  );
+  transform: translateX(-130%) skewX(-12deg);
+  opacity: 0;
+  transition: transform 650ms ease, opacity 650ms ease;
+}
+
+.tier-frame:hover .tier-frame-inner::after,
+.tier-frame:focus-within .tier-frame-inner::after {
+  transform: translateX(130%) skewX(-12deg);
+  opacity: 1;
+}
+
+.finish-silver {
+  --b1: #4b5563;
+  --b2: #e2e8f0;
+  --b3: #ffffff;
+  --b4: #94a3b8;
+  --b5: #334155;
+  --tint-bg: linear-gradient(160deg, rgba(255, 255, 255, 0.14), transparent 50%),
+    linear-gradient(-160deg, rgba(180, 190, 205, 0.14), transparent 45%);
+  --card-glow: 0 0 0 1px rgba(226, 232, 240, 0.14), 0 20px 54px -20px rgba(203, 213, 225, 0.45);
+  --card-glow-hover: 0 0 0 1px rgba(226, 232, 240, 0.24), 0 30px 74px -18px rgba(226, 232, 240, 0.6);
+  --text-grad: linear-gradient(135deg, var(--b2), var(--b3) 50%, var(--b4));
+}
+
+.finish-gold {
+  --b1: #6b4e02;
+  --b2: #f0c014;
+  --b3: #fff3b0;
+  --b4: #c99a05;
+  --b5: #4a3701;
+  --tint-bg: linear-gradient(160deg, rgba(255, 226, 138, 0.2), transparent 50%),
+    linear-gradient(-160deg, rgba(240, 192, 20, 0.14), transparent 45%);
+  --card-glow: 0 0 0 1px rgba(240, 192, 20, 0.22), 0 26px 70px -18px rgba(240, 192, 20, 0.65),
+    0 10px 34px -10px rgba(255, 226, 138, 0.35);
+  --card-glow-hover: 0 0 0 1px rgba(240, 192, 20, 0.34), 0 34px 90px -16px rgba(240, 192, 20, 0.8),
+    0 14px 44px -8px rgba(255, 226, 138, 0.5);
+  --text-grad: linear-gradient(135deg, var(--b2), var(--b3) 50%, var(--b4));
+}
+
+.finish-ruby {
+  --b1: #4a0505;
+  --b2: #ef1515;
+  --b3: #ffffff;
+  --b4: #b30f0f;
+  --b5: #2a0202;
+  --tint-bg: linear-gradient(
+      180deg,
+      rgba(239, 21, 21, 0.55) 0%,
+      rgba(179, 15, 15, 0.4) 55%,
+      rgba(74, 5, 5, 0.22) 85%,
+      rgba(20, 2, 2, 0.1) 100%
+    ),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.08), transparent 35%);
+  --card-glow: 0 0 0 1px rgba(255, 90, 90, 0.16), 0 24px 62px -20px rgba(239, 21, 21, 0.5),
+    0 10px 30px -10px rgba(255, 90, 90, 0.28);
+  --card-glow-hover: 0 0 0 1px rgba(255, 90, 90, 0.26), 0 30px 78px -18px rgba(239, 21, 21, 0.62),
+    0 12px 38px -8px rgba(255, 90, 90, 0.4);
+  --text-grad: linear-gradient(135deg, #f0c014, #fff3b0 50%, #c99a05);
+}
+
+/* Expanded's ruby finish gets a thicker 8px all-red beveled frame: deep red
+   shadow bands, bright scarlet midtones, and narrow white highlights. */
+.tier-frame.finish-ruby {
+  padding: 8px;
+}
+
+.tier-frame-inner.finish-ruby {
+  border-radius: calc(1.5rem - 8px);
+}
+
+.finish-text {
+  background: var(--text-grad);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 /* Portfolio imagery */
 .shot {
   @apply transition duration-500 ease-out;
@@ -92,10 +237,21 @@
   .aurora,
   .shot,
   .btn,
-  .btn-sm {
+  .btn-sm,
+  .tier-frame,
+  .tier-frame:hover,
+  .tier-frame:focus-within,
+  .animate-pulse {
     animation: none !important;
     transition: none !important;
     transform: none !important;
+  }
+
+  .tier-frame-inner::after,
+  .tier-frame:hover .tier-frame-inner::after,
+  .tier-frame:focus-within .tier-frame-inner::after {
+    transition: none !important;
+    opacity: 0 !important;
   }
 }
 
