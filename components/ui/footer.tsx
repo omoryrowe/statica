@@ -1,6 +1,14 @@
 import Link from "next/link";
 import Logo from "./logo";
-import { MONTHLY_PATH, PRICING_PATH, QUOTE_PATH, RELAY_PATH, SITE } from "@/lib/site";
+import {
+  MONTHLY_PATH,
+  PRICING_PATH,
+  PRIVACY_PATH,
+  QUOTE_PATH,
+  RELAY_PATH,
+  SITE,
+  TERMS_PATH,
+} from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -71,9 +79,19 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-ink-line/70">
-        <p className="mx-auto max-w-6xl px-4 py-6 text-xs text-mist sm:px-6">
-          &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
-        </p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-6 text-xs text-mist sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <p>
+            &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
+          </p>
+          <div className="flex gap-5">
+            <Link className="hover:text-bolt" href={PRIVACY_PATH}>
+              Privacy Policy
+            </Link>
+            <Link className="hover:text-bolt" href={TERMS_PATH}>
+              Terms of Service
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

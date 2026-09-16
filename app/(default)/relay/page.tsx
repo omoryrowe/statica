@@ -50,9 +50,6 @@ export default function RelayPage() {
                 See How It Works
               </Link>
             </div>
-            <p className="mt-7 font-nacelle text-2xl font-semibold text-bolt">
-              {RELAY_PLAN.priceLabel}
-            </p>
           </div>
           <RelayThread />
         </div>

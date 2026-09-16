@@ -12,6 +12,10 @@ export const QUOTE_PATH = "/request-services/request-quote";
 export const PRICING_PATH = "/request-services/pricing-plans";
 export const MONTHLY_PATH = "/request-services/monthly-plans";
 export const RELAY_PATH = "/relay";
+export const PRIVACY_PATH = "/privacy-policy";
+export const TERMS_PATH = "/terms-of-service";
+
+export const LEGAL_EFFECTIVE_DATE = "September 15, 2026";
 
 export const CONSULT_URL =
   "https://api.leadconnectorhq.com/widget/booking/wR9nVtuLYxofMrwtUU6v";
@@ -44,22 +48,44 @@ export const SETUP_PLANS = [
     id: "one-page",
     name: "One Page Website",
     priceLabel: "$750",
-    summary:
-      "Your services, business details, and contact form together on one focused page.",
+    features: [
+      "One custom-designed page styled around your brand",
+      "Clearly organized sections for your services and business information",
+      "Mobile-friendly layout for phones, tablets, and desktops",
+      "Contact form so visitors can send an inquiry",
+      "Prominent call and contact buttons",
+      "Business hours, service areas, and contact details",
+      "Placement of your supplied photos and approved testimonials",
+      "Domain setup and connection assistance",
+    ],
   },
   {
     id: "business",
     name: "Business Website",
     priceLabel: "$1,000",
-    summary:
-      "Up to five pages, with dedicated space for your services, story, and contact details.",
+    features: [
+      "Everything in the One Page Website package",
+      "Up to five individually designed pages",
+      "Dedicated space for your services, company story, and contact information",
+      "Clear navigation to help visitors find what they need",
+      "More room for project photos, testimonials, and business details",
+      "Service information organized to help customers understand your offer",
+      "Contact calls to action across relevant pages",
+    ],
   },
   {
     id: "expanded",
     name: "Expanded Website",
     priceLabel: "$1,500",
-    summary:
-      "Up to eight pages for businesses that need to explain more services or share more information.",
+    features: [
+      "Everything in the Business Website package",
+      "Up to eight individually designed pages",
+      "More dedicated pages for individual services or business information",
+      "Room for a larger portfolio, project showcase, or FAQ",
+      "Related pages linked to help visitors explore your services",
+      "More space to address customer questions before they contact you",
+      "Page structure planned around a broader range of services",
+    ],
   },
 ] as const;
 

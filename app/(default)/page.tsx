@@ -156,7 +156,7 @@ export default function Home() {
         <Ambient variant="soft" />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-24">
           <h2 className="display text-3xl sm:text-4xl">What clients say</h2>
-          <div className="mt-10 grid items-start gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid items-stretch gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {WEBSITE_REVIEWS.map((review) => (
               <ClientReview key={`${review.name}-${review.company}`} review={review} />
             ))}

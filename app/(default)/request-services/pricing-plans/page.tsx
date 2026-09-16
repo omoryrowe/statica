@@ -4,7 +4,6 @@ import { pageMetadata } from "@/lib/metadata";
 import {
   ADDITIONAL_PAGES_FAQ,
   ADDITIONAL_WORK_POLICY,
-  BUILD_DOMAIN_INCLUSION,
   CARE_PLAN,
   DOMAIN_LAUNCH_POLICY,
   MONTHLY_ALLOWANCE_NOTE,
@@ -53,7 +52,6 @@ export default function PricingPage() {
             {SETUP_PLANS.map((plan, i) => {
               const finish =
                 i === 0 ? "finish-silver" : i === 1 ? "finish-gold" : "finish-ruby";
-              const priceColor = i === 0 ? "text-paper" : "text-bolt";
               return (
                 <div key={plan.id} className={`tier-frame ${finish}`}>
                   <article className={`tier-frame-inner flex h-full flex-col bg-ink p-8 ${finish}`}>
@@ -61,12 +59,28 @@ export default function PricingPage() {
                       <h3 className={`finish-text ${finish} font-nacelle text-lg font-semibold`}>
                         {plan.name}
                       </h3>
-                      <p className={`mt-3 font-nacelle text-4xl font-semibold ${priceColor}`}>
+                      <p className="mt-3 font-nacelle text-4xl font-semibold text-bolt">
                         {plan.priceLabel}
                       </p>
-                      <p className="mt-5 flex-1 text-sm leading-relaxed text-mist">
-                        {plan.summary}
-                      </p>
+                      <ul className="mt-5 flex-1 space-y-2.5 text-sm leading-relaxed text-mist">
+                        {plan.features.map((item) => (
+                          <li key={item} className="flex items-start gap-2.5">
+                            <svg
+                              aria-hidden
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              className="mt-0.5 h-4 w-4 flex-none text-bolt"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M16.704 5.29a1 1 0 010 1.415l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414l2.793 2.792 6.793-6.793a1 1 0 011.414 0z"
+                              />
+                            </svg>
+                            <span className="text-left">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                       <Link
                         href={`${QUOTE_PATH}?setup=${plan.id}`}
                         data-event="pricing-select"
@@ -80,11 +94,18 @@ export default function PricingPage() {
               );
             })}
           </div>
-          <p className="mt-6 text-sm text-mist">
-            All three receive the same care in the design and the same mobile-friendly
-            build. The price reflects how many pages you need. {BUILD_DOMAIN_INCLUSION} is
-            included. Advanced functionality is quoted separately.
-          </p>
+          <div className="mt-6 space-y-3 text-sm text-mist">
+            <p>
+              Every package includes the same attention to design and mobile
+              usability. Choose the page count that fits your business. Photos,
+              testimonials, and business information are supplied or approved by you.
+            </p>
+            <p>
+              Domain registration and renewal are billed separately. Ongoing hosting,
+              maintenance, and lead follow-up are covered by your selected monthly
+              plan. Advanced functionality is quoted separately.
+            </p>
+          </div>
         </div>
       </section>
 
