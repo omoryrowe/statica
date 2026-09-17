@@ -17,6 +17,14 @@ const LIMITS = {
 
 const EMAIL_TIMEOUT_MS = 8000;
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PHONE_REGEX = /^[+]?[()\d\s.-]{7,20}$/;
+
+function isValidPhone(value: string) {
+  const digitCount = value.replace(/\D/g, "").length;
+  return PHONE_REGEX.test(value) && digitCount >= 7 && digitCount <= 15;
+}
+
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -203,8 +211,11 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!EMAIL_REGEX.test(email)) {
       return NextResponse.json({ message: "Invalid email address." }, { status: 400 });
+    }
+    if (phone && !isValidPhone(phone)) {
+      return NextResponse.json({ message: "Invalid phone number." }, { status: 400 });
     }
 
     const submission: QuoteSubmission = {

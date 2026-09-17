@@ -13,6 +13,14 @@ const LIMITS = {
   projectDetails: 4000,
 };
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PHONE_REGEX = /^[+]?[()\d\s.-]{7,20}$/;
+
+function isValidPhone(value: string) {
+  const digitCount = value.replace(/\D/g, "").length;
+  return PHONE_REGEX.test(value) && digitCount >= 7 && digitCount <= 15;
+}
+
 export default function QuoteForm() {
   const searchParams = useSearchParams();
   const setupParam = searchParams.get("setup");
@@ -60,8 +68,12 @@ export default function QuoteForm() {
       setError("Name, business name, and email are required.");
       return;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+    if (!EMAIL_REGEX.test(values.email)) {
       setError("Please enter a valid email address.");
+      return;
+    }
+    if (values.phone.trim() && !isValidPhone(values.phone.trim())) {
+      setError("Please enter a valid phone number, or leave it blank.");
       return;
     }
     if (!values.need) {

@@ -230,4 +230,42 @@ describe("POST /api/sendQuoteEmail", () => {
     expect(fetchMock).not.toHaveBeenCalled();
     expect(sendMailMock).not.toHaveBeenCalled();
   });
+
+  it("rejects an invalid email format", async () => {
+    const fetchMock = mockGhlFetch({});
+    global.fetch = fetchMock as unknown as typeof fetch;
+
+    const { POST } = await import("./route");
+    const res = await POST(jsonRequest({ ...baseBody, email: "not-an-email" }));
+    const data = await res.json();
+    expect(res.status).toBe(400);
+    expect(data.message).toMatch(/invalid email/i);
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(sendMailMock).not.toHaveBeenCalled();
+  });
+
+  it("rejects an invalid phone number when one is provided", async () => {
+    const fetchMock = mockGhlFetch({});
+    global.fetch = fetchMock as unknown as typeof fetch;
+
+    const { POST } = await import("./route");
+    const res = await POST(jsonRequest({ ...baseBody, phone: "abc123" }));
+    const data = await res.json();
+    expect(res.status).toBe(400);
+    expect(data.message).toMatch(/invalid phone/i);
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(sendMailMock).not.toHaveBeenCalled();
+  });
+
+  it("accepts a valid phone number and still allows a blank one", async () => {
+    const fetchMock = mockGhlFetch({});
+    global.fetch = fetchMock as unknown as typeof fetch;
+
+    const { POST } = await import("./route");
+    const withPhone = await POST(jsonRequest({ ...baseBody, phone: "(407) 555-0132" }));
+    expect(withPhone.status).toBe(200);
+
+    const withoutPhone = await POST(jsonRequest({ ...baseBody, phone: "" }));
+    expect(withoutPhone.status).toBe(200);
+  });
 });
