@@ -227,7 +227,7 @@ export const WEBSITE_REVIEWS = [
     ],
   },
   {
-    name: "Dashiell Desravines",
+    name: "Dashiell D.",
     company: "FleriLab",
     paragraphs: [
       "Statica helped me turn my vision into a reality through designing an intuitive and user-friendly website for my business, FleriLab. There were many intricacies that had to be overcome to make this possible, such as designing the payment link and contact form. Statica made every challenge look easy and maintained constant communication throughout the website design process. These qualities made the overall process smooth, straightforward, and understandable. I’m looking forward to using Statica’s services again to add even more features to my website!",
