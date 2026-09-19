@@ -1,7 +1,8 @@
 export const SITE = {
   name: "Statica Design Agency",
   short: "Statica",
-  url: "https://staticadesigns.com",
+  // Production canonical host: the apex domain 308-redirects to www.
+  url: "https://www.staticadesigns.com",
   email: "info@staticadesigns.com",
   founder: "Omory Rowe",
   location: "Orlando, Florida",
@@ -42,6 +43,16 @@ export const ADDITIONAL_PAGES_FAQ = {
   answer:
     "Yes. Additional pages start at $150 per page and include a layout consistent with your website, client-provided text and images, mobile formatting, basic page title and meta description setup, and one round of revisions. Custom landing pages, substantial copywriting, and pages requiring additional functionality are quoted separately. New pages are not included in the monthly content-update allowance.",
 } as const;
+
+export const PROCESS_STEPS = [
+  ["Tell me what you need", "Share the business, your current site if you have one, and what the new one should do."],
+  ["Review your quote", "We agree on pages, scope, and price before any design work starts."],
+  ["Review your website", "You look over the build and request the changes we agreed on."],
+  [
+    "Launch and keep it current",
+    "The site goes live with domain connection assistance, then moves onto a monthly plan for hosting, maintenance, and eligible content updates.",
+  ],
+] as const;
 
 export const SETUP_PLANS = [
   {

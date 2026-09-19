@@ -2,7 +2,14 @@ import Link from "next/link";
 import Ambient from "@/components/ambient";
 import BrowserFrame from "@/components/browser-frame";
 import { pageMetadata } from "@/lib/metadata";
-import { FLERILAB, MONTHLY_PATH, PRICING_CUE, PRICING_PATH, QUOTE_PATH } from "@/lib/site";
+import {
+  FLERILAB,
+  MONTHLY_PATH,
+  PRICING_CUE,
+  PRICING_PATH,
+  PROCESS_STEPS,
+  QUOTE_PATH,
+} from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Small Business Website Design in Orlando",
@@ -35,16 +42,6 @@ const INCLUDED = [
   [
     "Domain setup and connection assistance",
     "Website setup, domain connection, and launch are included in your build price. Domain registration and renewal fees are additional and confirmed before purchase.",
-  ],
-];
-
-const STEPS = [
-  ["Tell me what you need", "Share the business, your current site if you have one, and what the new one should do."],
-  ["Review your quote", "We agree on pages, scope, and price before any design work starts."],
-  ["Review your website", "You look over the build and request the changes we agreed on."],
-  [
-    "Launch and keep it current",
-    "The site goes live with domain connection assistance, then moves onto a monthly plan for hosting, maintenance, and eligible content updates.",
   ],
 ];
 
@@ -171,7 +168,7 @@ export default function WebsitesPage() {
           <h2 className="display mt-5 text-3xl sm:text-4xl">How a project runs.</h2>
         </div>
         <ol className="mt-12 grid list-none gap-8 p-0 md:grid-cols-4">
-          {STEPS.map(([title, body], i) => (
+          {PROCESS_STEPS.map(([title, body], i) => (
             <li key={title} className="hairline-top pt-6">
               <span className="font-nacelle text-3xl font-semibold text-bolt/80">
                 {i + 1}

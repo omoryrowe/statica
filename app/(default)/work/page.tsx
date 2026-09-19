@@ -1,13 +1,15 @@
 import Link from "next/link";
 import Ambient from "@/components/ambient";
 import BrowserFrame from "@/components/browser-frame";
+import { ConceptBadge, ConceptDesktop, DemoLink } from "@/components/concept-preview";
+import { CONCEPT_DISCLOSURE_ALL, CONCEPT_PROJECTS } from "@/lib/concepts";
 import { pageMetadata } from "@/lib/metadata";
 import { FLERILAB, MARCUS_WEBSITE_EXCERPT, QUOTE_PATH } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Website Work",
   description:
-    "Selected website work from Statica Design Agency, including FleriLab, a nonprofit site for sustainable agriculture in Haiti.",
+    "Selected website work from Statica Design Agency, including FleriLab, a nonprofit site for sustainable agriculture in Haiti, plus concept websites for contractors, wedding planners and pet groomers.",
   path: "/work",
 });
 
@@ -23,6 +25,12 @@ export default function WorkPage() {
           </h1>
           <p className="lede mt-6 max-w-xl">
             A close look at a real project, rather than a wall of thumbnails.
+          </p>
+          <p className="mt-4 max-w-xl text-sm text-mist">
+            Below it, three concept websites show what I can build for specific industries.{" "}
+            <a href="#concepts" className="font-semibold text-bolt hover:underline">
+              Jump to the concepts
+            </a>
           </p>
         </div>
       </section>
@@ -78,6 +86,73 @@ export default function WorkPage() {
             &ldquo;{MARCUS_WEBSITE_EXCERPT}&rdquo;
           </blockquote>
           <p className="mt-6 text-sm text-mist">Marcus W., Vatt Media Marketing</p>
+        </div>
+      </section>
+      <section id="concepts" className="scroll-mt-16 border-t border-ink-line bg-ink-raised">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Concept projects</p>
+            <h2 className="display mt-5 text-3xl sm:text-4xl">
+              Websites designed for specific industries.
+            </h2>
+            <p className="mt-6 text-mist">
+              These are not client projects. Each one is a fictional business I designed and built to
+              show what a website can look like for a particular trade. Open any live demo and
+              explore it.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {CONCEPT_PROJECTS.map((project) => (
+              <article key={project.slug} className="flex flex-col">
+                <ConceptDesktop
+                  project={project}
+                  image={project.previews.desktop}
+                  location="work"
+                  event="work-demo-click"
+                  sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
+                />
+                <div className="mt-6">
+                  <ConceptBadge />
+                </div>
+                <p className="mt-4 text-xs uppercase tracking-[0.18em] text-mist">{project.industry}</p>
+                <h3 className="mt-2 font-nacelle text-2xl font-semibold text-paper">{project.name}</h3>
+                <p className="mt-3 text-mist">{project.summary}</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <DemoLink
+                    project={project}
+                    location="work"
+                    event="work-demo-click"
+                    className="btn btn-primary"
+                  />
+                  <Link
+                    href={project.projectPath}
+                    className="btn btn-secondary"
+                    data-event="work-project-click"
+                    data-niche={project.nicheId}
+                    data-project={project.slug}
+                    data-location="work"
+                  >
+                    View Project
+                  </Link>
+                </div>
+                <Link
+                  href={project.landingPath}
+                  className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-bolt"
+                >
+                  {project.cta.landingPrompt}
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                    &rarr;
+                  </span>
+                </Link>
+              </article>
+            ))}
+          </div>
+
+          <p className="mt-12 max-w-2xl border-t border-ink-line/70 pt-5 text-xs leading-relaxed text-mist">
+            <strong className="font-semibold text-paper">Concept disclosure.</strong>{" "}
+            {CONCEPT_DISCLOSURE_ALL}
+          </p>
         </div>
       </section>
     </>

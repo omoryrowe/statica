@@ -1,7 +1,9 @@
 "use client";
 
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { readAttribution, type Attribution } from "@/lib/attribution";
+import { trackEvent } from "@/lib/track";
 import { isMonthlyPlanId, isSetupPlanId, MONTHLY_PLANS, NEED_OPTIONS, RELAY_PLAN, SETUP_PLANS } from "@/lib/site";
 
 const LIMITS = {
@@ -33,6 +35,7 @@ export default function QuoteForm() {
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const submittingRef = useRef(false);
+  const attributionRef = useRef<Attribution | null>(null);
   const [values, setValues] = useState({
     name: "",
     businessName: "",
@@ -57,6 +60,12 @@ export default function QuoteForm() {
     const plan = MONTHLY_PLANS.find((p) => p.id === values.monthly);
     return plan ? `${plan.name} (${plan.priceLabel})` : "Not sure yet";
   }, [values.monthly]);
+
+  const searchString = searchParams.toString();
+  useEffect(() => {
+    attributionRef.current = readAttribution(searchString);
+    trackEvent("quote-form-view", { source: attributionRef.current?.source });
+  }, [searchString]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -99,6 +108,7 @@ export default function QuoteForm() {
           monthly: monthlyLabel,
           interest: values.monthly === RELAY_PLAN.id ? RELAY_PLAN.name : "",
           projectDetails: values.projectDetails.trim(),
+          attribution: attributionRef.current ?? undefined,
           idempotencyKey:
             typeof crypto !== "undefined" && "randomUUID" in crypto
               ? crypto.randomUUID()
@@ -108,6 +118,7 @@ export default function QuoteForm() {
       const data = await response.json().catch(() => null);
       if (response.ok) {
         setSuccess(true);
+        trackEvent("quote-form-submit", { source: attributionRef.current?.source });
       } else {
         setError(data?.message ?? "The quote request could not be sent. Please try again.");
       }

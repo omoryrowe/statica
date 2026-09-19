@@ -1,0 +1,161 @@
+/*
+ * Niche art direction. Layered over the Statica system for the campaign
+ * landing pages (/contractors, /wedding-planners, /pet-groomers): fonts,
+ * yellow accent, buttons and grain are untouched. Only ambient tint, shape
+ * language and a few typographic details shift per audience.
+ */
+
+.niche {
+  --niche-a: rgba(240, 192, 20, 0.18);
+  --niche-b: rgba(120, 140, 190, 0.16);
+  --niche-c: rgba(120, 140, 190, 0.14);
+  --niche-phone-radius: 1.75rem;
+}
+
+.niche .aurora {
+  background:
+    radial-gradient(36% 40% at 20% 25%, var(--niche-a), transparent 70%),
+    radial-gradient(30% 34% at 80% 15%, var(--niche-b), transparent 72%),
+    radial-gradient(44% 46% at 62% 88%, var(--niche-c), transparent 74%);
+}
+
+.niche .aurora-soft {
+  background:
+    radial-gradient(40% 44% at 78% 20%, var(--niche-b), transparent 72%),
+    radial-gradient(40% 40% at 12% 78%, var(--niche-c), transparent 74%);
+}
+
+.niche-phone {
+  border-radius: var(--niche-phone-radius);
+}
+
+.niche-deco {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Contractors: substantial, drafted. Warm brass tint, squarer shapes, a faint survey grid. */
+.niche-contractors {
+  --niche-a: rgba(201, 154, 5, 0.2);
+  --niche-b: rgba(184, 189, 201, 0.1);
+  --niche-c: rgba(96, 120, 110, 0.18);
+  --niche-phone-radius: 0.875rem;
+}
+
+.niche-contractors .niche-deco {
+  background-image:
+    linear-gradient(to right, rgba(245, 245, 242, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 245, 242, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(70% 80% at 75% 40%, #000, transparent 75%);
+  mask-image: radial-gradient(70% 80% at 75% 40%, #000, transparent 75%);
+}
+
+.niche-contractors .display {
+  letter-spacing: -0.035em;
+}
+
+.niche-contractors .shot,
+.niche-contractors .niche-card {
+  border-radius: 0.75rem;
+}
+
+/* Wedding planners: editorial and quiet. Muted claret glow, light display weight, an arch behind the stage. */
+.niche-wedding-planners {
+  --niche-a: rgba(140, 62, 88, 0.2);
+  --niche-b: rgba(240, 192, 20, 0.07);
+  --niche-c: rgba(140, 62, 88, 0.14);
+  --niche-phone-radius: 1.25rem;
+}
+
+.niche-wedding-planners .display {
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.niche-wedding-planners .eyebrow {
+  letter-spacing: 0.32em;
+}
+
+.niche-wedding-planners .niche-deco::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8%;
+  width: min(62rem, 92vw);
+  height: 78%;
+  transform: translateX(-50%);
+  border: 1px solid rgba(245, 245, 242, 0.08);
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+}
+
+.niche-wedding-planners .niche-deco::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8%;
+  width: min(54rem, 80vw);
+  height: 70%;
+  transform: translateX(-50%);
+  border: 1px solid rgba(245, 245, 242, 0.05);
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+}
+
+/* Pet groomers: warm and soft. Teal-and-apricot tint, generous radii, gentle blobs. */
+.niche-pet-groomers {
+  --niche-a: rgba(64, 170, 160, 0.18);
+  --niche-b: rgba(236, 150, 110, 0.13);
+  --niche-c: rgba(64, 170, 160, 0.12);
+  --niche-phone-radius: 2.25rem;
+}
+
+.niche-pet-groomers .shot {
+  border-radius: 1.75rem;
+}
+
+.niche-pet-groomers .niche-deco::before {
+  content: "";
+  position: absolute;
+  right: -6%;
+  top: 8%;
+  width: 34rem;
+  height: 30rem;
+  max-width: 80vw;
+  border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+  background: radial-gradient(closest-side, rgba(64, 170, 160, 0.13), transparent);
+}
+
+.niche-pet-groomers .niche-deco::after {
+  content: "";
+  position: absolute;
+  left: -8%;
+  bottom: -10%;
+  width: 26rem;
+  height: 22rem;
+  max-width: 70vw;
+  border-radius: 46% 54% 40% 60% / 55% 45% 55% 45%;
+  background: radial-gradient(closest-side, rgba(236, 150, 110, 0.1), transparent);
+}
+
+/* Cards respond on hover, matching the system's "respond, don't rest" rule. */
+.niche-card {
+  transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.niche-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(240, 192, 20, 0.35);
+  box-shadow: 0 24px 60px -34px rgba(0, 0, 0, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .niche-card,
+  .niche-card:hover {
+    transition: none !important;
+    transform: none !important;
+  }
+}

@@ -1,3 +1,5 @@
+import { CONCEPT_PROJECTS } from "@/lib/concepts";
+import { NICHE_LIST } from "@/lib/niches";
 import {
   MONTHLY_PATH,
   PRICING_PATH,
@@ -14,6 +16,8 @@ export default function sitemap() {
     "/websites",
     RELAY_PATH,
     "/work",
+    ...NICHE_LIST.map((niche) => niche.path),
+    ...CONCEPT_PROJECTS.map((project) => project.projectPath),
     PRICING_PATH,
     MONTHLY_PATH,
     "/about",

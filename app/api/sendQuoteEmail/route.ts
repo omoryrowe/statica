@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { describeAttribution, sanitizeAttribution } from "@/lib/attribution";
 import { logGhlFailure, syncQuoteSubmissionToGhl, type QuoteSubmission } from "@/lib/ghl";
 
 const LIMITS = {
@@ -80,6 +81,10 @@ async function sendQuoteEmail(
     ["Website Design & Build", submission.setup],
     ["Monthly plan noted", submission.monthly],
     ["Relay interest", submission.interest || "No"],
+    ...describeAttribution(submission.attribution).map((line): [string, string] => {
+      const [label, ...rest] = line.split(": ");
+      return [label, rest.join(": ")];
+    }),
   ];
 
   const warningHtml = crmWarning
@@ -110,6 +115,9 @@ async function sendQuoteEmail(
     ? `\nCRM SYNC WARNING: ${crmWarning} Please reconcile manually using reference ${submission.reference}.\n`
     : "";
 
+  const attributionLines = describeAttribution(submission.attribution);
+  const attributionText = attributionLines.length ? "\n" + attributionLines.join("\n") : "";
+
   const text = `New website inquiry
 Reference: ${submission.reference}
 ${warningText}
@@ -121,7 +129,7 @@ Existing website: ${submission.existingWebsite || "-"}
 Need: ${submission.need}
 Website Design & Build: ${submission.setup}
 Monthly plan noted: ${submission.monthly}
-Relay interest: ${submission.interest || "No"}
+Relay interest: ${submission.interest || "No"}${attributionText}
 
 Project details:
 ${submission.projectDetails || "-"}`;
@@ -231,6 +239,7 @@ export async function POST(req: Request) {
       monthly,
       interest,
       projectDetails,
+      attribution: sanitizeAttribution(body.attribution) ?? undefined,
     };
 
     if (idempotencyKey && inFlightByKey.has(idempotencyKey)) {

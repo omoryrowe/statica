@@ -4,12 +4,17 @@ export default function BrowserFrame({
   src,
   alt,
   caption,
+  url,
+  sizes,
   priority = false,
   className = "",
 }: {
   src: string;
   alt: string;
   caption?: string;
+  /** Optional address shown in the frame's address bar. */
+  url?: string;
+  sizes?: string;
   priority?: boolean;
   className?: string;
 }) {
@@ -24,13 +29,20 @@ export default function BrowserFrame({
         <span className="h-2.5 w-2.5 rounded-full bg-[#39404f]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#39404f]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#39404f]" />
-        <span className="ml-3 h-2.5 flex-1 rounded-full bg-[#232a36]" />
+        {url ? (
+          <span className="ml-3 flex-1 truncate rounded-full bg-[#232a36] px-3 py-1 text-[0.6875rem] leading-none text-mist">
+            {url}
+          </span>
+        ) : (
+          <span className="ml-3 h-2.5 flex-1 rounded-full bg-[#232a36]" />
+        )}
       </div>
       <Image
         src={src}
         alt={alt}
         width={1280}
         height={800}
+        sizes={sizes}
         priority={priority}
         loading={priority ? undefined : "lazy"}
         className="h-auto w-full"

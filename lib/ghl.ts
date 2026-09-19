@@ -1,3 +1,4 @@
+import { describeAttribution, NICHE_SOURCES, type Attribution } from "@/lib/attribution";
 import { SETUP_PLANS } from "@/lib/site";
 
 // GoHighLevel (LeadConnector) API v2 — server-only client.
@@ -128,6 +129,8 @@ export interface QuoteSubmission {
   monthly: string;
   interest: string;
   projectDetails: string;
+  /** Optional niche-page / UTM origin. Recorded in the note and the new opportunity's source. */
+  attribution?: Attribution;
 }
 
 export interface GhlSyncResult {
@@ -213,6 +216,18 @@ function resolveSetupValue(submission: QuoteSubmission): number {
   return plan ? SETUP_VALUE_BY_ID[plan.id] ?? 0 : 0;
 }
 
+const QUOTE_FORM_SOURCE = "Statica Website Quote Form";
+
+/**
+ * New opportunities from a niche landing page are labelled with it, so the
+ * pipeline can be filtered by campaign. Everything else keeps the original
+ * source string. The contact's source and tags are never touched.
+ */
+function resolveOpportunitySource(submission: QuoteSubmission): string {
+  const niche = submission.attribution?.source;
+  return niche ? `${QUOTE_FORM_SOURCE} - ${NICHE_SOURCES[niche]}` : QUOTE_FORM_SOURCE;
+}
+
 async function createOpportunity(
   env: GhlEnv,
   submission: QuoteSubmission,
@@ -226,7 +241,7 @@ async function createOpportunity(
     pipelineStageId: env.newLeadStageId,
     contactId,
     monetaryValue: resolveSetupValue(submission),
-    source: "Statica Website Quote Form",
+    source: resolveOpportunitySource(submission),
   };
 
   const data = (await ghlFetch(env, "createOpportunity", "/opportunities/", {
@@ -242,6 +257,11 @@ async function createOpportunity(
     );
   }
   return opportunityId;
+}
+
+function attributionNoteLines(submission: QuoteSubmission): string[] {
+  const lines = describeAttribution(submission.attribution);
+  return lines.length ? [``, ...lines, ``] : [``];
 }
 
 function buildNoteBody(
@@ -263,7 +283,7 @@ function buildNoteBody(
     `Website Design & Build package: ${submission.setup}`,
     `Monthly plan selected: ${submission.monthly}`,
     `Relay interest: ${submission.interest || "No"}`,
-    ``,
+    ...attributionNoteLines(submission),
     `Project details:`,
     submission.projectDetails || "-",
     ``,

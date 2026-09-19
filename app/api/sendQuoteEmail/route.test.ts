@@ -63,6 +63,10 @@ function jsonResponse(body: unknown, status = 200) {
   });
 }
 
+function bodyOf(call: unknown) {
+  return JSON.parse((call as [unknown, RequestInit])[1].body as string);
+}
+
 describe("POST /api/sendQuoteEmail", () => {
   const originalFetch = global.fetch;
   const originalEnv = { ...process.env };
@@ -267,5 +271,67 @@ describe("POST /api/sendQuoteEmail", () => {
 
     const withoutPhone = await POST(jsonRequest({ ...baseBody, phone: "" }));
     expect(withoutPhone.status).toBe(200);
+  });
+
+  it("records niche-page attribution on the new opportunity source, the note, and the email", async () => {
+    const fetchMock = mockGhlFetch({});
+    global.fetch = fetchMock as unknown as typeof fetch;
+
+    const { POST } = await import("./route");
+    const res = await POST(
+      jsonRequest({
+        ...baseBody,
+        attribution: {
+          source: "contractors",
+          landingPath: "/contractors",
+          utm: { utm_source: "facebook", utm_campaign: "spring-contractors" },
+        },
+      })
+    );
+    expect(res.status).toBe(200);
+
+    const createCall = fetchMock.mock.calls.find(
+      (c) => c[0].toString().includes("/opportunities/") && !c[0].toString().includes("search")
+    );
+    const createBody = bodyOf(createCall);
+    expect(createBody.source).toBe("Statica Website Quote Form - Contractor Landing Page");
+
+    const noteCall = fetchMock.mock.calls.find((c) => c[0].toString().includes("/notes"));
+    const noteBody = bodyOf(noteCall).body as string;
+    expect(noteBody).toContain("Lead source: Contractor Landing Page");
+    expect(noteBody).toContain("utm_campaign: spring-contractors");
+
+    // The contact upsert must never carry attribution-derived source or tags.
+    const upsertCall = fetchMock.mock.calls.find((c) => c[0].toString().includes("/contacts/upsert"));
+    const upsertBody = bodyOf(upsertCall);
+    expect(upsertBody.source).toBe("Statica Website Quote Form");
+    expect(upsertBody.tags).toBeUndefined();
+
+    expect(sendMailMock.mock.calls[0][0].text).toContain("Lead source: Contractor Landing Page");
+  });
+
+  it("keeps the original source when there is no attribution, and ignores invalid attribution", async () => {
+    const fetchMock = mockGhlFetch({});
+    global.fetch = fetchMock as unknown as typeof fetch;
+
+    const { POST } = await import("./route");
+    await POST(jsonRequest(baseBody));
+    await POST(
+      jsonRequest({
+        ...baseBody,
+        email: "other@example.com",
+        attribution: { source: "not-a-niche", landingPath: "javascript:alert(1)", utm: "x" },
+      })
+    );
+
+    const createCalls = fetchMock.mock.calls.filter(
+      (c) => c[0].toString().includes("/opportunities/") && !c[0].toString().includes("search")
+    );
+    expect(createCalls).toHaveLength(2);
+    for (const call of createCalls) {
+      expect(bodyOf(call).source).toBe(
+        "Statica Website Quote Form"
+      );
+    }
   });
 });
