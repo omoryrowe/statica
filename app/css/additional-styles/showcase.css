@@ -1,0 +1,130 @@
+/* Homepage hero showcase (components/hero-showcase.tsx).
+   Slides are positioned by a signed integer distance (--d) from the active
+   slide, so wraparound is just a slide moving one slot along. */
+.showcase {
+  --slide-w: min(80vw, 30rem);
+  --step: calc(var(--slide-w) * 0.97);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --autoplay-ms: 6000ms;
+}
+
+@media (min-width: 640px) {
+  .showcase {
+    --slide-w: min(72vw, 52rem);
+  }
+}
+
+.showcase-stage {
+  display: grid;
+  padding-block: 1.5rem;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.showcase-slide {
+  grid-area: 1 / 1;
+  justify-self: center;
+  width: var(--slide-w);
+  transform: translate3d(calc(var(--step) * var(--d) + var(--drag, 0px)), 0, 0)
+    scale(var(--s));
+  opacity: var(--a);
+  z-index: var(--z);
+  transition:
+    transform 700ms var(--ease),
+    opacity 700ms var(--ease);
+}
+
+.showcase-slide[data-dist="0"] {
+  --s: 1;
+  --a: 1;
+  --z: 3;
+}
+
+.showcase-slide[data-dist="1"] {
+  --s: 0.86;
+  --a: 0.45;
+  --z: 2;
+  cursor: pointer;
+}
+
+.showcase-slide[data-dist="1"]:hover {
+  --a: 0.65;
+}
+
+.showcase-slide[data-dist="2"],
+.showcase-slide[data-dist="3"] {
+  --s: 0.74;
+  --a: 0;
+  --z: 1;
+  pointer-events: none;
+}
+
+.showcase-stage[data-dragging="true"] .showcase-slide {
+  transition: none;
+}
+
+/* Captions share one grid cell so the block is always as tall as the tallest. */
+.showcase-caption {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(calc(var(--cs) * 18px), 0, 0);
+  transition:
+    opacity 240ms ease-in,
+    transform 400ms var(--ease),
+    visibility 0s linear 240ms;
+}
+
+.showcase-caption[data-active="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 500ms ease-out 160ms,
+    transform 700ms var(--ease) 160ms,
+    visibility 0s;
+}
+
+/* Active indicator doubles as the autoplay timer. */
+.showcase-fill {
+  transform-origin: left center;
+}
+
+.showcase-fill[data-timing="true"] {
+  animation: showcase-progress var(--autoplay-ms) linear both;
+}
+
+.showcase-fill[data-running="false"] {
+  animation-play-state: paused;
+}
+
+@keyframes showcase-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Reduced motion: no travel and no timer. State changes become short fades. */
+@media (prefers-reduced-motion: reduce) {
+  .showcase-slide {
+    transition: opacity 250ms linear;
+  }
+
+  .showcase-caption,
+  .showcase-caption[data-active="true"] {
+    transform: none;
+    transition:
+      opacity 250ms linear,
+      visibility 0s linear 250ms;
+  }
+
+  .showcase-caption[data-active="true"] {
+    transition:
+      opacity 250ms linear,
+      visibility 0s;
+  }
+}

@@ -14,6 +14,7 @@
  *   quote-form-view      quote form reached (+ source)
  *   quote-form-submit    quote form submitted successfully (+ source)
  *   consult-cta          existing Relay consultation CTA
+ *   home-showcase-click  hero showcase project link on the homepage (+ project, niche for concepts)
  */
 
 type TrackValue = string | number | boolean | undefined;

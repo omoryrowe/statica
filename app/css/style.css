@@ -5,4 +5,5 @@
 @import "additional-styles/utility-patterns.css";
 @import "additional-styles/theme.css";
 @import "additional-styles/niche.css";
+@import "additional-styles/showcase.css";
 @import "tailwindcss/utilities";

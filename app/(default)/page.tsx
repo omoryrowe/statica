@@ -1,13 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import Ambient from "@/components/ambient";
-import BrowserFrame from "@/components/browser-frame";
+import HeroShowcase from "@/components/hero-showcase";
 import RelayThread from "@/components/relay-thread";
 import { pageMetadata } from "@/lib/metadata";
 import ClientReview from "@/components/client-review";
 import {
-  FLERILAB,
-  PRICING_PATH,
   QUOTE_PATH,
   RELAY_HEADLINE,
   RELAY_PATH,
@@ -61,93 +59,43 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* A. Hero */}
+      {/* A. Hero: copy, then the project showcase as one composition */}
       <section className="grain relative overflow-hidden">
         <Ambient />
-        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:py-24">
-          <div>
-            <p className="eyebrow">Custom web design • Orlando, FL</p>
-            <h1 className="display mt-6 text-[2.6rem] leading-[1.03] sm:text-6xl">
-              Your business deserves to{" "}
-              <span className="relative whitespace-nowrap text-bolt">
-                stand out.
-                <span
-                  aria-hidden
-                  className="absolute inset-x-0 -bottom-1 h-2 rounded-full bg-bolt/25"
-                />
-              </span>
-            </h1>
-            <p className="lede mt-7 max-w-lg">
-              Your website should reflect the quality of your business. Statica creates
-              custom websites that showcase your expertise, build trust, and make it easy
-              for customers to take the next step.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Link href={QUOTE_PATH} className="btn btn-primary" data-event="quote-cta">
-                Get My Quote
-              </Link>
-              <Link href="/work" className="btn btn-secondary">
-                See My Work
-              </Link>
+        <div className="relative z-10 mx-auto max-w-6xl px-4 pt-14 sm:px-6 lg:pt-20">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-14">
+            <div>
+              <p className="eyebrow">Custom web design • Orlando, FL</p>
+              <h1 className="display mt-6 text-[2.6rem] leading-[1.03] sm:text-6xl">
+                Your business deserves to{" "}
+                <span className="relative whitespace-nowrap text-bolt">
+                  stand out.
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 -bottom-1 h-2 rounded-full bg-bolt/25"
+                  />
+                </span>
+              </h1>
             </div>
-            <Link
-              href={PRICING_PATH}
-              className="group mt-7 inline-flex items-center gap-2 font-semibold text-bolt"
-            >
-              Explore Website Packages
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
-
-          <div className="relative pb-16 sm:pb-0">
-            <BrowserFrame
-              src={FLERILAB.heroImage}
-              alt={`${FLERILAB.name} website homepage`}
-              priority
-            />
-            <div className="absolute -bottom-8 -left-6 w-[42%] sm:-bottom-14 sm:-left-10 sm:w-[46%]">
-              <BrowserFrame
-                src={FLERILAB.detailImage}
-                alt={`${FLERILAB.name} website founder page`}
-              />
+            <div>
+              <p className="lede max-w-lg">
+                Your website should reflect the quality of your business. Statica creates
+                custom websites that showcase your expertise, build trust, and make it easy
+                for customers to take the next step.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link href={QUOTE_PATH} className="btn btn-primary" data-event="quote-cta">
+                  Get My Quote
+                </Link>
+                <Link href="/work" className="btn btn-secondary">
+                  See My Work
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* B. Featured work */}
-      <section className="relative overflow-hidden border-t border-ink-line bg-ink-raised">
-        <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:items-center">
-            <div>
-              <p className="eyebrow">Selected work</p>
-              <h2 className="display mt-5 text-3xl sm:text-4xl">{FLERILAB.name}</h2>
-              <p className="mt-5 text-mist">{FLERILAB.details}</p>
-              <p className="mt-5 text-mist">
-                The pages lead with the mission, keep the reading short, and put donating
-                within reach from anywhere on the site.
-              </p>
-              <Link
-                href="/work"
-                className="group mt-8 inline-flex items-center gap-2 font-semibold text-bolt"
-              >
-                See the full project
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-            </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:gap-5">
-              <BrowserFrame
-                src={FLERILAB.heroImage}
-                alt={`${FLERILAB.name} homepage`}
-                caption={FLERILAB.deliveryLabel}
-                className="sm:mt-10"
-              />
-              <BrowserFrame
-                src={FLERILAB.detailImage}
-                alt={`${FLERILAB.name} founder page`}
-              />
-            </div>
-          </div>
+        <div className="pb-14 pt-6 lg:pb-20 lg:pt-8">
+          <HeroShowcase />
         </div>
       </section>
 

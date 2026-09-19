@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 
 export default function BrowserFrame({
   src,
@@ -7,6 +8,10 @@ export default function BrowserFrame({
   url,
   sizes,
   priority = false,
+  loading,
+  aspectRatio,
+  objectPosition,
+  flat = false,
   className = "",
 }: {
   src: string;
@@ -16,11 +21,23 @@ export default function BrowserFrame({
   url?: string;
   sizes?: string;
   priority?: boolean;
+  /** Overrides the default (lazy unless `priority`) loading behaviour. */
+  loading?: "eager" | "lazy";
+  /** CSS aspect ratio (e.g. "17 / 10") that crops the screenshot instead of stretching it. */
+  aspectRatio?: string;
+  /** Anchor for the crop when `aspectRatio` is set, e.g. "50% 0%". */
+  objectPosition?: string;
+  /** Drops the hover lift and image dragging, for frames that live inside a moving container. */
+  flat?: boolean;
   className?: string;
 }) {
+  const cropStyle: CSSProperties | undefined = aspectRatio
+    ? { aspectRatio, objectFit: "cover", objectPosition }
+    : undefined;
+
   return (
     <figure
-      className={`shot overflow-hidden rounded-2xl border border-ink-line bg-ink-raised shadow-lift ${className}`}
+      className={`${flat ? "" : "shot "}overflow-hidden rounded-2xl border border-ink-line bg-ink-raised shadow-lift ${className}`}
     >
       <div
         className="flex items-center gap-1.5 border-b border-ink-line bg-ink/60 px-4 py-2.5"
@@ -44,7 +61,9 @@ export default function BrowserFrame({
         height={800}
         sizes={sizes}
         priority={priority}
-        loading={priority ? undefined : "lazy"}
+        loading={priority ? undefined : (loading ?? "lazy")}
+        draggable={flat ? false : undefined}
+        style={cropStyle}
         className="h-auto w-full"
       />
       {caption ? (
