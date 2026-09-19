@@ -49,7 +49,6 @@ const fleriLab: ShowcaseProject = {
 };
 
 export const SHOWCASE_PROJECTS: readonly ShowcaseProject[] = [
-  fleriLab,
   ...CONCEPT_PROJECTS.map(
     (concept): ShowcaseProject => ({
       id: concept.slug,
@@ -67,4 +66,6 @@ export const SHOWCASE_PROJECTS: readonly ShowcaseProject[] = [
       link: { external: true, label: "View Concept Site", concept },
     }),
   ),
+  // Last: its muted green screenshot reads quieter than the concepts, so it opens neither the loop nor the first paint.
+  fleriLab,
 ];
