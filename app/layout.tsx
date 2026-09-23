@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import Header from "@/components/ui/header";
+import MetaPixel from "@/components/meta-pixel";
 import { SITE } from "@/lib/site";
 
 const inter = Inter({
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${nacelle.variable} bg-ink font-inter text-base text-paper antialiased`}
       >
+        <MetaPixel />
         <div className="flex min-h-screen flex-col">
           <Header />
           {children}

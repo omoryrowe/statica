@@ -119,6 +119,10 @@ export default function QuoteForm() {
       if (response.ok) {
         setSuccess(true);
         trackEvent("quote-form-submit", { source: attributionRef.current?.source });
+        window.fbq?.("track", "Lead", {
+          content_name: "Quote form",
+          ...(attributionRef.current?.source ? { content_category: attributionRef.current.source } : {}),
+        });
       } else {
         setError(data?.message ?? "The quote request could not be sent. Please try again.");
       }
