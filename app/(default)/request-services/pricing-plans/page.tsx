@@ -86,7 +86,7 @@ export default function PricingPage() {
                         data-event="pricing-select"
                         className="btn btn-primary mt-8"
                       >
-                        Get My Quote
+                        Get My Free Preview
                       </Link>
                     </div>
                   </article>
@@ -144,7 +144,7 @@ export default function PricingPage() {
                   className="btn btn-primary mt-8"
                   data-event="quote-cta"
                 >
-                  Get My Quote
+                  Get My Free Preview
                 </Link>
               </div>
             </article>
@@ -180,7 +180,7 @@ export default function PricingPage() {
                   className="btn btn-primary mt-8"
                   data-event="quote-cta"
                 >
-                  Get My Quote
+                  Get My Free Preview
                 </Link>
               </div>
             </article>

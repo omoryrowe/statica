@@ -85,7 +85,7 @@ export default function Home() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link href={QUOTE_PATH} className="btn btn-primary" data-event="quote-cta">
-                  Get My Quote
+                  Get My Free Preview
                 </Link>
                 <Link href="/work" className="btn btn-secondary">
                   See My Work
@@ -237,18 +237,18 @@ export default function Home() {
         <Ambient variant="soft" />
         <div className="relative z-10 mx-auto max-w-3xl px-4 py-20 text-center sm:px-6">
           <h2 className="display text-3xl text-paper sm:text-5xl">
-            Tell me about your business.
+            See what your website could look like.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg text-mist">
-            Send over a few details and I&rsquo;ll come back with a quote and a plan for
-            your website.
+            Request a FREE homepage preview designed for your business. No payment or
+            commitment required.
           </p>
           <Link
             href={QUOTE_PATH}
             data-event="quote-cta"
             className="btn btn-primary mt-9"
           >
-            Get My Quote
+            Get My Free Preview
           </Link>
         </div>
       </section>

@@ -65,7 +65,7 @@ export default function Footer() {
             </li>
             <li>
               <Link className="text-mist hover:text-bolt" href={QUOTE_PATH}>
-                Get My Quote
+                Get My Free Preview
               </Link>
             </li>
           </ul>

@@ -14,11 +14,6 @@ const baseBody = {
   email: "jane@example.com",
   phone: "",
   existingWebsite: "",
-  need: "New website",
-  setup: "One Page Website",
-  setupId: "one-page",
-  monthly: "Not sure yet",
-  interest: "",
   projectDetails: "Need a simple one-pager.",
 };
 
@@ -116,8 +111,8 @@ describe("POST /api/sendQuoteEmail", () => {
     );
     expect(createCall).toBeTruthy();
     const createBody = JSON.parse((createCall![1] as RequestInit).body as string);
-    expect(createBody.monetaryValue).toBe(750);
-    expect(createBody.name).toBe("Doe Plumbing Website Inquiry");
+    expect(createBody.monetaryValue).toBe(0);
+    expect(createBody.name).toBe("Doe Plumbing Free Preview Request");
     expect(createBody.pipelineStageId).toBe("stage-1");
   });
 
@@ -294,7 +289,7 @@ describe("POST /api/sendQuoteEmail", () => {
       (c) => c[0].toString().includes("/opportunities/") && !c[0].toString().includes("search")
     );
     const createBody = bodyOf(createCall);
-    expect(createBody.source).toBe("Statica Website Quote Form - Contractor Landing Page");
+    expect(createBody.source).toBe("Statica Free Homepage Preview Request - Contractor Landing Page");
 
     const noteCall = fetchMock.mock.calls.find((c) => c[0].toString().includes("/notes"));
     const noteBody = bodyOf(noteCall).body as string;
@@ -304,7 +299,7 @@ describe("POST /api/sendQuoteEmail", () => {
     // The contact upsert must never carry attribution-derived source or tags.
     const upsertCall = fetchMock.mock.calls.find((c) => c[0].toString().includes("/contacts/upsert"));
     const upsertBody = bodyOf(upsertCall);
-    expect(upsertBody.source).toBe("Statica Website Quote Form");
+    expect(upsertBody.source).toBe("Statica Free Homepage Preview Request");
     expect(upsertBody.tags).toBeUndefined();
 
     expect(sendMailMock.mock.calls[0][0].text).toContain("Lead source: Contractor Landing Page");
@@ -330,7 +325,7 @@ describe("POST /api/sendQuoteEmail", () => {
     expect(createCalls).toHaveLength(2);
     for (const call of createCalls) {
       expect(bodyOf(call).source).toBe(
-        "Statica Website Quote Form"
+        "Statica Free Homepage Preview Request"
       );
     }
   });

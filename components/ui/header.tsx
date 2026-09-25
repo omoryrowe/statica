@@ -38,7 +38,7 @@ export default function Header() {
             </Link>
           ))}
           <Link href={QUOTE_PATH} className="btn-sm btn-primary" data-event="quote-cta">
-            Get My Quote
+            Get My Free Preview
           </Link>
         </nav>
         <button
@@ -79,7 +79,7 @@ export default function Header() {
                 onClick={() => setOpen(false)}
                 data-event="quote-cta"
               >
-                Get My Quote
+                Get My Free Preview
               </Link>
             </li>
           </ul>

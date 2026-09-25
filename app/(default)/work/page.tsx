@@ -65,7 +65,7 @@ export default function WorkPage() {
                 className="btn btn-primary mt-9 inline-flex"
                 data-event="quote-cta"
               >
-                Get My Quote
+                Get My Free Preview
               </Link>
             </div>
 

@@ -212,7 +212,7 @@ export default function RelayPage() {
               Book a Consultation
             </a>
             <Link href={QUOTE_PATH} className="btn btn-secondary w-full sm:w-auto">
-              Get My Quote
+              Get My Free Preview
             </Link>
           </div>
           <p className="mt-6 font-nacelle text-xl font-semibold text-bolt">

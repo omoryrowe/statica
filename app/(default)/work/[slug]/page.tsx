@@ -147,7 +147,7 @@ export default async function ConceptProjectPage({ params }: { params: Params })
               data-niche={project.nicheId}
               data-location="project-page-footer"
             >
-              Get My Quote
+              Get My Free Preview
             </Link>
           </div>
         </div>

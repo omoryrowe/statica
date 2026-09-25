@@ -1,17 +1,10 @@
 import { describeAttribution, NICHE_SOURCES, type Attribution } from "@/lib/attribution";
-import { SETUP_PLANS } from "@/lib/site";
 
 // GoHighLevel (LeadConnector) API v2 — server-only client.
 // Docs: https://marketplace.gohighlevel.com/docs/
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
 const GHL_API_VERSION = "2021-07-28";
 const GHL_TIMEOUT_MS = 8000;
-
-const SETUP_VALUE_BY_ID: Record<string, number> = {
-  "one-page": 750,
-  business: 1000,
-  expanded: 1500,
-};
 
 export interface GhlEnv {
   token: string;
@@ -123,11 +116,6 @@ export interface QuoteSubmission {
   email: string;
   phone: string;
   existingWebsite: string;
-  need: string;
-  setup: string;
-  setupId: string | null;
-  monthly: string;
-  interest: string;
   projectDetails: string;
   /** Optional niche-page / UTM origin. Recorded in the note and the new opportunity's source. */
   attribution?: Attribution;
@@ -159,7 +147,7 @@ async function upsertContact(
     name: submission.name,
     email: submission.email,
     companyName: submission.businessName,
-    source: "Statica Website Quote Form",
+    source: QUOTE_FORM_SOURCE,
   };
   if (submission.phone) body.phone = submission.phone;
   if (submission.existingWebsite) body.website = submission.existingWebsite;
@@ -208,15 +196,7 @@ async function findExistingOpportunity(env: GhlEnv, contactId: string) {
   return opportunities[0] ?? null;
 }
 
-function resolveSetupValue(submission: QuoteSubmission): number {
-  if (submission.setupId && submission.setupId in SETUP_VALUE_BY_ID) {
-    return SETUP_VALUE_BY_ID[submission.setupId];
-  }
-  const plan = SETUP_PLANS.find((p) => p.name === submission.setup);
-  return plan ? SETUP_VALUE_BY_ID[plan.id] ?? 0 : 0;
-}
-
-const QUOTE_FORM_SOURCE = "Statica Website Quote Form";
+const QUOTE_FORM_SOURCE = "Statica Free Homepage Preview Request";
 
 /**
  * New opportunities from a niche landing page are labelled with it, so the
@@ -236,11 +216,11 @@ async function createOpportunity(
   const body = {
     pipelineId: env.pipelineId,
     locationId: env.locationId,
-    name: `${submission.businessName} Website Inquiry`,
+    name: `${submission.businessName} Free Preview Request`,
     status: "open",
     pipelineStageId: env.newLeadStageId,
     contactId,
-    monetaryValue: resolveSetupValue(submission),
+    monetaryValue: 0,
     source: resolveOpportunitySource(submission),
   };
 
@@ -269,7 +249,7 @@ function buildNoteBody(
   opportunityCreated: boolean
 ): string {
   const lines = [
-    `Statica Website Quote Form submission`,
+    `Statica Free Homepage Preview Request submission`,
     `Reference: ${submission.reference}`,
     `Date: ${new Date().toISOString()}`,
     ``,
@@ -277,21 +257,16 @@ function buildNoteBody(
     `Contact: ${submission.name}`,
     `Email: ${submission.email}`,
     `Phone: ${submission.phone || "-"}`,
-    `Existing website: ${submission.existingWebsite || "-"}`,
-    ``,
-    `Website need: ${submission.need}`,
-    `Website Design & Build package: ${submission.setup}`,
-    `Monthly plan selected: ${submission.monthly}`,
-    `Relay interest: ${submission.interest || "No"}`,
+    `Website or social page: ${submission.existingWebsite || "-"}`,
     ...attributionNoteLines(submission),
-    `Project details:`,
+    `Anything they'd like us to know:`,
     submission.projectDetails || "-",
     ``,
     opportunityCreated
       ? `Opportunity created in Statica Sales / New Lead.`
       : `Existing opportunity found in Statica Sales — this is a repeat inquiry; stage/status/owner/value left unchanged.`,
     ``,
-    `Source: Statica Website Quote Form`,
+    `Source: ${QUOTE_FORM_SOURCE}`,
   ];
   return lines.join("\n");
 }

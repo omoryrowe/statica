@@ -135,18 +135,18 @@ export default function AboutPage() {
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6">
           <h2 className="display text-3xl sm:text-4xl">
-            Let&rsquo;s build a website you&rsquo;re proud to share.
+            See what your website could look like.
           </h2>
           <p className="mt-5 text-lg text-mist">
-            Tell me about your business and what you have in mind. I&rsquo;ll help you
-            define the right scope and provide a clear quote.
+            Request a FREE homepage preview designed for your business. No payment or
+            commitment required.
           </p>
           <Link
             href={QUOTE_PATH}
             className="btn btn-primary mt-8 inline-flex"
             data-event="quote-cta"
           >
-            Get My Quote
+            Get My Free Preview
           </Link>
         </div>
       </section>

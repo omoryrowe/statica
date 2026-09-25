@@ -5,7 +5,7 @@
  * DOM event. Nothing loads, and nothing is sent, unless a tag is added.
  *
  * Event names (kebab-case, matching the existing `data-event` attributes):
- *   quote-cta            any "Get My Quote" click  (+ niche, location)
+ *   quote-cta            any "Get My Free Preview" click  (+ niche, location)
  *   niche-view           niche landing page viewed (+ niche)
  *   demo-cta             live demo clicked from a niche or project page (+ niche, project, location)
  *   packages-cta         Packages clicked from a niche page (+ niche)

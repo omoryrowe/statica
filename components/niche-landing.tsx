@@ -22,7 +22,7 @@ function QuoteButton({
   ctx,
   location,
   className = "btn btn-primary",
-  children = "Get My Quote",
+  children = "Get My Free Preview",
 }: {
   ctx: Ctx;
   location: string;
@@ -57,7 +57,7 @@ function HeroCopy({ ctx, centered }: { ctx: Ctx; centered?: boolean }) {
         <QuoteButton ctx={ctx} location="hero" />
         <DemoLink project={project} location="hero" />
       </div>
-      <p className="mt-5 text-sm text-mist">Free quote, no obligation.</p>
+      <p className="mt-5 text-sm text-mist">Free homepage preview, no obligation.</p>
     </div>
   );
 }
@@ -428,8 +428,8 @@ function FinalCta({ ctx }: { ctx: Ctx }) {
           <QuoteButton ctx={ctx} location="final" />
         </div>
         <p className="mx-auto mt-6 max-w-md text-sm text-mist">
-          Requesting a quote is free, with no obligation. No payment or subscription starts when you
-          submit the form.
+          A homepage design preview, free with no obligation. A full website is a separate paid
+          service.
         </p>
         <p className="mt-6 text-sm text-mist">
           Want another look first?{" "}

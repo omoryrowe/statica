@@ -1,10 +1,9 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { readAttribution, type Attribution } from "@/lib/attribution";
 import { trackEvent } from "@/lib/track";
-import { isMonthlyPlanId, isSetupPlanId, MONTHLY_PLANS, NEED_OPTIONS, RELAY_PLAN, SETUP_PLANS } from "@/lib/site";
 
 const LIMITS = {
   name: 100,
@@ -25,11 +24,6 @@ function isValidPhone(value: string) {
 
 export default function QuoteForm() {
   const searchParams = useSearchParams();
-  const setupParam = searchParams.get("setup");
-  const monthlyParam = searchParams.get("monthly") || searchParams.get("interest");
-  const defaultNeed = searchParams.get("need") || "";
-  const ignoredMonthly = monthlyParam === "care-plus";
-  const monthlyDefault = isMonthlyPlanId(monthlyParam) ? monthlyParam! : "not-sure";
 
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -38,28 +32,12 @@ export default function QuoteForm() {
   const attributionRef = useRef<Attribution | null>(null);
   const [values, setValues] = useState({
     name: "",
-    businessName: "",
     email: "",
-    phone: "",
+    businessName: "",
     existingWebsite: "",
-    need: NEED_OPTIONS.includes(defaultNeed as (typeof NEED_OPTIONS)[number])
-      ? defaultNeed
-      : "",
-    setup: isSetupPlanId(setupParam) ? setupParam! : "not-sure",
-    monthly: monthlyDefault,
+    phone: "",
     projectDetails: "",
   });
-
-  const setupLabel = useMemo(() => {
-    if (values.setup === "not-sure") return "Not sure yet";
-    return SETUP_PLANS.find((p) => p.id === values.setup)?.name ?? "Not sure yet";
-  }, [values.setup]);
-
-  const monthlyLabel = useMemo(() => {
-    if (values.monthly === "not-sure") return "Not sure yet";
-    const plan = MONTHLY_PLANS.find((p) => p.id === values.monthly);
-    return plan ? `${plan.name} (${plan.priceLabel})` : "Not sure yet";
-  }, [values.monthly]);
 
   const searchString = searchParams.toString();
   useEffect(() => {
@@ -73,8 +51,8 @@ export default function QuoteForm() {
     setError(null);
     setSuccess(false);
 
-    if (!values.name.trim() || !values.businessName.trim() || !values.email.trim()) {
-      setError("Name, business name, and email are required.");
+    if (!values.name.trim() || !values.email.trim() || !values.businessName.trim()) {
+      setError("Name, email, and business name are required.");
       return;
     }
     if (!EMAIL_REGEX.test(values.email)) {
@@ -83,10 +61,6 @@ export default function QuoteForm() {
     }
     if (values.phone.trim() && !isValidPhone(values.phone.trim())) {
       setError("Please enter a valid phone number, or leave it blank.");
-      return;
-    }
-    if (!values.need) {
-      setError("Please choose what you need, or select Not sure.");
       return;
     }
 
@@ -98,15 +72,10 @@ export default function QuoteForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: values.name.trim(),
-          businessName: values.businessName.trim(),
           email: values.email.trim(),
-          phone: values.phone.trim(),
+          businessName: values.businessName.trim(),
           existingWebsite: values.existingWebsite.trim(),
-          need: values.need,
-          setup: setupLabel,
-          setupId: values.setup,
-          monthly: monthlyLabel,
-          interest: values.monthly === RELAY_PLAN.id ? RELAY_PLAN.name : "",
+          phone: values.phone.trim(),
           projectDetails: values.projectDetails.trim(),
           attribution: attributionRef.current ?? undefined,
           idempotencyKey:
@@ -120,14 +89,14 @@ export default function QuoteForm() {
         setSuccess(true);
         trackEvent("quote-form-submit", { source: attributionRef.current?.source });
         window.fbq?.("track", "Lead", {
-          content_name: "Quote form",
+          content_name: "Free homepage preview form",
           ...(attributionRef.current?.source ? { content_category: attributionRef.current.source } : {}),
         });
       } else {
-        setError(data?.message ?? "The quote request could not be sent. Please try again.");
+        setError(data?.message ?? "Your preview request could not be sent. Please try again.");
       }
     } catch {
-      setError("The quote request could not be sent. Please try again.");
+      setError("Your preview request could not be sent. Please try again.");
     } finally {
       submittingRef.current = false;
       setSubmitting(false);
@@ -135,52 +104,40 @@ export default function QuoteForm() {
   }
 
   const field =
-    "w-full rounded-lg border border-ink-line bg-ink-raised px-3 py-3 text-paper placeholder:text-mist/50 focus:border-bolt focus:outline-none focus:ring-2 focus:ring-bolt/30";
+    "w-full rounded-lg border border-ink-line bg-ink-raised px-3 py-3 text-base text-paper placeholder:text-mist/50 focus:border-bolt focus:outline-none focus:ring-2 focus:ring-bolt/30";
 
   return (
     <form onSubmit={onSubmit} className="space-y-5" noValidate>
-      {ignoredMonthly && (
-        <p className="text-sm text-mist">
-          That monthly option isn’t available. Your website setup choice is still saved if you selected one.
-        </p>
-      )}
       {error && (
         <p role="alert" className="rounded-lg border border-red-400/40 bg-red-950/40 px-4 py-3 text-sm text-red-200">
           {error}
         </p>
       )}
       {success && (
-        <p role="status" className="rounded-lg border border-green-400/30 bg-green-950/30 px-4 py-3 text-sm text-green-100">
-          Your quote request was sent. I’ll follow up using the email you provided.
-        </p>
+        <div role="status" className="rounded-lg border border-green-400/30 bg-green-950/30 px-4 py-3 text-sm text-green-100">
+          <p className="font-medium">Your preview request is in!</p>
+          <p className="mt-1">
+            Thanks for reaching out. We&rsquo;ll review your business details and contact you
+            by email about your free homepage preview.
+          </p>
+        </div>
       )}
 
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-paper">
-          Name
+          Your name
         </label>
         <input
           id="name"
           required
+          autoComplete="name"
           maxLength={LIMITS.name}
           className={`${field} mt-1`}
           value={values.name}
           onChange={(e) => setValues({ ...values, name: e.target.value })}
         />
       </div>
-      <div>
-        <label htmlFor="businessName" className="block text-sm font-medium text-paper">
-          Business name
-        </label>
-        <input
-          id="businessName"
-          required
-          maxLength={LIMITS.businessName}
-          className={`${field} mt-1`}
-          value={values.businessName}
-          onChange={(e) => setValues({ ...values, businessName: e.target.value })}
-        />
-      </div>
+
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-paper">
           Email
@@ -188,116 +145,101 @@ export default function QuoteForm() {
         <input
           id="email"
           type="email"
+          inputMode="email"
           required
+          autoComplete="email"
           maxLength={LIMITS.email}
           className={`${field} mt-1`}
           value={values.email}
           onChange={(e) => setValues({ ...values, email: e.target.value })}
+          aria-describedby="email-helper"
         />
+        <p id="email-helper" className="mt-1 text-xs text-mist">
+          We&rsquo;ll contact you here about your preview.
+        </p>
       </div>
+
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-paper">
-          Phone <span className="font-normal text-mist">(optional)</span>
+        <label htmlFor="businessName" className="block text-sm font-medium text-paper">
+          Business name
         </label>
         <input
-          id="phone"
-          type="tel"
-          maxLength={LIMITS.phone}
+          id="businessName"
+          required
+          autoComplete="organization"
+          maxLength={LIMITS.businessName}
           className={`${field} mt-1`}
-          value={values.phone}
-          onChange={(e) => setValues({ ...values, phone: e.target.value })}
+          value={values.businessName}
+          onChange={(e) => setValues({ ...values, businessName: e.target.value })}
         />
       </div>
+
       <div>
         <label htmlFor="existingWebsite" className="block text-sm font-medium text-paper">
-          Existing website <span className="font-normal text-mist">(optional)</span>
+          Website or social page <span className="font-normal text-mist">(optional)</span>
         </label>
         <input
           id="existingWebsite"
+          autoComplete="url"
           maxLength={LIMITS.existingWebsite}
+          placeholder="yourbusiness.com or @yourbusiness"
           className={`${field} mt-1`}
           value={values.existingWebsite}
           onChange={(e) => setValues({ ...values, existingWebsite: e.target.value })}
         />
       </div>
-      <div>
-        <label htmlFor="need" className="block text-sm font-medium text-paper">
-          What do you need?
-        </label>
-        <select
-          id="need"
-          required
-          className={`${field} mt-1`}
-          value={values.need}
-          onChange={(e) => setValues({ ...values, need: e.target.value })}
-        >
-          <option value="">Select one</option>
-          {NEED_OPTIONS.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="setup" className="block text-sm font-medium text-paper">
-          Website Design &amp; Build{" "}
-          <span className="font-normal text-mist">(optional)</span>
-        </label>
-        <select
-          id="setup"
-          className={`${field} mt-1`}
-          value={values.setup}
-          onChange={(e) => setValues({ ...values, setup: e.target.value })}
-        >
-          <option value="not-sure">Not sure yet</option>
-          {SETUP_PLANS.map((plan) => (
-            <option key={plan.id} value={plan.id}>
-              {plan.name} ({plan.priceLabel})
-            </option>
-          ))}
-        </select>
-      </div>
+
+      <details className="group rounded-lg border border-ink-line">
+        <summary className="cursor-pointer list-none rounded-lg px-3 py-3 text-sm font-medium text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bolt/30">
+          <span className="inline-flex items-center gap-2">
+            <span aria-hidden className="transition-transform group-open:rotate-90">
+              &rsaquo;
+            </span>
+            Add details <span className="font-normal text-mist">(optional)</span>
+          </span>
+        </summary>
+        <div className="space-y-5 border-t border-ink-line px-3 pb-4 pt-4">
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-paper">
+              Phone number <span className="font-normal text-mist">(optional)</span>
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              maxLength={LIMITS.phone}
+              className={`${field} mt-1`}
+              value={values.phone}
+              onChange={(e) => setValues({ ...values, phone: e.target.value })}
+            />
+          </div>
+          <div>
+            <label htmlFor="projectDetails" className="block text-sm font-medium text-paper">
+              Anything you&rsquo;d like us to know? <span className="font-normal text-mist">(optional)</span>
+            </label>
+            <textarea
+              id="projectDetails"
+              rows={4}
+              maxLength={LIMITS.projectDetails}
+              placeholder="What does your business do, or what would you like to improve?"
+              className={`${field} mt-1`}
+              value={values.projectDetails}
+              onChange={(e) => setValues({ ...values, projectDetails: e.target.value })}
+            />
+          </div>
+        </div>
+      </details>
 
       <div>
-        <label htmlFor="monthly" className="block text-sm font-medium text-paper">
-          Monthly plan <span className="font-normal text-mist">(optional)</span>
-        </label>
-        <select
-          id="monthly"
-          className={`${field} mt-1`}
-          value={values.monthly}
-          onChange={(e) => setValues({ ...values, monthly: e.target.value })}
-        >
-          <option value="not-sure">Not sure yet</option>
-          {MONTHLY_PLANS.map((plan) => (
-            <option key={plan.id} value={plan.id}>
-              {plan.name} ({plan.priceLabel})
-            </option>
-          ))}
-        </select>
+        <button type="submit" disabled={submitting} className="btn btn-primary w-full">
+          {submitting ? "Sending…" : "Request My Free Preview"}
+        </button>
+        <p className="mt-2 text-xs text-mist">
+          A homepage design preview, free with no obligation. A full website is a separate
+          paid service.
+        </p>
       </div>
-
-      <div>
-        <label htmlFor="projectDetails" className="block text-sm font-medium text-paper">
-          Brief project details
-        </label>
-        <textarea
-          id="projectDetails"
-          rows={6}
-          maxLength={LIMITS.projectDetails}
-          className={`${field} mt-1`}
-          value={values.projectDetails}
-          onChange={(e) => setValues({ ...values, projectDetails: e.target.value })}
-        />
-      </div>
-      <p className="text-sm text-mist">
-        Requesting a quote is free, with no obligation. No payment or subscription
-        starts when you submit this form.
-      </p>
-      <button type="submit" disabled={submitting} className="btn btn-primary w-full sm:w-auto">
-        {submitting ? "Sending…" : "Get My Quote"}
-      </button>
     </form>
   );
 }

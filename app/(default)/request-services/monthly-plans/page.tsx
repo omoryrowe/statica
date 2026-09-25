@@ -67,7 +67,7 @@ export default function MonthlyPlansPage() {
                     className="btn btn-primary mt-8"
                     data-event="quote-cta"
                   >
-                    Get My Quote
+                    Get My Free Preview
                   </Link>
                 </div>
               </article>
@@ -101,7 +101,7 @@ export default function MonthlyPlansPage() {
                     className="btn btn-primary mt-8"
                     data-event="quote-cta"
                   >
-                    Get My Quote
+                    Get My Free Preview
                   </Link>
                 </div>
               </article>
@@ -162,7 +162,7 @@ export default function MonthlyPlansPage() {
               </p>
             </div>
             <Link href={QUOTE_PATH} className="btn btn-primary" data-event="quote-cta">
-              Get My Quote
+              Get My Free Preview
             </Link>
           </div>
         </div>

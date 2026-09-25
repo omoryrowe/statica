@@ -63,7 +63,7 @@ export default function WebsitesPage() {
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link href={QUOTE_PATH} className="btn btn-primary" data-event="quote-cta">
-                Get My Quote
+                Get My Free Preview
               </Link>
               <Link href={PRICING_PATH} className="btn btn-secondary">
                 See Pricing
@@ -192,7 +192,7 @@ export default function WebsitesPage() {
             </p>
           </div>
           <Link href={QUOTE_PATH} className="btn btn-primary" data-event="quote-cta">
-            Get My Quote
+            Get My Free Preview
           </Link>
         </div>
       </section>

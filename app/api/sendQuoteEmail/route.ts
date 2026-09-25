@@ -9,10 +9,6 @@ const LIMITS = {
   email: 254,
   phone: 40,
   existingWebsite: 200,
-  need: 80,
-  setup: 80,
-  monthly: 80,
-  interest: 120,
   projectDetails: 4000,
 };
 
@@ -76,39 +72,55 @@ async function sendQuoteEmail(
     ["Business", submission.businessName],
     ["Email", submission.email],
     ["Phone", submission.phone || "-"],
-    ["Existing website", submission.existingWebsite || "-"],
-    ["Need", submission.need],
-    ["Website Design & Build", submission.setup],
-    ["Monthly plan noted", submission.monthly],
-    ["Relay interest", submission.interest || "No"],
+    ["Website or social page", submission.existingWebsite || "-"],
     ...describeAttribution(submission.attribution).map((line): [string, string] => {
       const [label, ...rest] = line.split(": ");
       return [label, rest.join(": ")];
     }),
   ];
 
+  // Statica site theme tokens (tailwind.config.js): ink #0B0D12, ink-raised
+  // #141821, ink-line #2A3140, paper #F5F5F2, mist #B8BDC9, bolt #F0C014.
   const warningHtml = crmWarning
-    ? `<p style="background:#3a1f1f;border-left:4px solid #ef4444;padding:10px;border-radius:4px;"><strong>CRM sync warning:</strong> ${escapeHtml(
+    ? `<p style="background:#2a1414;border-left:4px solid #ef4444;padding:12px 14px;border-radius:8px;color:#F5F5F2;margin:0 0 20px;"><strong style="color:#ef4444;">CRM sync warning:</strong> ${escapeHtml(
         crmWarning
       )} Please reconcile this inquiry in GoHighLevel manually using reference <strong>${escapeHtml(
         submission.reference
       )}</strong>.</p>`
     : "";
 
-  const emailBody = `
-<div style="font-family:Arial,sans-serif;color:#F5F5F2;background:#141821;padding:20px;border-radius:10px;max-width:600px;margin:auto;">
-  <h1 style="font-size:22px;color:#F0C014;margin-bottom:16px;">New website inquiry</h1>
-  ${warningHtml}
-  ${rows
+  const rowsHtml = rows
     .map(
-      ([label, value]) =>
-        `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>`
+      ([label, value], i) =>
+        `<tr>
+          <td style="padding:${i === 0 ? "0" : "14px"} 0 4px;border-top:${
+          i === 0 ? "none" : "1px solid #2A3140"
+        };font-family:Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#B8BDC9;">${escapeHtml(
+          label
+        )}</td>
+        </tr>
+        <tr>
+          <td style="padding:0 0 2px;font-family:Arial,sans-serif;font-size:15px;color:#F5F5F2;">${escapeHtml(
+            value
+          )}</td>
+        </tr>`
     )
-    .join("")}
-  <p><strong>Project details:</strong></p>
-  <p style="background:#0B0D12;padding:10px;border-left:4px solid #F0C014;border-radius:4px;white-space:pre-wrap;">${escapeHtml(
-    submission.projectDetails || "-"
-  )}</p>
+    .join("");
+
+  const emailBody = `
+<div style="background:#0B0D12;padding:32px 16px;font-family:Arial,sans-serif;">
+  <div style="max-width:600px;margin:auto;background:#141821;border:1px solid #2A3140;border-radius:16px;padding:28px 28px 24px;">
+    <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:#F0C014;">Statica &bull; Free Homepage Preview</p>
+    <h1 style="font-size:22px;line-height:1.25;color:#F5F5F2;margin:0 0 20px;">New free homepage preview request</h1>
+    ${warningHtml}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+      ${rowsHtml}
+    </table>
+    <p style="margin:20px 0 4px;padding-top:14px;border-top:1px solid #2A3140;font-family:Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#B8BDC9;">Anything they'd like us to know</p>
+    <p style="background:#0B0D12;border:1px solid #2A3140;padding:14px;border-left:3px solid #F0C014;border-radius:8px;white-space:pre-wrap;color:#F5F5F2;font-size:15px;margin:6px 0 0;">${escapeHtml(
+      submission.projectDetails || "-"
+    )}</p>
+  </div>
 </div>`.trim();
 
   const warningText = crmWarning
@@ -118,20 +130,16 @@ async function sendQuoteEmail(
   const attributionLines = describeAttribution(submission.attribution);
   const attributionText = attributionLines.length ? "\n" + attributionLines.join("\n") : "";
 
-  const text = `New website inquiry
+  const text = `New free homepage preview request
 Reference: ${submission.reference}
 ${warningText}
 Name: ${submission.name}
 Business: ${submission.businessName}
 Email: ${submission.email}
 Phone: ${submission.phone || "-"}
-Existing website: ${submission.existingWebsite || "-"}
-Need: ${submission.need}
-Website Design & Build: ${submission.setup}
-Monthly plan noted: ${submission.monthly}
-Relay interest: ${submission.interest || "No"}${attributionText}
+Website or social page: ${submission.existingWebsite || "-"}${attributionText}
 
-Project details:
+Anything they'd like us to know:
 ${submission.projectDetails || "-"}`;
 
   await withTimeout(
@@ -139,7 +147,7 @@ ${submission.projectDetails || "-"}`;
       from: fromUser,
       to: inbox,
       replyTo: submission.email,
-      subject: `Website inquiry: ${submission.businessName}`,
+      subject: `Free homepage preview request: ${submission.businessName}`,
       html: emailBody,
       text,
     }),
@@ -172,7 +180,7 @@ async function handleSubmission(submission: QuoteSubmission): Promise<HandlerRes
   if (emailOk || ghlResult.ok) {
     return {
       status: 200,
-      body: { message: "Quote request sent successfully!", reference: submission.reference },
+      body: { message: "Preview request sent successfully!", reference: submission.reference },
     };
   }
 
@@ -181,7 +189,7 @@ async function handleSubmission(submission: QuoteSubmission): Promise<HandlerRes
     status: 502,
     body: {
       message:
-        "We couldn't send your quote request right now. Please try again in a moment, or email us directly.",
+        "We couldn't send your preview request right now. Please try again in a moment, or email us directly.",
     },
   };
 }
@@ -204,18 +212,13 @@ export async function POST(req: Request) {
     const email = clip(body.email, LIMITS.email);
     const phone = clip(body.phone, LIMITS.phone);
     const existingWebsite = clip(body.existingWebsite, LIMITS.existingWebsite);
-    const need = clip(body.need, LIMITS.need);
-    const setup = clip(body.setup, LIMITS.setup) || "Not sure yet";
-    const setupId = typeof body.setupId === "string" ? body.setupId.trim().slice(0, 40) : null;
-    const monthly = clip(body.monthly, LIMITS.monthly) || "Statica Care";
-    const interest = clip(body.interest, LIMITS.interest);
     const projectDetails = clip(body.projectDetails, LIMITS.projectDetails);
     const idempotencyKey =
       typeof body.idempotencyKey === "string" ? body.idempotencyKey.trim().slice(0, 100) : "";
 
-    if (!name || !businessName || !email || !need) {
+    if (!name || !businessName || !email) {
       return NextResponse.json(
-        { message: "Missing required fields: name, businessName, email, need" },
+        { message: "Missing required fields: name, email, businessName" },
         { status: 400 }
       );
     }
@@ -233,11 +236,6 @@ export async function POST(req: Request) {
       email,
       phone,
       existingWebsite,
-      need,
-      setup,
-      setupId,
-      monthly,
-      interest,
       projectDetails,
       attribution: sanitizeAttribution(body.attribution) ?? undefined,
     };
@@ -261,7 +259,7 @@ export async function POST(req: Request) {
     const message = err instanceof Error ? err.message : String(err);
     console.error("Quote submission error:", message);
     return NextResponse.json(
-      { message: "Failed to send quote request." },
+      { message: "Failed to send preview request." },
       { status: 502 }
     );
   }
